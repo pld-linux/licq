@@ -257,7 +257,8 @@ for module in \
   %configure \
 	`[ "$module" = "plugins/qt-gui" ] && echo -n "--with-qt-libraries=%{_libdir}"` \
 	`[ "$module" = "plugins/kde-gui" ] && echo -n "--with-kde --with-qt-libraries=%{_libdir} KDEDIR=%{_libdir}"` \
-  	--with-openssl-inc=%{_includedir}/openssl
+  	--with-openssl-inc=%{_includedir}/openssl \
+	--disable-gpgme
   %{__make}
   cd $BASE
 done
