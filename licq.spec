@@ -1,6 +1,7 @@
 
 %define		qt_gui_ver	0.71
 %define		con_gui_ver	0.20
+%define		data_ver	1.5
 
 Summary:	Licq - ICQ clone.
 Summary(pl):	Licq - klient ICQ.
@@ -11,6 +12,7 @@ License:	GPL
 Group:		Applications/Communications
 Group(pl):	Aplikacje/Komunikacja
 Source0:	http://download.sourceforge.net/licq/%{name}-%{version}.tar.gz
+Source1:	http://download.sourceforge.net/licq/%{name}-data-%{data_ver}.tar.gz
 Source2:	licq.wmconfig
 Source3:	licq.mini-icon.xpm
 Source4:	http://www.crewq.com/licq/icons/icons-dots.tar.gz
