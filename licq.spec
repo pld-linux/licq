@@ -2,22 +2,20 @@ Summary:	Licq - ICQ clone.
 Summary(pl):	Licq - klient ICQ.
 Name:		licq
 Version:	0.70d
-%define		gui_version 0.63
-%define		gui qt-gui
-%define		gui_name %{gui}-%{gui_version}
 Release:	1
 Copyright:	GPL
 Group:		Applications/Communications
 Group(pl):	Aplikacje/Komunikacja
 Source0:	http://ftp.licq.org/pub/licq/srcs/licq-%{version}.tar.gz
-Source1:	http://ftp.licq.org/pub/licq/srcs/licq_%{gui_name}.tar.gz
 Source2:	licq.wmconfig
 Source3:	licq.mini-icon.xpm
 Source4:	http://www.crewq.com/licq/icons/icons-dots.tar.gz
+Patch0:		licq-DESTDIR.patch
 URL:		http://www.licq.org/
-Requires:	qt >= 1.44-6
-BuildPrereq:	qt-devel >= 1.44-6
+BuildPrereq:	libstdc++-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
+
+%define		_prefix	/usr/X11R6
 
 %description
 Licq is an ICQ clone written fully in c++ using the Qt widget set. It is
@@ -29,49 +27,47 @@ Licq jest klientem ICQ napisanym w C++ przy u¿yciu biblioteki Qt. Pozwala
 zast±piæ, napisanego w Javie, klienta ICQ z Mirabilis, który potrzebuje do
 pracy zbyt wiele zasobów i wymaga zainstalowanego jdk.
 
+%package	devel
+Summary:	Header files for compile licq plugins
+Summary(pl):	Pliki nag³ówkowe do kompilacji wtyczek licq
+Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki
+
+%description devel
+Header files for compile licq plugins.
+
+%description devel -l pl
+Pliki nag³ówkowe do kompilacji wtyczek licq.
+
 %prep
-%setup  -q  
-%setup	-q -a 1 -n %{name}-%{version}/plugins
+%setup -q  
+%patch -p1
 
 %build
-
-cd ..
-
-CFLAGS="$RPM_OPT_FLAGS" CXXFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-./configure %{_target_platform} \
-	--prefix=/usr/X11R6
+LDFLAGS="-s"; export LDFLAGS
+%configure
 make
-
-cd plugins/%{gui_name}
-
-CFLAGS="$RPM_OPT_FLAGS" CXXFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-./configure %{_target} \
-        --prefix=/usr/X11R6
-make
-
-cd ..
-
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/usr/X11R6/{bin,share}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir},%{_includedir}/%{name}}
 
-cd ..
 
-make install prefix=$RPM_BUILD_ROOT/usr/X11R6
-strip $RPM_BUILD_ROOT/usr/X11R6/bin/licq
+make install \
+	DESTDIR=$RPM_BUILD_ROOT
 
-cd plugins/%{gui_name}
-
-make install prefix=$RPM_BUILD_ROOT/usr/X11R6/share/licq
-
+install src/inc/*.h $RPM_BUILD_ROOT%{_includedir}/%{name}
 
 %files
 %defattr(644,root,root,755)
 %doc doc/BUGS doc/CHANGELOG doc/CREDITS doc/FAQ doc/HINTS 
 %doc doc/README* doc/*.HOWTO doc/TODO doc/UPGRADE
-%attr(755,root,root) /usr/X11R6/bin/*
-/usr/X11R6/share/*
+%attr(755,root,root) %{_bindir}/*
+%{_datadir}/*
+
+%files devel
+%defattr(644,root,root,755)
+%{_includedir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
