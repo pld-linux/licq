@@ -209,7 +209,7 @@ Narzêdzie do przesy³ania wiadomo¶ci icq na email.
 find . -type d -name autom4te.cache | xargs rm -rf
 
 %build
-cp -r plugins/qt-gui plugins/kde-gui
+cp -pr plugins/qt-gui plugins/kde-gui
 BASE=$(pwd)
 for module in \
 	. \
