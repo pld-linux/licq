@@ -1,30 +1,29 @@
-%define		qt_gui_ver	0.63
+
+%define		qt_gui_ver	0.71
+%define		con_gui_ver	0.20
 
 Summary:	Licq - ICQ clone.
 Summary(pl):	Licq - klient ICQ.
 Name:		licq
-Version:	0.70d
+Version:	0.76
 Release:	1
-Copyright:	GPL
+License:	GPL
 Group:		Applications/Communications
 Group(pl):	Aplikacje/Komunikacja
-Source0:	http://ftp.licq.org/pub/licq/srcs/%{name}-%{version}.tar.gz
-Source1:	http://ftp.licq.org/pub/licq/srcs/%{name}_qt-gui-%{qt_gui_ver}.tar.gz
+Source0:	http://download.sourceforge.net/licq/%{name}-%{version}.tar.gz
 Source2:	licq.wmconfig
 Source3:	licq.mini-icon.xpm
 Source4:	http://www.crewq.com/licq/icons/icons-dots.tar.gz
-Patch0:		licq-DESTDIR.patch
 URL:		http://www.licq.org/
 BuildRequires:	libstdc++-devel
 BuildRequires:	gettext-devel
+BuildRequires:	qt-devel >= 2.0
 BuildRoot:	/tmp/%{name}-%{version}-root
 
-%define		_prefix	/usr/X11R6
-
 %description
-Licq is an ICQ clone written fully in c++ using the Qt widget set. It is
-an attempt to give linux a non-java option to the ICQ protocol, as the
-java version is unstable and a memory hog.
+Licq is an ICQ clone written fully in c++ using the Qt widget set. It is an
+attempt to give linux a non-java option to the ICQ protocol, as the java
+version is unstable and a memory hog.
 
 %description -l pl
 Licq jest klientem ICQ napisanym w C++ przy u¿yciu biblioteki Qt. Pozwala
@@ -36,6 +35,7 @@ Summary:	Header files for compile licq plugins
 Summary(pl):	Pliki nag³ówkowe do kompilacji wtyczek licq
 Group:		Development/Libraries
 Group(pl):	Programowanie/Biblioteki
+Requires:	licq
 
 %description devel
 Header files for compile licq plugins.
@@ -43,20 +43,64 @@ Header files for compile licq plugins.
 %description devel -l pl
 Pliki nag³ówkowe do kompilacji wtyczek licq.
 
+%package	qt-gui
+Summary:	Qt GUI for Licq
+Summary(pl):	Interfejs graficzny Qt dla Licq
+Group:		X11/Applications/Communications
+Group(pl):	X11/Aplikacje/Komunikacja
+Requires:	licq = %{version}
+Requires:	qt >= 2.0
+
+%description qt-gui
+Graphical user interface for Licq written using Qt library
+
+%description qt-gui -l pl
+Graficzny interfejs u¿ytkownika do Licq pisany przy u¿yciu biblioteki Qt
+
+%package	console
+Summary:	Console user interface for Licq
+Summary(pl):	Konsolowy interfejs u¿ytkownika dla Licq
+Group:		Applications/Communications
+Group(pl):	Aplikacje/Komunikacja
+Requires:	licq = %{version}
+Requires:	ncurses >= 5.0
+
+%description console
+Console user interface for Licq
+
+%description console -l pl
+Konsolowy interfejs u¿ytkownika dla Licq
+
 %prep
-%setup -q  -a 1 -n %{name}-%{version}/plugins
-cd ..
-%patch -p1
+%setup -q 
 
 %build
 LDFLAGS="-s"; export LDFLAGS
-cd qt-gui-%{qt_gui_ver}
-gettextize --copy --force
+aclocal
+autoconf
+autoheader
+automake
 %configure 
 make
-cd ../..
+
+cd plugins
+
+cd qt-gui-%{qt_gui_ver}
+gettextize --copy --force
 %configure
 make
+cd ..
+
+cd console-%{con_gui_ver}
+aclocal
+autoconf
+autoheader
+automake
+%configure
+make
+cd ..
+
+cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
