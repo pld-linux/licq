@@ -15,8 +15,8 @@ Source1:	%{name}-qt-gui.desktop
 Patch0:		%{name}-c++.patch
 URL:		http://www.licq.org/
 BuildRequires:	XFree86-devel
-BuildRequires:	automake
 BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	gtk+-devel >= 1.2.0
 BuildRequires:	kdelibs-devel
 BuildRequires:	libstdc++-devel
@@ -207,6 +207,7 @@ Narzêdzie do przesy³ania wiadomo¶ci icq na email.
 find . -type d -name autom4te.cache | xargs rm -rf
 
 %build
+cp -f /usr/share/automake/config.* admin
 cp -r plugins/qt-gui plugins/kde-gui
 BASE=$(pwd)
 for module in \
