@@ -6,7 +6,7 @@ Summary(pl):	Klient ICQ do przesy³ania wiadomo¶ci po sieci
 Summary(pt_BR):	O licq é um clone do ICQ(tm) escrito
 Name:		licq
 Version:	%{ver}
-Release:	0.%{snap}.1
+Release:	0.%{snap}.2
 License:	GPL
 Group:		Applications/Communications
 URL:		http://www.licq.org/
@@ -260,17 +260,15 @@ rm -rf $RPM_BUILD_ROOT
 %{_applnkdir}/Network/Communications/licq-qt_gui.desktop
 %{_datadir}/licq/qt-gui/*.*
 %dir %{_datadir}/licq/qt-gui/locale
-%lang(cs) %{_datadir}/licq/qt-gui/locale/cs.qm
-%lang(cs,cs_CZ) %{_datadir}/licq/qt-gui/locale/cs_CZ.qm
+%lang(cs) %{_datadir}/licq/qt-gui/locale/cs*.qm
 %lang(de) %{_datadir}/licq/qt-gui/locale/de.qm
 %lang(es) %{_datadir}/licq/qt-gui/locale/es.qm
 %lang(fr) %{_datadir}/licq/qt-gui/locale/fr.qm
 %lang(it) %{_datadir}/licq/qt-gui/locale/it.qm
-%lang(ja_JP.eucJP) %{_datadir}/licq/qt-gui/locale/ja_JP.eucJP.qm
+%lang(ja) %{_datadir}/licq/qt-gui/locale/ja_JP.eucJP.qm
 %lang(pl) %{_datadir}/licq/qt-gui/locale/pl.qm
 %lang(pt) %{_datadir}/licq/qt-gui/locale/pt.qm
-%lang(ru) %{_datadir}/licq/qt-gui/locale/ru.qm
-%lang(ru,ru_RU.KOI8) %{_datadir}/licq/qt-gui/locale/ru_RU.KOI8-R.qm
+%lang(ru) %{_datadir}/licq/qt-gui/locale/ru*.qm
 %lang(sv) %{_datadir}/licq/qt-gui/locale/sv.qm
 %lang(tr) %{_datadir}/licq/qt-gui/locale/tr.qm
 
