@@ -277,7 +277,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(sv) %{_datadir}/licq/qt-gui/locale/sv.qm
 %lang(tr) %{_datadir}/licq/qt-gui/locale/tr.qm
 
-%files console
+%files text
 %defattr(644,root,root,755)
 %doc doc/README.CONSOLE
 %attr(755,root,root) %{_libdir}/licq/licq_console*
