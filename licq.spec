@@ -139,7 +139,6 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_applnkdir}/Networking
 mv plugins/%{console}/README doc/README.CONSOLE
 mv plugins/%{forwarder}/README doc/README.FORWARDER
-mv plugins/%{rms}/README doc/README.RMS
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Networking/licq.desktop
 
 gzip -9nf doc/{BUGS,CHANGELOG,CREDITS,HINTS,*.HOWTO,README*,TODO} \
@@ -181,5 +180,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files rms
 %defattr(644,root,root,755)
-%doc doc/README.RMS.gz
 %attr(755,root,root) %{_libdir}/licq/licq_rms*
