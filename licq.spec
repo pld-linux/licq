@@ -16,6 +16,7 @@ Source0:	http://download.sourceforge.net/%{name}/%{name}-%{snap}.tar.gz
 Source1:	%{name}-qt-gui.desktop
 Patch0:		%{name}-console.patch
 Patch1:		%{name}-DESTDIR.patch
+Patch2:		%{name}-c++.patch
 BuildRequires:	XFree86-devel
 BuildRequires:	automake
 BuildRequires:	autoconf
@@ -201,6 +202,8 @@ for header in *.h; do
 	rheader=$(echo ${header} | sed -e 's#\.h##')
 	/usr/X11R6/bin/moc -o ${rheader}.moc ${header} || :
 done
+cd ../../..
+%patch2 -p1
 
 %build
 BASE=$(pwd)
