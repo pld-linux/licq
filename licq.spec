@@ -83,14 +83,14 @@ autoconf
 autoheader
 automake
 %configure 
-make
+%{__make}
 
 cd plugins
 
 cd qt-gui-%{qt_gui_ver}
 gettextize --copy --force
 %configure
-make
+%{__make}
 cd ..
 
 cd console-%{con_gui_ver}
@@ -99,7 +99,7 @@ autoconf
 autoheader
 automake
 %configure
-make
+%{__make}
 cd ..
 
 cd ..
