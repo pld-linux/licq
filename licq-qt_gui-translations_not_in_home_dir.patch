@@ -1,12 +1,12 @@
-diff -urN licq-0.85.orig/plugins/qt-gui/src/optionsdlg.cpp licq-0.85/plugins/qt-gui/src/optionsdlg.cpp
---- licq-0.85.orig/plugins/qt-gui/src/optionsdlg.cpp	Thu Jun 29 18:56:54 2000
-+++ licq-0.85/plugins/qt-gui/src/optionsdlg.cpp	Sat Jul 22 18:30:44 2000
-@@ -436,7 +436,7 @@
+diff -urN licq-1.0.org/plugins/qt-gui-1.0/src/optionsdlg.cpp licq-1.0/plugins/qt-gui-1.0/src/optionsdlg.cpp
+--- licq-1.0.org/plugins/qt-gui-1.0/src/optionsdlg.cpp	Tue Oct 31 17:07:17 2000
++++ licq-1.0/plugins/qt-gui-1.0/src/optionsdlg.cpp	Tue Oct 31 17:25:16 2000
+@@ -440,7 +440,7 @@
      else
      {
        char szTransFileName[MAX_FILENAME_LEN];
--      sprintf(szTransFileName, "%s/%s/%s", BASE_DIR, TRANSLATION_DIR, QFile::encodeName(cmbTrans->currentText()).data());
-+      sprintf(szTransFileName, "%s%s/%s", SHARE_DIR, TRANSLATION_DIR, QFile::encodeName(cmbTrans->currentText()).data());
+-      snprintf(szTransFileName, MAX_FILENAME_LEN, "%s/%s/%s", BASE_DIR, TRANSLATION_DIR, QFile::encodeName(cmbTrans->currentText()).data());
++      snprintf(szTransFileName, MAX_FILENAME_LEN, "%s/%s/%s", SHARE_DIR, TRANSLATION_DIR, QFile::encodeName(cmbTrans->currentText()).data());
        gTranslator.setTranslationMap(szTransFileName);
      }
    }

@@ -1,6 +1,6 @@
-diff -urN licq-0.85.orig/bin/Makefile.am licq-0.85/bin/Makefile.am
---- licq-0.85.orig/bin/Makefile.am	Thu Jul  6 09:49:22 2000
-+++ licq-0.85/bin/Makefile.am	Sat Jul 22 01:07:51 2000
+diff -urN licq-1.0.org/bin/Makefile.am licq-1.0/bin/Makefile.am
+--- licq-1.0.org/bin/Makefile.am	Tue Oct 31 17:07:14 2000
++++ licq-1.0/bin/Makefile.am	Tue Oct 31 17:10:39 2000
 @@ -7,11 +7,11 @@
  #TODO: convert this to something that works better
  #but for now it should be sufficient
@@ -9,40 +9,28 @@ diff -urN licq-0.85.orig/bin/Makefile.am licq-0.85/bin/Makefile.am
 +	$(mkinstalldirs) $(DESTDIR)$(bindir)
  	@for i in $(srcdir)/viewurl-*.sh; do \
  	  if test -f $$i; then \
--	    echo "$(INSTALL_DATA) $$i $(bindir);"; \
--	    $(INSTALL_DATA) $$i $(bindir); \
-+	    echo "$(INSTALL_DATA) $$i $(DESTDIR)$(bindir);"; \
-+	    $(INSTALL_DATA) $$i $(DESTDIR)$(bindir); \
+-	    echo "$(INSTALL_PROGRAM) $$i $(bindir);"; \
+-	    $(INSTALL_PROGRAM) $$i $(bindir); \
++	    echo "$(INSTALL_PROGRAM) $$i $(DESTDIR)$(bindir);"; \
++	    $(INSTALL_PROGRAM) $$i $(DESTDIR)$(bindir); \
  	  fi \
  	done
  
-diff -urN licq-0.85.orig/plugins/qt-gui/po/Makefile.am licq-0.85/plugins/qt-gui/po/Makefile.am
---- licq-0.85.orig/plugins/qt-gui/po/Makefile.am	Thu Apr  6 15:22:29 2000
-+++ licq-0.85/plugins/qt-gui/po/Makefile.am	Sat Jul 22 01:10:49 2000
-@@ -36,14 +36,14 @@
- 	$(mkinstalldirs) $(localedir)
- 	@for i in *.qm; do \
- 	  if test "$$i" != "template.qm"; then \
--	    echo " $(INSTALL_DATA) $$i $(localedir)/$$i"; \
--	    $(INSTALL_DATA) $$i $(localedir)/$$i; \
-+	    echo " $(INSTALL_DATA) $$i $(DESTDIR)$(localedir)/$$i"; \
-+	    $(INSTALL_DATA) $$i $(DESTDIR)$(localedir)/$$i; \
-           fi \
- 	done; \
--	cd $(localedir) && rm -f ru.qm; \
--	cd $(localedir) && rm -f cs.qm; \
--        cd $(localedir) && ln -s ru_RU.KOI8-R.qm ru.qm; \
--        cd $(localedir) && ln -s cs_CZ.qm cs.qm
-+	cd $(DESTDIR)$(localedir) && rm -f ru.qm; \
-+	cd $(DESTDIR)$(localedir) && rm -f cs.qm; \
-+        cd $(DESTDIR)$(localedir) && ln -s ru_RU.KOI8-R.qm ru.qm; \
-+        cd $(DESTDIR)$(localedir) && ln -s cs_CZ.qm cs.qm
+diff -urN licq-1.0.org/plugins/qt-gui-1.0/po/Makefile.am licq-1.0/plugins/qt-gui-1.0/po/Makefile.am
+--- licq-1.0.org/plugins/qt-gui-1.0/po/Makefile.am	Tue Oct 31 17:07:16 2000
++++ licq-1.0/plugins/qt-gui-1.0/po/Makefile.am	Tue Oct 31 17:11:53 2000
+@@ -3,7 +3,7 @@
+ #sorry.. another hack for russian people with non-koi8 charset...
+ #will be removed after qt2.1 releases
  
- template: 
- 	cd $(top_srcdir)/src && $(QT_FINDTR) *.cpp *.h > $(top_builddir)/po/template.po
-diff -urN licq-0.85.orig/plugins/qt-gui/share/Makefile.am licq-0.85/plugins/qt-gui/share/Makefile.am
---- licq-0.85.orig/plugins/qt-gui/share/Makefile.am	Wed Jun  7 02:56:30 2000
-+++ licq-0.85/plugins/qt-gui/share/Makefile.am	Sat Jul 22 01:07:52 2000
+-localedir = $(prefix)/share/licq/qt-gui/locale
++localedir = $(DESTDIR)$(prefix)/share/licq/qt-gui/locale
+ 
+ all-local:
+ 	@if test -x /usr/bin/test; then \
+diff -urN licq-1.0.org/plugins/qt-gui-1.0/share/Makefile.am licq-1.0/plugins/qt-gui-1.0/share/Makefile.am
+--- licq-1.0.org/plugins/qt-gui-1.0/share/Makefile.am	Tue Oct 31 17:07:16 2000
++++ licq-1.0/plugins/qt-gui-1.0/share/Makefile.am	Tue Oct 31 17:14:10 2000
 @@ -10,44 +10,44 @@
  install-data-local:
  	@if test "$(KDEDIR)" != ""; then \
@@ -52,15 +40,19 @@ diff -urN licq-0.85.orig/plugins/qt-gui/share/Makefile.am licq-0.85/plugins/qt-g
 +	     $(mkinstalldirs) $(DESTDIR)$(KDEDIR)/share/applnk/Internet; \
 +	     $(INSTALL_DATA) licq.desktop $(DESTDIR)$(KDEDIR)/share/applnk/Internet; \
  	   else \
- 	     $(mkinstalldirs) $(HOME)/.kde/share/applnk/Internet; \
- 	     $(INSTALL_DATA) licq.desktop $(HOME)/.kde/share/applnk/Internet; \
+-	     $(mkinstalldirs) $(HOME)/.kde/share/applnk/Internet; \
+-	     $(INSTALL_DATA) licq.desktop $(HOME)/.kde/share/applnk/Internet; \
++	     $(mkinstalldirs) $(DESTDIR)$(HOME)/.kde/share/applnk/Internet; \
++	     $(INSTALL_DATA) licq.desktop $(DESTDIR)$(HOME)/.kde/share/applnk/Internet; \
  	   fi  \
  	fi
- 	$(mkinstalldirs) $(sharedir)
+-	$(mkinstalldirs) $(sharedir)
 -	@chmod 0777 $(sharedir)
-+	@chmod 0777 $(DESTDIR)$(sharedir)
- 	$(mkinstalldirs) $(sharedir)/qt-gui/locale
+-	$(mkinstalldirs) $(sharedir)/qt-gui/locale
 -	@chmod 0777 $(sharedir)/qt-gui/locale
++	$(mkinstalldirs) $(DESTDIR)$(sharedir)
++	@chmod 0777 $(DESTDIR)$(sharedir)
++	$(mkinstalldirs) $(DESTDIR)$(sharedir)/qt-gui/locale
 +	@chmod 0777 $(DESTDIR)$(sharedir)/qt-gui/locale
  	@for j in qt-gui/skin.*; do \
  	  echo "Installing skin $$j"; \
@@ -101,10 +93,10 @@ diff -urN licq-0.85.orig/plugins/qt-gui/share/Makefile.am licq-0.85/plugins/qt-g
  			fi \
  	  done; \
  	done
-diff -urN licq-0.85.orig/share/Makefile.am licq-0.85/share/Makefile.am
---- licq-0.85.orig/share/Makefile.am	Fri Jul  7 06:49:12 2000
-+++ licq-0.85/share/Makefile.am	Sat Jul 22 01:07:52 2000
-@@ -9,41 +9,41 @@
+diff -urN licq-1.0.org/share/Makefile.am licq-1.0/share/Makefile.am
+--- licq-1.0.org/share/Makefile.am	Tue Oct 31 17:07:14 2000
++++ licq-1.0/share/Makefile.am	Tue Oct 31 17:15:29 2000
+@@ -9,42 +9,42 @@
  #TODO: convert this to something that works better
  #but for now it should be sufficient
  install-data-local:
@@ -162,4 +154,7 @@ diff -urN licq-0.85.orig/share/Makefile.am licq-0.85/share/Makefile.am
 +	    $(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/sounds/icq; \
  	  fi \
  	done
- #       $(mkinstalldirs) $(mandir)
+-#       $(mkinstalldirs) $(mandir)
+-#       $(INSTALL_DATA) licq.1 $(mandir)
++#       $(mkinstalldirs) $(DESTDIR)$(mandir)
++#       $(INSTALL_DATA) licq.1 $(DESTDIR)$(mandir)
