@@ -1,14 +1,17 @@
-Summary:     Licq - ICQ clone.
-Summary(pl): Licq - klient ICQ.
-Name:        licq
-Version:     0.44
-Release:     1
-Copyright:   GPL
-Group:       Applications/Communications
-Source:      http://pages.infinit.net/fairoff/licq/licq-%{version}.tar.gz
-URL:         http://pages.infinit.net/fairoff/licq/
-Requires:    qt >= 1.41
-BuildRoot:   /tmp/%{name}-%{version}-root
+Summary:	Licq - ICQ clone.
+Summary(pl):	Licq - klient ICQ.
+Name:		licq
+Version:	0.51
+Release:	1d
+Copyright:	GPL
+Group:		Applications/Communications
+Group(pl):	Aplikacje/Komunikacja
+Source:		http://licq.wibble.net/%{name}-%{version}.tar.gz
+Patch:		licq.patch
+URL:		http://licq.wibble.net/
+Requires:	qt >= 1.41
+Requires:	XFree86-libs
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 Licq is an ICQ clone written fully in c++ using the Qt widget set. It is
@@ -21,7 +24,8 @@ zast±piæ, napisanego w Javie, klienta ICQ z Mirabilis, który potrzebuje do
 pracy zbyt wiele zasobów i wymaga zainstalowanego jdk.
 
 %prep
-%setup -q
+%setup  -q
+%patch  -p1
 
 %build
 CFLAGS="$RPM_OPT_FLAGS" CXXFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
@@ -38,9 +42,9 @@ strip $RPM_BUILD_ROOT/usr/X11R6/bin/licq
 
 %files
 %defattr(644, root, root, 755)
-%doc BUGS CHANGELOG README TODO UPGRADE
+%doc doc/* 
 %attr(755, root, root) /usr/X11R6/bin/*
-/usr/X11R6/share/Licq
+/usr/X11R6/share/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -49,9 +53,9 @@ rm -rf $RPM_BUILD_ROOT
 * Thu Oct 29 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [0.43-3]
 - added using $RPM_OPT_FLAGS during compile,
-- some commands is now in separated %install section,
-- /usr/X11R6/share/Licq mast be also registered in %files,
-- removed COPYING file from %doc (clear copyright statment is in Copyright
+- some commands is now in separated %%install section,
+- /usr/X11R6/share/Licq mast be also registered in %%files,
+- removed COPYING file from %%doc (clear copyright statment is in Copyright
   field).
 
 * Sat Oct 24 1998 Marcin Bohosiewicz <marcus@krakow.linux.org.pl>
