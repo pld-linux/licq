@@ -2,7 +2,7 @@ Summary:	An ICQ client for online messaging
 Summary(pl):	Klient ICQ do przesy³ania wiadomo¶ci po sieci
 Name:		licq
 Version:	1.0.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Communications
 Group(de):	Applikationen/Kommunikation
@@ -173,11 +173,11 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C plugins/%{rms}		DESTDIR=$RPM_BUILD_ROOT install
 %{__make} -C plugins/%{autoreply}	DESTDIR=$RPM_BUILD_ROOT install
 
-install -d $RPM_BUILD_ROOT%{_applnkdir}/Network/ICQ
+install -d $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
 mv -f plugins/%{console}/README doc/README.CONSOLE
 mv -f plugins/%{forwarder}/README doc/README.FORWARDER
 mv -f plugins/%{autoreply}/README doc/README.AUTOREPLY
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/ICQ/licq.desktop
+install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications/licq.desktop
 
 gzip -9nf doc/{BUGS,CHANGELOG,CREDITS,HINTS,*.HOWTO,README*,TODO} \
 	plugins/%{qt_gui}/doc/{CHANGELOG,README,*.HOWTO,HINTS} \
@@ -206,7 +206,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc plugins/%{qt_gui}/doc/*.gz
 %attr(755,root,root) %{_libdir}/licq/licq_qt-gui*
-%{_applnkdir}/Network/ICQ/licq.desktop
+%{_applnkdir}/Network/Communications/licq.desktop
 %{_datadir}/licq/qt-gui/dock.*
 %{_datadir}/licq/qt-gui/icons.*
 %{_datadir}/licq/qt-gui/skin.*
