@@ -225,7 +225,7 @@ for module in \
   cp -f /usr/share/automake/config.* admin
   %configure \
 	`[ "$module" = "plugins/qt-gui" ] && echo -n "--with-qt-libraries=%{_libdir}"` \
-	`[ "$module" = "plugins/kde-gui" ] && echo -n "--with-kde --with-qt-libraries=%{_libdir}"` \
+	`[ "$module" = "plugins/kde-gui" ] && echo -n "--with-kde --with-qt-libraries=%{_libdir} KDEDIR=%{_libdir}"` \
   	--with-openssl-inc=%{_includedir}/openssl
   %{__make}
   cd $BASE
