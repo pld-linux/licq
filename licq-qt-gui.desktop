@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Licq
+Comment=Unix/Qt ICQ clone
+Comment[pl]=Klon ICQ pod Unixa/Qt
+Comment[pt]=Cliente Gráfico de ICQ
+Exec=licq -p qt-gui
+Icon=licq.png
+Terminal=0
+Type=Application
