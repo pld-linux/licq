@@ -164,8 +164,11 @@ for module in . \
   automake -a -c --no-force
   autoconf
   %configure \
-  	--with-openssl-inc=%{_includedir}/openssl \
-	--without-kde
+  	--with-openssl-inc=%{_includedir}/openssl
+#	--without-kde
+# specifing --with-kde=no or without-kde causes always
+# to enable KDE support so just don't put it here.
+
   %{__make}
   cd $BASE
 done
