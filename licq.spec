@@ -53,7 +53,7 @@ Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{ver}
 
 %description devel
 Header files required to develop licq plugins.
@@ -68,7 +68,7 @@ Version:	%{ver}_%{qt_gui_ver}
 Group:		Applications/Communications
 Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{ver}
 Requires:	qt >= 2.1
 
 %description qt-gui
@@ -85,7 +85,7 @@ Version:	%{ver}_%{console_ver}
 Group:		Applications/Communications
 Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{ver}
 Requires:	ncurses >= 5.0
 
 %description console
@@ -103,7 +103,7 @@ Version:	%{ver}_%{jons_gtk_gui_ver}
 Group:		Applications/Communications
 Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{ver}
 
 %description jons-gtk-gui
 Jons GTK GUI for Licq.
@@ -118,7 +118,7 @@ Version:	%{ver}_%{rms_ver}
 Group:		Applications/Communications
 Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{ver}
 
 %description rms
 This package contains remote management server for Licq.
@@ -133,7 +133,7 @@ Version:	%{ver}_%{autoreply_ver}
 Group:		Applications/Communications
 Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{ver}
 
 %description autoreply
 This package contains Licq utility for automatic handling of incoming
@@ -150,7 +150,7 @@ Version:	%{ver}_%{forwarder_ver}
 Group:		Applications/Communications
 Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{ver}
 
 %description forwarder
 Licq email forwarder utility.
