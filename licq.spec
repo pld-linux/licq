@@ -1,16 +1,14 @@
 Summary:	Licq - ICQ clone.
 Summary(pl):	Licq - klient ICQ.
 Name:		licq
-Version:	0.51
-Release:	1d
+Version:	0.61
+Release:	1
 Copyright:	GPL
 Group:		Applications/Communications
 Group(pl):	Aplikacje/Komunikacja
 Source:		http://licq.wibble.net/%{name}-%{version}.tar.gz
-Patch:		licq.patch
 URL:		http://licq.wibble.net/
 Requires:	qt >= 1.41
-Requires:	XFree86-libs
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -25,7 +23,6 @@ pracy zbyt wiele zasobów i wymaga zainstalowanego jdk.
 
 %prep
 %setup  -q
-%patch  -p1
 
 %build
 CFLAGS="$RPM_OPT_FLAGS" CXXFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
@@ -42,7 +39,8 @@ strip $RPM_BUILD_ROOT/usr/X11R6/bin/licq
 
 %files
 %defattr(644, root, root, 755)
-%doc doc/* 
+%doc doc/BUGS doc/CHANGELOG doc/CREDITS doc/FAQ doc/HINTS 
+%doc doc/README* doc/*.HOWTO doc/TODO doc/UPGRADE
 %attr(755, root, root) /usr/X11R6/bin/*
 /usr/X11R6/share/*
 
@@ -50,6 +48,11 @@ strip $RPM_BUILD_ROOT/usr/X11R6/bin/licq
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Fri Mar 12 1999 Artur Frysiak <wiget@pld.org.pl>
+  [0.61-1]
+- removed licq.patch 
+- removed Requires: XFree86-libs (autogenerate)
+
 * Thu Oct 29 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [0.43-3]
 - added using $RPM_OPT_FLAGS during compile,
