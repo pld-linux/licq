@@ -1,0 +1,4 @@
+- added gethostname_is_in_libc_aka_no_libnsl patch - now licq is not linked
+  with libnsl.
+- adapterized
+- release++
