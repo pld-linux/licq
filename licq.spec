@@ -2,7 +2,7 @@ Summary:	An ICQ client for online messaging
 Summary(pl):	Klient ICQ do przesy³ania wiadomo¶ci po sieci
 Name:		licq
 Version:	1.0.3
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Communications
 Group(de):	Applikationen/Kommunikation
