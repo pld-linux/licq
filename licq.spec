@@ -14,7 +14,7 @@ Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-console.patch
 Patch2:		%{name}-qt_gui-translations_not_in_home_dir.patch
 Patch3:		%{name}-gethostname_is_in_libc_aka_no_libnsl.patch
-BuildRequires:	qt-devel >= 2.1
+BuildRequires:	qt-devel >= 2.1.1
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	libstdc++-devel
 BuildRequires:	openssl-devel
