@@ -205,6 +205,7 @@ Narzêdzie do przesy³ania wiadomo¶ci icq na email.
 %setup -q
 
 %build
+cp -r plugins/qt-gui plugins/kde-gui
 BASE=$(pwd)
 for module in \
 	. \
@@ -212,14 +213,15 @@ for module in \
 	plugins/console \
 	plugins/email \
 	plugins/qt-gui \
+	plugins/kde-gui \
 	plugins/rms \
 	; do
 	# plugins/jons-gtk-gui \
   cd $module
   %{__autoconf}
   %configure \
-  	--with-openssl-inc=%{_includedir}/openssl \
-	--with-kde
+	`[ "$module" = "plugins/kde-gui" ] && echo -n "--with-kde"` \
+  	--with-openssl-inc=%{_includedir}/openssl
   %{__make}
   cd $BASE
 done
@@ -232,6 +234,7 @@ rm -rf $RPM_BUILD_ROOT
 #%%{__make} -C plugins/jons-gtk-gui	DESTDIR=$RPM_BUILD_ROOT install
 %{__make} -C plugins/email		DESTDIR=$RPM_BUILD_ROOT install
 %{__make} -C plugins/qt-gui		DESTDIR=$RPM_BUILD_ROOT install
+%{__make} -C plugins/kde-gui		DESTDIR=$RPM_BUILD_ROOT install
 %{__make} -C plugins/rms		DESTDIR=$RPM_BUILD_ROOT install
 
 install -d $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
