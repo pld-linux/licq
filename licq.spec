@@ -1,5 +1,5 @@
 %define ver	1.1.0
-%define snap	20020625
+%define snap	20020626
 Summary:	An ICQ client for online messaging
 Summary(es):	licq es un clone del ICQ(tm) escrito
 Summary(pl):	Klient ICQ do przesy³ania wiadomo¶ci po sieci
@@ -11,6 +11,7 @@ License:	GPL
 Group:		Applications/Communications
 URL:		http://www.licq.org/
 #Source0:	http://download.sourceforge.net/%{name}/%{name}-%{snap}.tar.gz
+# Snapshot from: http://www-user.rhrk.uni-kl.de/~dmuell/licq/
 Source0:	%{name}-%{snap}.tar.bz2
 Source1:	%{name}-qt-gui.desktop
 #Patch0:		%{name}-console.patch
