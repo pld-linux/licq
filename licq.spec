@@ -25,12 +25,12 @@ BuildRequires:	autoconf
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define         autoreply_ver	1.0.2
-%define         console_ver	1.0.3
-%define		forwarder_ver	1.0.2
-%define		jons_gtk_gui	0.10
-%define         qt_gui_ver	%{version}
-%define		rms_ver		0.23
+%define         autoreply_ver		1.0.2
+%define         console_ver		1.0.3
+%define		forwarder_ver		1.0.2
+%define		jons_gtk_gui_ver	0.10
+%define         qt_gui_ver		%{version}
+%define		rms_ver			0.23
 
 %description
 Licq is an ICQ online messaging system clone, written in C++. Licq
@@ -64,7 +64,7 @@ Pliki nag³ówkowe niezbêdne przy pisaniu wtyczek dla licq.
 %package qt-gui
 Summary:	Qt GUI for Licq
 Summary(pl):	Graficzne ¶rodowisko u¿ytkownika dla Licq, wykorzystuj±ce Qt
-Version:	%{ver}.%{qt_gui_ver}
+Version:	%{ver}_%{qt_gui_ver}
 Group:		Applications/Communications
 Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
@@ -81,7 +81,7 @@ Qt.
 %package console
 Summary:	Console user interface for Licq
 Summary(pl):	Konsolowy interfejs u¿ytkownika dla Licq
-Version:	%{ver}.%{console_ver}
+Version:	%{ver}_%{console_ver}
 Group:		Applications/Communications
 Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
@@ -99,7 +99,7 @@ ncurses.
 %package jons-gtk-gui
 Summary:	Jons GTK GUI for Licq
 Summary(pl):	Graficzne ¶rodowisko u¿ytkownika dla Licq, wykorzystuj±ce GTK
-Version:	%{ver}.%{jons_gtk_gui_ver}
+Version:	%{ver}_%{jons_gtk_gui_ver}
 Group:		Applications/Communications
 Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
@@ -114,7 +114,7 @@ Graficzne ¶rodowisko u¿ytkownika dla Licq, wykorzystuj±ce GTK.
 %package rms
 Summary:	Licq remote management server
 Summary(pl):	Serwer do zdalnego zarz±dzania Licq
-Version:	%{ver}.%{rms_ver}
+Version:	%{ver}_%{rms_ver}
 Group:		Applications/Communications
 Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
@@ -129,7 +129,7 @@ Ten pakiet zawiera serwer do zdalnego zarz±dzania dla Licq.
 %package autoreply
 Summary:	Licq autoreply utility
 Summary(pl):	Narzêdzie do automatycznego odpowiadania dla Licq
-Version:	%{ver}.%{autoreply_ver}
+Version:	%{ver}_%{autoreply_ver}
 Group:		Applications/Communications
 Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
@@ -146,7 +146,7 @@ przychodz±cymi wiadomo¶ciami.
 %package forwarder
 Summary:	Licq email forwarder utility
 Summary(pl):	Narzêdzie do przesy³ania wiadomo¶ci icq na email
-Version:	%{ver}.%{forwarder_ver}
+Version:	%{ver}_%{forwarder_ver}
 Group:		Applications/Communications
 Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
