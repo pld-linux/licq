@@ -15,8 +15,8 @@ Source3:	licq.mini-icon.xpm
 Source4:	http://www.crewq.com/licq/icons/icons-dots.tar.gz
 Patch0:		licq-DESTDIR.patch
 URL:		http://www.licq.org/
-BuildPrereq:	libstdc++-devel
-BuildPrereq:	gettext
+BuildRequires:	libstdc++-devel
+BuildRequires:	gettext
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %define		_prefix	/usr/X11R6
