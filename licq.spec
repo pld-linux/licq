@@ -18,12 +18,12 @@ BuildRequires:	XFree86-devel
 BuildRequires:	automake
 BuildRequires:	autoconf
 BuildRequires:	gtk+-devel >= 1.2.0
+BuildRequires:	kdelibs-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	qt-devel >= 3.0.5
-BuildRequires:	kdelibs-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -72,7 +72,7 @@ Licq Õ¡§ ¬¡«¡‘¶ Õœ÷Ã…◊œ”‘¶ ÀœŒ∆¶«’“’◊¡ŒŒ— ¶ –¶ƒ‘“…Õ’§ "”À¶Œ…" (⁄Õ¶ŒŒ¶
 Summary:	Header files requied to develop licq plugins
 Summary(pl):	Pliki nag≥Ûwkowe niezbÍdne przy pisaniu wtyczek dla licq
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files required to develop licq plugins.
@@ -91,7 +91,7 @@ Summary(pt_BR):	Interface QT para o licq
 Summary(ru):	Qt …Œ‘≈“∆≈ ” À licq
 Summary(uk):	Qt ¶Œ‘≈“∆≈ ” ƒœ licq
 Group:		Applications/Communications
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	qt >= 2.1
 
 %description qt-gui
@@ -111,8 +111,9 @@ Licq - ‹‘œ ÀÃœŒ ”…”‘≈ÕŸ œŒÃ¡ Œœ◊œ«œ œ¬Õ≈Œ¡ ”œœ¬›≈Œ—Õ… ICQ. %{name}-qt
 
 %package kde-gui
 Summary:	KDE GUI for Licq
+Summary(pl):	Graficzny interfejs KDE dla Licq
 Group:		Applications/Communications
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	qt >= 2.1
 
 %description kde-gui
@@ -127,7 +128,7 @@ Summary:	Text terminal user interface for Licq
 Summary(pl):	Interfejs uøytkownika dla Licq pod terminal tekstowy
 Summary(pt_BR):	Interface de usu·rio de console para o licq
 Group:		Applications/Communications
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	ncurses >= 5.0
 Obsoletes:	licq-console
 
@@ -166,7 +167,7 @@ Licq - √≈ ÀÃœŒ ”…”‘≈Õ… œŒÃ¡ Œœ◊œ«œ œ¬Õ¶Œ’ –œ◊¶ƒœÕÃ≈ŒŒ—Õ… ICQ.
 Summary:	Licq remote management server
 Summary(pl):	Serwer do zdalnego zarz±dzania Licq
 Group:		Applications/Communications
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description rms
 This package contains remote management server for Licq.
@@ -177,9 +178,8 @@ Ten pakiet zawiera serwer do zdalnego zarz±dzania dla Licq.
 %package autoreply
 Summary:	Licq autoreply utility
 Summary(pl):	NarzÍdzie do automatycznego odpowiadania dla Licq
-Version:	%{version}
 Group:		Applications/Communications
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description autoreply
 This package contains Licq utility for automatic handling of incoming
@@ -192,9 +192,8 @@ przychodz±cymi wiadomo∂ciami.
 %package forwarder
 Summary:	Licq email forwarder utility
 Summary(pl):	NarzÍdzie do przesy≥ania wiadomo∂ci icq na email
-Version:	%{version}
 Group:		Applications/Communications
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description forwarder
 Licq email forwarder utility.
@@ -204,6 +203,8 @@ NarzÍdzie do przesy≥ania wiadomo∂ci icq na email.
 
 %prep
 %setup -q
+
+find . -type d -name autom4te.cache | xargs rm -rf
 
 %build
 cp -r plugins/qt-gui plugins/kde-gui
@@ -229,17 +230,17 @@ done
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} DESTDIR=$RPM_BUILD_ROOT install
-%{__make} -C plugins/auto-reply		DESTDIR=$RPM_BUILD_ROOT install
-%{__make} -C plugins/console		DESTDIR=$RPM_BUILD_ROOT install
-#%%{__make} -C plugins/jons-gtk-gui	DESTDIR=$RPM_BUILD_ROOT install
-%{__make} -C plugins/email		DESTDIR=$RPM_BUILD_ROOT install
-%{__make} -C plugins/qt-gui		DESTDIR=$RPM_BUILD_ROOT install
-%{__make} -C plugins/kde-gui		DESTDIR=$RPM_BUILD_ROOT install
-%{__make} -C plugins/rms		DESTDIR=$RPM_BUILD_ROOT install
 
-install -d $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications/licq-qt_gui.desktop
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT install
+
+for d in plugins/{auto-reply,console,email,qt-gui,kde-gui,rms} ; do
+# plugins/jons-gtk-gui
+	%{__make} -C $d install \
+		DESTDIR=$RPM_BUILD_ROOT
+done
+
+install -D %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/licq-qt_gui.desktop
 
 cp -f plugins/email/README		doc/README.FORWARDER
 cp -f plugins/rms/README		doc/README.RMS
@@ -270,7 +271,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc plugins/qt-gui/doc/*
 %attr(755,root,root) %{_libdir}/licq/licq_qt-gui*
-%{_applnkdir}/Network/Communications/licq-qt_gui.desktop
+%{_desktopdir}/licq-qt_gui.desktop
 %dir %{_datadir}/licq/qt-gui
 %{_datadir}/licq/qt-gui/*.*
 %dir %{_datadir}/licq/qt-gui/locale
