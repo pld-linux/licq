@@ -2,9 +2,10 @@ Summary:	An ICQ client for online messaging
 Summary(pl):	Klient ICQ do przesy³ania wiadomo¶ci po sieci
 Name:		licq
 Version:	0.85
-Release:	5
+Release:	6
 License:	GPL
 Group:		Applications/Communications
+Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
 URL:		http://www.licq.org/
 Source0:	http://www.licq.org/%{name}-%{version}.tar.gz
@@ -45,8 +46,9 @@ u¿ywanie "skórek" oraz ró¿nych zestawów ikon.
 Summary:	Header files requied to develop licq plugins
 Summary(pl):	Pliki nag³ówkowe niezbêdne przy pisaniu wtyczek dla licq
 Group:		Development/Libraries
-Group(pl):	Programowanie/Biblioteki
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
+Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 
 %description devel
@@ -59,6 +61,7 @@ Pliki nag³ówkowe niezbêdne przy pisaniu wtyczek dla licq.
 Summary:	Qt GUI for Licq
 Summary(pl):	Graficzne ¶rodowisko u¿ytkownika dla Licq, wykorzystuj±ce Qt
 Group:		Applications/Communications
+Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
 Requires:	%{name} = %{version}
 Requires:	qt >= 2.1
@@ -74,6 +77,7 @@ Qt.
 Summary:	Console user interface for Licq
 Summary(pl):	Konsolowy interfejs u¿ytkownika dla Licq
 Group:		Applications/Communications
+Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
 Requires:	%{name} = %{version}
 Requires:	ncurses >= 5.0
@@ -90,6 +94,7 @@ ncurses.
 Summary:	Licq forwarding utility
 Summary(pl):	Narzêdzie do przekazywania dalej otrzymanych w Licq wiadomo¶ci
 Group:		Applications/Communications
+Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
 Requires:	%{name} = %{version}
 
@@ -107,19 +112,21 @@ jako wiadomo¶ci ICQ skierowanych do innych adresatów.
 Summary:	Licq remote management server
 Summary(pl):	Serwer do zdalnego zarz±dzania Licq
 Group:		Applications/Communications
+Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
 Requires:	%{name} = %{version}
 
 %description rms
-This package contains remote management server for Licq
+This package contains remote management server for Licq.
 
 %description rms -l pl
-Ten pakiet zawiera serwer do zdalnego zarz±dzania dla Licq
+Ten pakiet zawiera serwer do zdalnego zarz±dzania dla Licq.
 
 %package autoreply
 Summary:	Licq autoreply utility
 Summary(pl):	Narzêdzie do automatycznego odpowiadania dla Licq
 Group:		Applications/Communications
+Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
 Requires:	%{name} = %{version}
 
@@ -139,7 +146,6 @@ przychodz±cymi wiadomo¶ciami.
 %patch3 -p1
 
 %build
-LDFLAGS="-s"; export LDFLAGS
 
 aclocal
 autoconf
@@ -186,9 +192,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C plugins/%{autoreply} DESTDIR=$RPM_BUILD_ROOT install
 
 install -d $RPM_BUILD_ROOT%{_applnkdir}/Network/ICQ
-mv plugins/%{console}/README doc/README.CONSOLE
-mv plugins/%{forwarder}/README doc/README.FORWARDER
-mv plugins/%{autoreply}/README doc/README.AUTOREPLY
+mv -f plugins/%{console}/README doc/README.CONSOLE
+mv -f plugins/%{forwarder}/README doc/README.FORWARDER
+mv -f plugins/%{autoreply}/README doc/README.AUTOREPLY
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/ICQ/licq.desktop
 
 gzip -9nf doc/{BUGS,CHANGELOG,CREDITS,HINTS,*.HOWTO,README*,TODO} \
