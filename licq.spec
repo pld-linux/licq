@@ -1,3 +1,6 @@
+
+%define _pre PRE2
+
 Summary:	An ICQ client for online messaging
 Summary(es):	licq es un clone del ICQ(tm) escrito
 Summary(pl):	Klient ICQ do przesy≥ania wiadomo∂ci po sieci
@@ -5,23 +8,26 @@ Summary(pt_BR):	O licq È um clone do ICQ(tm) escrito
 Summary(ru):	ÎÃœŒ ICQ ƒÃ— œŒÃ¡ Œœ◊«œ œ¬Õ≈Œ¡ ”œœ¬›≈Œ…—Õ…
 Summary(uk):	ÎÃœŒ ICQ ƒÃ— œŒÃ¡ Œœ◊«œ œ¬Õ¶Œ’ –œ◊¶ƒœÕÃ≈ŒŒ—Õ…
 Name:		licq
-Version:	1.2.7
-Release:	3
+Version:	1.3.0
+Release:	0.%{_pre}.1
 License:	GPL
 Group:		Applications/Communications
-Source0:	http://dl.sourceforge.net/licq/%{name}-%{version}.tar.bz2
-# Source0-md5:	e331c88151b95330f0b9b08570853318
+Source0:	http://dl.sourceforge.net/licq/%{name}-%{version}-%{_pre}.tar.bz2
+# Source0-md5:	02cea8243ece7b595e29c3ee716e0d7b
 Source1:	%{name}-qt-gui.desktop
 Patch0:		%{name}-c++.patch
 URL:		http://www.licq.org/
-BuildRequires:	XFree86-devel
+BuildRequires:	X11-devel
 BuildRequires:	automake
+BuildRequires:	gettext-devel
 BuildRequires:	gtk+-devel >= 1.2.0
 BuildRequires:	kdelibs-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	qt-devel >= 3.0.5
+BuildRequires:	qt-linguist
+BuildRequires:	xosd-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # "lib" instead of "%{_lib}" is hardcoded in include/licq_constants.h
@@ -165,6 +171,30 @@ Licq - √≈ ÀÃœŒ ”…”‘≈Õ… œŒÃ¡ Œœ◊œ«œ œ¬Õ¶Œ’ –œ◊¶ƒœÕÃ≈ŒŒ—Õ… ICQ.
 #%description jons-gtk-gui -l pl
 #Graficzne ∂rodowisko uøytkownika dla Licq, wykorzystuj±ce GTK.
 
+%package msn
+Summary:	Licq MSN plugin
+Summary(pl):	Wtyczka MSN dla licq
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description msn
+Licq MSN plugin.
+
+%description msn -l pl
+Wtyczka MSN dla licq.
+
+%package osd
+Summary:	On-screen display of incomming messages
+Summary(pl):	Wy∂wietlanie przychodz±cych wiadomo∂ci na ekranie (OSD)
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description osd
+On-screen display of incomming messages.
+
+%description osd -l pl
+Wy∂wietlanie przychodz±cych wiadomo∂ci na ekranie (OSD).
+
 %package rms
 Summary:	Licq remote management server
 Summary(pl):	Serwer do zdalnego zarz±dzania Licq
@@ -204,7 +234,7 @@ Licq email forwarder utility.
 NarzÍdzie do przesy≥ania wiadomo∂ci icq na email.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}-%{_pre}
 
 find . -type d -name autom4te.cache | xargs rm -rf
 
@@ -216,8 +246,10 @@ for module in \
 	plugins/auto-reply \
 	plugins/console \
 	plugins/email \
-	plugins/qt-gui \
 	plugins/kde-gui \
+	plugins/msn \
+	plugins/osd \
+	plugins/qt-gui \
 	plugins/rms \
 	; do
 	# plugins/jons-gtk-gui \
@@ -237,7 +269,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-for d in plugins/{auto-reply,console,email,qt-gui,kde-gui,rms} ; do
+for d in plugins/{auto-reply,console,email,kde-gui,msn,osd,qt-gui,rms} ; do
 # plugins/jons-gtk-gui
 	%{__make} -C $d install \
 		DESTDIR=$RPM_BUILD_ROOT
@@ -245,19 +277,24 @@ done
 
 install -D %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/licq-qt_gui.desktop
 
-cp -f plugins/email/README		doc/README.FORWARDER
-cp -f plugins/rms/README		doc/README.RMS
-cp -f plugins/console/README		doc/README.CONSOLE
-#cp -f plugins/jons-gtk-gui/TODO		doc/README.TODO.JONS-GTK
 cp -f plugins/auto-reply/README		doc/README.AUTOREPLY
+cp -f plugins/console/README		doc/README.CONSOLE
+cp -f plugins/email/README		doc/README.FORWARDER
+cp -f plugins/msn/README		doc/README.MSN
+cp -f plugins/osd/README		doc/README.OSD
+cp -f plugins/rms/README		doc/README.RMS
+#cp -f plugins/jons-gtk-gui/TODO		doc/README.TODO.JONS-GTK
 
 # dlopened by *.so
 rm -f $RPM_BUILD_ROOT%{plugindir}/*.la
 
+%find_lang %{name}
+%find_lang %{name}_osd_plugin
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc doc/{BUGS,CHANGELOG,CREDITS,HINTS,*.HOWTO,README*,TODO} README*
 %doc upgrade/* plugins/qt-gui/doc/{CHANGELOG,README,*.HOWTO,HINTS}
@@ -280,6 +317,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/licq-qt_gui.desktop
 %dir %{_datadir}/licq/qt-gui
 %{_datadir}/licq/qt-gui/*.*
+%{_datadir}/licq/qt-gui/emoticons
 %dir %{_datadir}/licq/qt-gui/locale
 %lang(bg) %{_datadir}/licq/qt-gui/locale/bg*.qm
 %lang(cs) %{_datadir}/licq/qt-gui/locale/cs*.qm
@@ -313,8 +351,19 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/README.FORWARDER
 %attr(755,root,root) %{plugindir}/licq_forwarder.so
 
+%files msn
+%defattr(644,root,root,755)
+%doc doc/README.MSN
+%attr(755,root,root) %{plugindir}/protocol_msn.so
+
+%files osd -f %{name}_osd_plugin.lang
+%defattr(644,root,root,755)
+%doc doc/README.OSD
+%attr(755,root,root) %{plugindir}/licq_osd.so
+
 %files rms
 %defattr(644,root,root,755)
+%doc doc/README.RMS
 %attr(755,root,root) %{plugindir}/licq_rms.so
 
 %files autoreply
