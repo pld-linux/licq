@@ -1,5 +1,5 @@
-Summary:	An ICQ client for online messaging.
-Summary(pl):	Klient ICQ do przesy³ania wiadomo¶ci po sieci.
+Summary:	An ICQ client for online messaging
+Summary(pl):	Klient ICQ do przesy³ania wiadomo¶ci po sieci
 Name:		licq
 Version:	0.84a
 Release:	2
@@ -136,7 +136,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C plugins/%{forwarder} DESTDIR=$RPM_BUILD_ROOT install
 %{__make} -C plugins/%{rms} DESTDIR=$RPM_BUILD_ROOT install
 
-install -d $RPM_BUILD_ROOT%{_applnkdir}/Networking
+install -d $RPM_BUILD_ROOT%{_applnkdir}/Network/ICQ
 mv plugins/%{console}/README doc/README.CONSOLE
 mv plugins/%{forwarder}/README doc/README.FORWARDER
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Networking/licq.desktop
@@ -163,7 +163,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc plugins/%{qt_gui}/doc/*.gz
 %attr(755,root,root) %{_libdir}/licq/licq_qt-gui*
-%{_applnkdir}/Networking/licq.desktop
+%{_applnkdir}/Network/ICQ/licq.desktop
 %{_datadir}/licq/qt-gui/dock.*
 %{_datadir}/licq/qt-gui/icons.*
 %{_datadir}/licq/qt-gui/skin.*
