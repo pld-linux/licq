@@ -207,7 +207,6 @@ Narzêdzie do przesy³ania wiadomo¶ci icq na email.
 find . -type d -name autom4te.cache | xargs rm -rf
 
 %build
-cp -f /usr/share/automake/config.* admin
 cp -r plugins/qt-gui plugins/kde-gui
 BASE=$(pwd)
 for module in \
@@ -221,6 +220,7 @@ for module in \
 	; do
 	# plugins/jons-gtk-gui \
   cd $module
+  cp -f /usr/share/automake/config.* admin
   %{__autoconf}
   %configure \
 	`[ "$module" = "plugins/kde-gui" ] && echo -n "--with-kde"` \
