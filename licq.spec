@@ -109,7 +109,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir},%{_includedir}/%{name}}
 
 cd qt-gui-%{qt_gui_ver}
-make \
+%{__make} \
 	DESTDIR=$RPM_BUILD_ROOT \
 	install
 	
@@ -117,7 +117,7 @@ cd ..
 %find_lang Licq-Qt-GUI
 cd ..
 
-make \
+%{__make} \
 	DESTDIR=$RPM_BUILD_ROOT \
 	install
 
