@@ -20,7 +20,7 @@ URL:		http://www.licq.org/
 BuildRequires:	libstdc++-devel
 BuildRequires:	gettext-devel
 BuildRequires:	qt-devel >= 2.0
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Licq is an ICQ clone written fully in c++ using the Qt widget set. It is an
