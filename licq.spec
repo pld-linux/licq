@@ -176,11 +176,11 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C plugins/%{rms} DESTDIR=$RPM_BUILD_ROOT install
 %{__make} -C plugins/%{autoreply} DESTDIR=$RPM_BUILD_ROOT install
 
-install -d $RPM_BUILD_ROOT%{_applnkdir}/Networking/ICQ
+install -d $RPM_BUILD_ROOT%{_applnkdir}/Network/ICQ
 mv plugins/%{console}/README doc/README.CONSOLE
 mv plugins/%{forwarder}/README doc/README.FORWARDER
 mv plugins/%{autoreply}/README doc/README.AUTOREPLY
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Networking/ICQ/licq.desktop
+install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/ICQ/licq.desktop
 
 gzip -9nf doc/{BUGS,CHANGELOG,CREDITS,HINTS,*.HOWTO,README*,TODO} \
 	plugins/%{qt_gui}/doc/{CHANGELOG,README,*.HOWTO,HINTS} \
@@ -209,7 +209,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc plugins/%{qt_gui}/doc/*.gz
 %attr(755,root,root) %{_libdir}/licq/licq_qt-gui*
-%{_applnkdir}/Networking/ICQ/licq.desktop
+%{_applnkdir}/Network/ICQ/licq.desktop
 %{_datadir}/licq/qt-gui/dock.*
 %{_datadir}/licq/qt-gui/icons.*
 %{_datadir}/licq/qt-gui/skin.*
