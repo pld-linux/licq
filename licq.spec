@@ -2,6 +2,8 @@ Summary:	An ICQ client for online messaging
 Summary(es):	licq es un clone del ICQ(tm) escrito
 Summary(pl):	Klient ICQ do przesyЁania wiadomo╤ci po sieci
 Summary(pt_BR):	O licq И um clone do ICQ(tm) escrito
+Summary(ru):	Клон ICQ для онлайновго обмена сообщениями
+Summary(uk):	Клон ICQ для онлайновго обм╕ну пов╕домленнями
 Name:		licq
 Version:	1.2.0a
 Release:	4
@@ -19,7 +21,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.6a
-BuildRequires:	qt-devel >= 2.1.1
+BuildRequires:	qt-devel >= 3.0.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -46,6 +48,24 @@ O licq И um clone do ICQ(tm) escrito em c++ usando biblioteca Qt. и
 uma tentativa de dar aos usuАrios do Linux uma opГЦo nЦo-java para o
 protocolo ICQ.
 
+%description -l ru
+Licq - это клон системы онлайнового обмена сообщенями ICQ, написанный
+на C++ с использованием набора виджетов Qt. Licq поддерживает все
+основные возможности ICQ, включая обмен сообщениями, URLы, чат,
+пересылку файлов и информацию об участниках. Дополнительно к этому,
+Licq имеет богатые возможности конфигурирования и поддерживает "скины"
+(сменные изображения для разных частей интерфейса для смены внешнего
+вида) и разные наборы иконок.
+
+%description -l uk
+Licq - це клон системи онлайнового обм╕ну пов╕домленнями ICQ,
+написаний на C++ з використанням набору в╕джет╕в Qt. Licq п╕дтриму╓
+вс╕ найголовн╕ш╕ можливост╕ ICQ, включаючи обм╕н пов╕домленнями, URLи,
+чат, пересилку файл╕в та ╕нформац╕ю про учасник╕в. Додатково до цього,
+Licq ма╓ багат╕ можливост╕ конф╕гурування ╕ п╕дтриму╓ "ск╕ни" (зм╕нн╕
+зображення для р╕зних частин ╕нтерфейсу для зм╕ни зовн╕шнього вигляду)
+та р╕зн╕ набори ╕конок.
+
 %package devel
 Summary:	Header files requied to develop licq plugins
 Summary(pl):	Pliki nagЁСwkowe niezbЙdne przy pisaniu wtyczek dla licq
@@ -58,11 +78,16 @@ Header files required to develop licq plugins.
 %description devel -l pl
 Pliki nagЁСwkowe niezbЙdne przy pisaniu wtyczek dla licq.
 
+%description devel -l pt_BR
+Ferramentas para desenvolvimento de plug-ins para o licq.
+
 %package qt-gui
 Summary:	Qt GUI for Licq
 Summary(es):	QT user interface for licq
 Summary(pl):	Graficzne ╤rodowisko u©ytkownika dla Licq, wykorzystuj╠ce Qt
 Summary(pt_BR):	Interface QT para o licq
+Summary(ru):	Qt интерфейс к licq
+Summary(uk):	Qt ╕нтерфейс до licq
 Group:		Applications/Communications
 Requires:	%{name} = %{version}
 Requires:	qt >= 2.1
@@ -70,38 +95,44 @@ Requires:	qt >= 2.1
 %description qt-gui
 This package contains graphical interface for Licq, using Qt wigets.
 
-%description devel -l es
-Plugins Development Kit for licq.
-
 %description qt-gui -l pl
 Ten pakiet zawiera graficzny interfejs dla Licq, u©ywaj╠cy widgetСw
 Qt.
 
-%description devel -l pt_BR
-Ferramentas para desenvolvimento de plug-ins para o licq.
+%description qt-gui -l uk
+Licq - це клон системи онлайнового обм╕ну пов╕домленнями ICQ.
+%{name}-qt - це граф╕чний ╕нтерфейс до licq написаний на Qt.
 
-%package console
-Summary:	Console user interface for Licq
-Summary(es):	Console user interface for licq
-Summary(pl):	Konsolowy interfejs u©ytkownika dla Licq
+%description qt-gui -l ru
+Licq - это клон системы онлайнового обмена сообщенями ICQ. %{name}-qt
+- это графический интерфейс к licq написанный на Qt.
+
+%package text
+Summary:	Text terminal user interface for Licq
+Summary(pl):	Interfejs u©ytkownika dla Licq pod terminal tekstowy
 Summary(pt_BR):	Interface de usuАrio de console para o licq
 Group:		Applications/Communications
 Requires:	%{name} = %{version}
 Requires:	ncurses >= 5.0
 
 %description console
-This package contains console user interface for Licq, using ncurses
-library.
-
-%description console -l es
-Includes console user interface for licq.
+This package contains text terminal user interface for Licq, using
+ncurses library.
 
 %description console -l pl
-Ten pakiet zawiera konsolowy interfejs dla Licq, u©ywaj╠cy biblioteki
-ncurses.
+Ten pakiet zawiera interfejs dla Licq pod terminal tekstowy u©ywaj╠cy
+biblioteki ncurses.
 
 %description console -l pt_BR
 Inclui interface de usuАrio de console para o licq.
+
+%description text -l ru
+Licq - это клон системы онлайнового обмена сообщенями ICQ. %{name}-qt
+- это текстовый интерфейс к licq.
+
+%description text -l uk
+Licq - це клон системи онлайнового обм╕ну пов╕домленнями ICQ.
+%{name}-qt - це текстовий ╕нтерфейс до licq.
 
 %package jons-gtk-gui
 Summary:	Jons GTK GUI for Licq
@@ -127,36 +158,36 @@ This package contains remote management server for Licq.
 %description rms -l pl
 Ten pakiet zawiera serwer do zdalnego zarz╠dzania dla Licq.
 
-#%package autoreply
-#Summary:	Licq autoreply utility
-#Summary(pl):	NarzЙdzie do automatycznego odpowiadania dla Licq
-#Version:	%{version}_%{autoreply_ver}
-#Group:		Applications/Communications
-#Requires:	%{name} = %{version}
-#
-#%description autoreply
-#This package contains Licq utility for automatic handling of incoming
-#messages.
-#
-#%description autoreply -l pl
-#Ten pakiet zawiera narzЙdzie dla Licq ktСre automatycznie zajmuje siЙ
-#przychodz╠cymi wiadomo╤ciami.
+%package autoreply
+Summary:	Licq autoreply utility
+Summary(pl):	NarzЙdzie do automatycznego odpowiadania dla Licq
+Version:	%{version}_%{autoreply_ver}
+Group:		Applications/Communications
+Requires:	%{name} = %{version}
 
-#%package forwarder
-#Summary:	Licq email forwarder utility
-#Summary(pl):	NarzЙdzie do przesyЁania wiadomo╤ci icq na email
-##Version:	%{version}_%{forwarder_ver}
-#Group:		Applications/Communications
-#Requires:	%{name} = %{version}
-#
-#%description forwarder
-#Licq email forwarder utility.
-#
-#%description forwarder -l pl
-#NarzЙdzie do przesyЁania wiadomo╤ci icq na email.
+%description autoreply
+This package contains Licq utility for automatic handling of incoming
+messages.
+
+%description autoreply -l pl
+Ten pakiet zawiera narzЙdzie dla Licq ktСre automatycznie zajmuje siЙ
+przychodz╠cymi wiadomo╤ciami.
+
+%package forwarder
+Summary:	Licq email forwarder utility
+Summary(pl):	NarzЙdzie do przesyЁania wiadomo╤ci icq na email
+Version:	%{version}_%{forwarder_ver}
+Group:		Applications/Communications
+Requires:	%{name} = %{version}
+
+%description forwarder
+Licq email forwarder utility.
+
+%description forwarder -l pl
+NarzЙdzie do przesyЁania wiadomo╤ci icq na email.
 
 %prep
-%setup -q 
+%setup -q
 #cd plugins/qt-gui/src
 #-## KDE m4 macros sucks as hell
 #-#for header in *.h; do
