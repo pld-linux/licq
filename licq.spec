@@ -2,7 +2,7 @@ Summary:	An ICQ client for online messaging
 Summary(pl):	Klient ICQ do przesy³ania wiadomo¶ci po sieci
 Name:		licq
 Version:	0.85
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Communications
 Group(pl):	Aplikacje/Komunikacja
@@ -13,7 +13,6 @@ Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-console.patch
 Patch2:		%{name}-qt_gui-translations_not_in_home_dir.patch
 BuildRequires:	qt-devel >= 2.1
-BuildRequires:	glibc-static
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	libstdc++-devel
 BuildRequires:	openssl-devel
