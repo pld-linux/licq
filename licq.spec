@@ -164,10 +164,10 @@ rm -rf $RPM_BUILD_ROOT
 %doc plugins/%{qt_gui}/doc/*.gz
 %attr(755,root,root) %{_libdir}/licq/licq_qt-gui*
 %{_applnkdir}/Networking/licq.desktop
-%{_datadir}/qt-gui/dock.*
-%{_datadir}/qt-gui/icons.*
-%{_datadir}/qt-gui/skin.*
-%dir %{_datadir}/qt-gui/locale
+%{_datadir}/licq/qt-gui/dock.*
+%{_datadir}/licq/qt-gui/icons.*
+%{_datadir}/licq/qt-gui/skin.*
+%dir %{_datadir}/licq/qt-gui/locale
 %lang(cs) %{_datadir}/licq/qt-gui/locale/cs.qm
 %lang(cs) %{_datadir}/licq/qt-gui/locale/cs_CZ.qm
 %lang(de) %{_datadir}/licq/qt-gui/locale/de.qm
