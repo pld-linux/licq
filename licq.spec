@@ -94,28 +94,3 @@ install src/inc/*.h $RPM_BUILD_ROOT%{_includedir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
-%changelog
-* Fri Mar 12 1999 Artur Frysiak <wiget@pld.org.pl>
-  [0.61-1]
-- removed licq.patch 
-- removed Requires: XFree86-libs (autogenerate)
-
-* Thu Oct 29 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [0.43-3]
-- added using $RPM_OPT_FLAGS during compile,
-- some commands is now in separated %%install section,
-- /usr/X11R6/share/Licq mast be also registered in %%files,
-- removed COPYING file from %%doc (clear copyright statment is in Copyright
-  field).
-
-* Sat Oct 24 1998 Marcin Bohosiewicz <marcus@krakow.linux.org.pl>
-  [0.43-2]
-- changed install prefix from /usr to /usr/X11R6.
-
-* Sat Oct 10 1998 Marcin Bohosiewicz <marcus@krakow.linux.org.pl>
-  [0.43-1]
-- added pl translation.
-
-* Sun Aug 22 1998 Marcin Bohosiewicz <marcus@krakow.linux.org.pl>
-- first release
