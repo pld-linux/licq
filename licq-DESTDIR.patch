@@ -1,0 +1,115 @@
+diff -Naur licq-0.84a/plugins/qt-gui-0.84a/share/Makefile.am licq-0.84a-p/plugins/qt-gui-0.84a/share/Makefile.am
+--- licq-0.84a/plugins/qt-gui-0.84a/share/Makefile.am	Sat Jun  3 00:34:49 2000
++++ licq-0.84a-p/plugins/qt-gui-0.84a/share/Makefile.am	Sat Jun 10 14:24:11 2000
+@@ -9,40 +9,35 @@
+ 
+ install-data-local:
+ 	@if test "$(KDEDIR)" != ""; then \
+-	  $(mkinstalldirs) $(KDEDIR)/share/applnk/Internet; \
+-	  $(INSTALL_DATA) licq.desktop $(KDEDIR)/share/applnk/Internet; \
++	  $(mkinstalldirs) $(DESTDIR)$(KDEDIR)/share/applnk/Internet; \
++	  $(INSTALL_DATA) licq.desktop $(DESTDIR)$(KDEDIR)/share/applnk/Internet; \
+         fi
+-	$(mkinstalldirs) $(sharedir)
+-	@chmod 0777 $(sharedir)
+-	$(mkinstalldirs) $(sharedir)/qt-gui/locale
+-	@chmod 0777 $(sharedir)/qt-gui/locale
++	$(mkinstalldirs) $(DESTDIR)$(sharedir)
++	$(mkinstalldirs) $(DESTDIR)$(sharedir)/qt-gui/locale
+ 	@for j in qt-gui/skin.*; do \
+ 	  echo "Installing skin $$j"; \
+-	  $(mkinstalldirs) $(sharedir)/$$j; \
+-	  chmod 0777 $(sharedir)/$$j; \
++	  $(mkinstalldirs) $(DESTDIR)$(sharedir)/$$j; \
+ 	  for i in $$j/*; do \
+ 			if test -f $$i; then \
+-	      $(INSTALL_DATA) $$i $(sharedir)/$$j; \
++	      $(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/$$j; \
+ 	    fi \
+ 	  done; \
+ 	done
+ 	@for j in qt-gui/dock.*; do \
+ 	  echo "Installing dock theme $$j"; \
+-	  $(mkinstalldirs) $(sharedir)/$$j; \
+-	  chmod 0777 $(sharedir)/$$j; \
++	  $(mkinstalldirs) $(DESTDIR)$(sharedir)/$$j; \
+ 	  for i in $$j/*; do \
+ 			if test -f $$i; then \
+-	      $(INSTALL_DATA) $$i $(sharedir)/$$j; \
++	      $(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/$$j; \
+ 	    fi \
+ 	  done; \
+ 	done
+ 	@for j in qt-gui/icons.*; do \
+ 	  echo "Installing icons $$j"; \
+-	  $(mkinstalldirs) $(sharedir)/$$j; \
+-          chmod 0777 $(sharedir)/$$j; \
++	  $(mkinstalldirs) $(DESTDIR)$(sharedir)/$$j; \
+ 	  for i in $$j/*; do \
+ 			if test -f $$i; then \
+-	      $(INSTALL_DATA) $$i $(sharedir)/$$j; \
++	      $(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/$$j; \
+ 			fi \
+ 	  done; \
+ 	done
+diff -Naur licq-0.84a/share/Makefile.am licq-0.84a-p/share/Makefile.am
+--- licq-0.84a/share/Makefile.am	Mon Dec 20 20:04:31 1999
++++ licq-0.84a-p/share/Makefile.am	Sat Jun 10 14:26:34 2000
+@@ -9,22 +9,22 @@
+ #TODO: convert this to something that works better
+ #but for now it should be sufficient
+ install-data-local:
+-	$(mkinstalldirs) $(plugindir)
+-	$(mkinstalldirs) $(sharedir)
+-	$(mkinstalldirs) $(sharedir)/utilities
++	$(mkinstalldirs) $(DESTDIR)$(plugindir)
++	$(mkinstalldirs) $(DESTDIR)$(sharedir)
++	$(mkinstalldirs) $(DESTDIR)$(sharedir)/utilities
+ 	@for i in $(srcdir)/utilities/*; do \
+ 	  if test -f $$i; then \
+ 	    echo "$(INSTALL_DATA) $$i $(sharedir)/utilities;"; \
+-	    $(INSTALL_DATA) $$i $(sharedir)/utilities; \
++	    $(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/utilities; \
+ 	  fi \
+ 	done
+-	$(mkinstalldirs) $(sharedir)/translations
++	$(mkinstalldirs) $(DESTDIR)$(sharedir)/translations
+ 	@for i in $(srcdir)/translations/*; do \
+ 	  if test -f $$i; then \
+ 	    echo "$(INSTALL_DATA) $$i $(sharedir)/translations;"; \
+-	    $(INSTALL_DATA) $$i $(sharedir)/translations; \
++	    $(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/translations; \
+ 	  fi \
+ 	done
+-	$(mkinstalldirs) $(sharedir)/sounds
++	$(mkinstalldirs) $(DESTDIR)$(sharedir)/sounds
+ #       $(mkinstalldirs) $(mandir)
+ #       $(INSTALL_DATA) licq.1 $(mandir)
+ 
+diff -Naur licq-0.84a/plugins/qt-gui-0.84a/po/Makefile.am licq-0.84a-p/plugins/qt-gui-0.84a/po/Makefile.am
+--- licq-0.84a/plugins/qt-gui-0.84a/po/Makefile.am	Thu Apr  6 15:22:29 2000
++++ licq-0.84a-p/plugins/qt-gui-0.84a/po/Makefile.am	Sat Jun 10 17:05:37 2000
+@@ -33,17 +33,17 @@
+ 	done
+ 
+ install-data-local:
+-	$(mkinstalldirs) $(localedir)
++	$(mkinstalldirs) $(localedir)
+ 	@for i in *.qm; do \
+ 	  if test "$$i" != "template.qm"; then \
+ 	    echo " $(INSTALL_DATA) $$i $(localedir)/$$i"; \
+-	    $(INSTALL_DATA) $$i $(localedir)/$$i; \
++	    $(INSTALL_DATA) $$i $(DESTDIR)$(localedir)/$$i; \
+           fi \
+ 	done; \
+-	cd $(localedir) && rm -f ru.qm; \
+-	cd $(localedir) && rm -f cs.qm; \
+-        cd $(localedir) && ln -s ru_RU.KOI8-R.qm ru.qm; \
+-        cd $(localedir) && ln -s cs_CZ.qm cs.qm
++	cd $(DESTDIR)$(localedir) && rm -f ru.qm; \
++	cd $(DESTDIR)$(localedir) && rm -f cs.qm; \
++        cd $(DESTDIR)$(localedir) && ln -s ru_RU.KOI8-R.qm ru.qm; \
++        cd $(DESTDIR)$(localedir) && ln -s cs_CZ.qm cs.qm
+ 
+ template: 
+ 	cd $(top_srcdir)/src && $(QT_FINDTR) *.cpp *.h > $(top_builddir)/po/template.po
