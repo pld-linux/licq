@@ -16,7 +16,7 @@ Source4:	http://www.crewq.com/licq/icons/icons-dots.tar.gz
 Patch0:		licq-DESTDIR.patch
 URL:		http://www.licq.org/
 BuildRequires:	libstdc++-devel
-BuildRequires:	gettext
+BuildRequires:	gettext-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %define		_prefix	/usr/X11R6
