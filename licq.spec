@@ -1,7 +1,7 @@
 Summary:	An ICQ client for online messaging
 Summary(pl):	Klient ICQ do przesy³ania wiadomo¶ci po sieci
 Name:		licq
-Version:	1.0
+Version:	1.0.2
 Release:	1
 License:	GPL
 Group:		Applications/Communications
@@ -10,10 +10,9 @@ Group(pl):	Aplikacje/Komunikacja
 URL:		http://www.licq.org/
 Source0:	http://download.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
-Patch0:		%{name}-DESTDIR.patch
-Patch1:		%{name}-console.patch
-Patch2:		%{name}-qt_gui-translations_not_in_home_dir.patch
-Patch3:		%{name}-gethostname_is_in_libc_aka_no_libnsl.patch
+Patch0:		%{name}-console.patch
+Patch1:		%{name}-qt_gui-translations_not_in_home_dir.patch
+Patch2:		%{name}-gethostname_is_in_libc_aka_no_libnsl.patch
 BuildRequires:	qt-devel >= 2.1.1
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	libstdc++-devel
@@ -22,11 +21,11 @@ BuildRequires:	XFree86-devel
 Requires:	ncurses >= 5.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define         autoreply       auto-reply-1.0
-%define         console         console-1.0
-%define         forwarder       forwarder-1.0
-%define         qt_gui          qt-gui-1.0
-%define		rms		rms-0.20
+%define         autoreply       auto-reply-1.0.1
+%define         console         console-1.0.1
+%define         forwarder       forwarder-1.0.1
+%define         qt_gui          qt-gui-1.0.2
+%define		rms		rms-0.21
 
 %description
 Licq is an ICQ online messaging system clone, written in C++. Licq
@@ -140,13 +139,12 @@ przychodz±cymi wiadomo¶ciami.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch3 -p1
+%patch2 -p1
 
 cd plugins/console-*/src
-%patch1 -p4
+%patch0 -p4
 cd ../../qt-gui-*/src
-%patch2 -p4
+%patch1 -p4
 
 %build
 BASE=`pwd`
