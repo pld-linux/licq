@@ -15,7 +15,7 @@ Source0:	http://dl.sourceforge.net/licq/%{name}-%{version}.tar.bz2
 Source1:	%{name}-qt-gui.desktop
 Patch0:		%{name}-c++.patch
 URL:		http://www.licq.org/
-BuildRequires:	X11-devel
+BuildRequires:	XFree86-devel
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+-devel >= 1.2.0
