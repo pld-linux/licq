@@ -1,104 +1,31 @@
-diff -Naur licq-0.84a/plugins/qt-gui-0.84a/share/Makefile.am licq-0.84a-p/plugins/qt-gui-0.84a/share/Makefile.am
---- licq-0.84a/plugins/qt-gui-0.84a/share/Makefile.am	Sat Jun  3 00:34:49 2000
-+++ licq-0.84a-p/plugins/qt-gui-0.84a/share/Makefile.am	Sat Jun 10 14:24:11 2000
-@@ -9,40 +9,35 @@
- 
- install-data-local:
- 	@if test "$(KDEDIR)" != ""; then \
--	  $(mkinstalldirs) $(KDEDIR)/share/applnk/Internet; \
--	  $(INSTALL_DATA) licq.desktop $(KDEDIR)/share/applnk/Internet; \
-+	  $(mkinstalldirs) $(DESTDIR)$(KDEDIR)/share/applnk/Internet; \
-+	  $(INSTALL_DATA) licq.desktop $(DESTDIR)$(KDEDIR)/share/applnk/Internet; \
-         fi
--	$(mkinstalldirs) $(sharedir)
--	@chmod 0777 $(sharedir)
--	$(mkinstalldirs) $(sharedir)/qt-gui/locale
--	@chmod 0777 $(sharedir)/qt-gui/locale
-+	$(mkinstalldirs) $(DESTDIR)$(sharedir)
-+	$(mkinstalldirs) $(DESTDIR)$(sharedir)/qt-gui/locale
- 	@for j in qt-gui/skin.*; do \
- 	  echo "Installing skin $$j"; \
--	  $(mkinstalldirs) $(sharedir)/$$j; \
--	  chmod 0777 $(sharedir)/$$j; \
-+	  $(mkinstalldirs) $(DESTDIR)$(sharedir)/$$j; \
- 	  for i in $$j/*; do \
- 			if test -f $$i; then \
--	      $(INSTALL_DATA) $$i $(sharedir)/$$j; \
-+	      $(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/$$j; \
- 	    fi \
- 	  done; \
- 	done
- 	@for j in qt-gui/dock.*; do \
- 	  echo "Installing dock theme $$j"; \
--	  $(mkinstalldirs) $(sharedir)/$$j; \
--	  chmod 0777 $(sharedir)/$$j; \
-+	  $(mkinstalldirs) $(DESTDIR)$(sharedir)/$$j; \
- 	  for i in $$j/*; do \
- 			if test -f $$i; then \
--	      $(INSTALL_DATA) $$i $(sharedir)/$$j; \
-+	      $(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/$$j; \
- 	    fi \
- 	  done; \
- 	done
- 	@for j in qt-gui/icons.*; do \
- 	  echo "Installing icons $$j"; \
--	  $(mkinstalldirs) $(sharedir)/$$j; \
--          chmod 0777 $(sharedir)/$$j; \
-+	  $(mkinstalldirs) $(DESTDIR)$(sharedir)/$$j; \
- 	  for i in $$j/*; do \
- 			if test -f $$i; then \
--	      $(INSTALL_DATA) $$i $(sharedir)/$$j; \
-+	      $(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/$$j; \
- 			fi \
- 	  done; \
- 	done
-diff -Naur licq-0.84a/share/Makefile.am licq-0.84a-p/share/Makefile.am
---- licq-0.84a/share/Makefile.am	Mon Dec 20 20:04:31 1999
-+++ licq-0.84a-p/share/Makefile.am	Sat Jun 10 14:26:34 2000
-@@ -9,22 +9,22 @@
+diff -urN licq-0.85.orig/bin/Makefile.am licq-0.85/bin/Makefile.am
+--- licq-0.85.orig/bin/Makefile.am	Thu Jul  6 09:49:22 2000
++++ licq-0.85/bin/Makefile.am	Sat Jul 22 01:07:51 2000
+@@ -7,11 +7,11 @@
  #TODO: convert this to something that works better
  #but for now it should be sufficient
  install-data-local:
--	$(mkinstalldirs) $(plugindir)
--	$(mkinstalldirs) $(sharedir)
--	$(mkinstalldirs) $(sharedir)/utilities
-+	$(mkinstalldirs) $(DESTDIR)$(plugindir)
-+	$(mkinstalldirs) $(DESTDIR)$(sharedir)
-+	$(mkinstalldirs) $(DESTDIR)$(sharedir)/utilities
- 	@for i in $(srcdir)/utilities/*; do \
+-	$(mkinstalldirs) $(bindir)
++	$(mkinstalldirs) $(DESTDIR)$(bindir)
+ 	@for i in $(srcdir)/viewurl-*.sh; do \
  	  if test -f $$i; then \
- 	    echo "$(INSTALL_DATA) $$i $(sharedir)/utilities;"; \
--	    $(INSTALL_DATA) $$i $(sharedir)/utilities; \
-+	    $(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/utilities; \
+-	    echo "$(INSTALL_DATA) $$i $(bindir);"; \
+-	    $(INSTALL_DATA) $$i $(bindir); \
++	    echo "$(INSTALL_DATA) $$i $(DESTDIR)$(bindir);"; \
++	    $(INSTALL_DATA) $$i $(DESTDIR)$(bindir); \
  	  fi \
  	done
--	$(mkinstalldirs) $(sharedir)/translations
-+	$(mkinstalldirs) $(DESTDIR)$(sharedir)/translations
- 	@for i in $(srcdir)/translations/*; do \
- 	  if test -f $$i; then \
- 	    echo "$(INSTALL_DATA) $$i $(sharedir)/translations;"; \
--	    $(INSTALL_DATA) $$i $(sharedir)/translations; \
-+	    $(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/translations; \
- 	  fi \
- 	done
--	$(mkinstalldirs) $(sharedir)/sounds
-+	$(mkinstalldirs) $(DESTDIR)$(sharedir)/sounds
- #       $(mkinstalldirs) $(mandir)
- #       $(INSTALL_DATA) licq.1 $(mandir)
  
-diff -Naur licq-0.84a/plugins/qt-gui-0.84a/po/Makefile.am licq-0.84a-p/plugins/qt-gui-0.84a/po/Makefile.am
---- licq-0.84a/plugins/qt-gui-0.84a/po/Makefile.am	Thu Apr  6 15:22:29 2000
-+++ licq-0.84a-p/plugins/qt-gui-0.84a/po/Makefile.am	Sat Jun 10 17:05:37 2000
-@@ -33,17 +33,17 @@
- 	done
- 
- install-data-local:
--	$(mkinstalldirs) $(localedir)
-+	$(mkinstalldirs) $(localedir)
+diff -urN licq-0.85.orig/plugins/qt-gui/po/Makefile.am licq-0.85/plugins/qt-gui/po/Makefile.am
+--- licq-0.85.orig/plugins/qt-gui/po/Makefile.am	Thu Apr  6 15:22:29 2000
++++ licq-0.85/plugins/qt-gui/po/Makefile.am	Sat Jul 22 01:10:49 2000
+@@ -36,14 +36,14 @@
+ 	$(mkinstalldirs) $(localedir)
  	@for i in *.qm; do \
  	  if test "$$i" != "template.qm"; then \
- 	    echo " $(INSTALL_DATA) $$i $(localedir)/$$i"; \
+-	    echo " $(INSTALL_DATA) $$i $(localedir)/$$i"; \
 -	    $(INSTALL_DATA) $$i $(localedir)/$$i; \
++	    echo " $(INSTALL_DATA) $$i $(DESTDIR)$(localedir)/$$i"; \
 +	    $(INSTALL_DATA) $$i $(DESTDIR)$(localedir)/$$i; \
            fi \
  	done; \
@@ -113,3 +40,126 @@ diff -Naur licq-0.84a/plugins/qt-gui-0.84a/po/Makefile.am licq-0.84a-p/plugins/q
  
  template: 
  	cd $(top_srcdir)/src && $(QT_FINDTR) *.cpp *.h > $(top_builddir)/po/template.po
+diff -urN licq-0.85.orig/plugins/qt-gui/share/Makefile.am licq-0.85/plugins/qt-gui/share/Makefile.am
+--- licq-0.85.orig/plugins/qt-gui/share/Makefile.am	Wed Jun  7 02:56:30 2000
++++ licq-0.85/plugins/qt-gui/share/Makefile.am	Sat Jul 22 01:07:52 2000
+@@ -10,44 +10,44 @@
+ install-data-local:
+ 	@if test "$(KDEDIR)" != ""; then \
+ 	   if test -w "$(KDEDIR)"; then \
+-	     $(mkinstalldirs) $(KDEDIR)/share/applnk/Internet; \
+-	     $(INSTALL_DATA) licq.desktop $(KDEDIR)/share/applnk/Internet; \
++	     $(mkinstalldirs) $(DESTDIR)$(KDEDIR)/share/applnk/Internet; \
++	     $(INSTALL_DATA) licq.desktop $(DESTDIR)$(KDEDIR)/share/applnk/Internet; \
+ 	   else \
+ 	     $(mkinstalldirs) $(HOME)/.kde/share/applnk/Internet; \
+ 	     $(INSTALL_DATA) licq.desktop $(HOME)/.kde/share/applnk/Internet; \
+ 	   fi  \
+ 	fi
+ 	$(mkinstalldirs) $(sharedir)
+-	@chmod 0777 $(sharedir)
++	@chmod 0777 $(DESTDIR)$(sharedir)
+ 	$(mkinstalldirs) $(sharedir)/qt-gui/locale
+-	@chmod 0777 $(sharedir)/qt-gui/locale
++	@chmod 0777 $(DESTDIR)$(sharedir)/qt-gui/locale
+ 	@for j in qt-gui/skin.*; do \
+ 	  echo "Installing skin $$j"; \
+-	  $(mkinstalldirs) $(sharedir)/$$j; \
+-	  chmod 0777 $(sharedir)/$$j; \
++	  $(mkinstalldirs) $(DESTDIR)$(sharedir)/$$j; \
++	  chmod 0777 $(DESTDIR)$(sharedir)/$$j; \
+ 	  for i in $$j/*; do \
+ 			if test -f $$i; then \
+-	      $(INSTALL_DATA) $$i $(sharedir)/$$j; \
++	      $(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/$$j; \
+ 	    fi \
+ 	  done; \
+ 	done
+ 	@for j in qt-gui/dock.*; do \
+ 	  echo "Installing dock theme $$j"; \
+-	  $(mkinstalldirs) $(sharedir)/$$j; \
+-	  chmod 0777 $(sharedir)/$$j; \
++	  $(mkinstalldirs) $(DESTDIR)$(sharedir)/$$j; \
++	  chmod 0777 $(DESTDIR)$(sharedir)/$$j; \
+ 	  for i in $$j/*; do \
+ 			if test -f $$i; then \
+-	      $(INSTALL_DATA) $$i $(sharedir)/$$j; \
++	      $(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/$$j; \
+ 	    fi \
+ 	  done; \
+ 	done
+ 	@for j in qt-gui/icons.*; do \
+ 	  echo "Installing icons $$j"; \
+-	  $(mkinstalldirs) $(sharedir)/$$j; \
+-          chmod 0777 $(sharedir)/$$j; \
++	  $(mkinstalldirs) $(DESTDIR)$(sharedir)/$$j; \
++          chmod 0777 $(DESTDIR)$(sharedir)/$$j; \
+ 	  for i in $$j/*; do \
+ 			if test -f $$i; then \
+-	      $(INSTALL_DATA) $$i $(sharedir)/$$j; \
++	      $(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/$$j; \
+ 			fi \
+ 	  done; \
+ 	done
+diff -urN licq-0.85.orig/share/Makefile.am licq-0.85/share/Makefile.am
+--- licq-0.85.orig/share/Makefile.am	Fri Jul  7 06:49:12 2000
++++ licq-0.85/share/Makefile.am	Sat Jul 22 01:07:52 2000
+@@ -9,41 +9,41 @@
+ #TODO: convert this to something that works better
+ #but for now it should be sufficient
+ install-data-local:
+-	$(mkinstalldirs) $(plugindir)
+-	$(mkinstalldirs) $(sharedir)
+-	$(mkinstalldirs) $(sharedir)/utilities
++	$(mkinstalldirs) $(DESTDIR)$(plugindir)
++	$(mkinstalldirs) $(DESTDIR)$(sharedir)
++	$(mkinstalldirs) $(DESTDIR)$(sharedir)/utilities
+ 	@for i in $(srcdir)/utilities/*; do \
+ 	  if test -f $$i; then \
+-	    echo "$(INSTALL_DATA) $$i $(sharedir)/utilities;"; \
+-	    $(INSTALL_DATA) $$i $(sharedir)/utilities; \
++	    echo "$(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/utilities;"; \
++	    $(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/utilities; \
+ 	  fi \
+ 	done
+-	$(mkinstalldirs) $(sharedir)/translations
++	$(mkinstalldirs) $(DESTDIR)$(sharedir)/translations
+ 	@for i in $(srcdir)/translations/*; do \
+ 	  if test -f $$i; then \
+-	    echo "$(INSTALL_DATA) $$i $(sharedir)/translations;"; \
+-	    $(INSTALL_DATA) $$i $(sharedir)/translations; \
++	    echo "$(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/translations;"; \
++	    $(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/translations; \
+ 	  fi \
+ 	done
+-	$(mkinstalldirs) $(sharedir)/sounds
++	$(mkinstalldirs) $(DESTDIR)$(sharedir)/sounds
+ 	@for i in $(srcdir)/sounds/*.wav; do \
+ 	  if test -f $$i; then \
+-	    echo "$(INSTALL_DATA) $$i $(sharedir)/sounds;"; \
+-	    $(INSTALL_DATA) $$i $(sharedir)/sounds; \
++	    echo "$(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/sounds;"; \
++	    $(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/sounds; \
+ 	  fi \
+ 	done
+-	$(mkinstalldirs) $(sharedir)/sounds/fun
++	$(mkinstalldirs) $(DESTDIR)$(sharedir)/sounds/fun
+ 	@for i in $(srcdir)/sounds/fun/*; do \
+ 	  if test -f $$i; then \
+-	    echo "$(INSTALL_DATA) $$i $(sharedir)/sounds/fun;"; \
+-	    $(INSTALL_DATA) $$i $(sharedir)/sounds/fun; \
++	    echo "$(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/sounds/fun;"; \
++	    $(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/sounds/fun; \
+ 	  fi \
+ 	done
+-	$(mkinstalldirs) $(sharedir)/sounds/icq
++	$(mkinstalldirs) $(DESTDIR)$(sharedir)/sounds/icq
+ 	@for i in $(srcdir)/sounds/icq/*; do \
+ 	  if test -f $$i; then \
+-	    echo "$(INSTALL_DATA) $$i $(sharedir)/sounds/icq;"; \
+-	    $(INSTALL_DATA) $$i $(sharedir)/sounds/icq; \
++	    echo "$(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/sounds/icq;"; \
++	    $(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/sounds/icq; \
+ 	  fi \
+ 	done
+ #       $(mkinstalldirs) $(mandir)

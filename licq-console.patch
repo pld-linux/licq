@@ -1,6 +1,6 @@
-diff -Naur licq-0.84a/plugins/console-0.21-cvs/src/Makefile.am licq-0.84a-p/plugins/console-0.21-cvs/src/Makefile.am
---- licq-0.84a/plugins/console-0.21-cvs/src/Makefile.am	Tue Apr 11 20:37:22 2000
-+++ licq-0.84a-p/plugins/console-0.21-cvs/src/Makefile.am	Sat Jun 10 15:07:17 2000
+diff -Naur licq-0.85/plugins/console-0.30/src/Makefile.am licq-0.85-p/plugins/console-0.30/src/Makefile.am
+--- licq-0.85/plugins/console-0.30/src/Makefile.am	Tue Apr 11 20:37:22 2000
++++ licq-0.85-p/plugins/console-0.30/src/Makefile.am	Sat Jun 10 15:07:17 2000
 @@ -4,7 +4,7 @@
  licq_incdir = $(top_srcdir)/../../src/inc
  
