@@ -2,14 +2,14 @@ Summary:	An ICQ client for online messaging
 Summary(pl):	Klient ICQ do przesy³ania wiadomo¶ci po sieci
 Name:		licq
 Version:	1.0.3
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/Communications
 Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
 URL:		http://www.licq.org/
 Source0:	http://download.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-Source1:	%{name}.desktop
+Source1:	%{name}-qt-gui.desktop
 Patch0:		%{name}-console.patch
 Patch1:		%{name}-qt_gui-translations_not_in_home_dir.patch
 Patch2:		%{name}-gethostname_is_in_libc_aka_no_libnsl.patch
@@ -188,7 +188,7 @@ install -d $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
 mv -f plugins/%{console}/README doc/README.CONSOLE
 mv -f plugins/%{forwarder}/README doc/README.FORWARDER
 mv -f plugins/%{autoreply}/README doc/README.AUTOREPLY
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications/licq.desktop
+install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications/licq-qt_gui.desktop
 
 gzip -9nf doc/{BUGS,CHANGELOG,CREDITS,HINTS,*.HOWTO,README*,TODO} \
 	plugins/%{qt_gui}/doc/{CHANGELOG,README,*.HOWTO,HINTS} \
@@ -217,7 +217,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc plugins/%{qt_gui}/doc/*.gz
 %attr(755,root,root) %{_libdir}/licq/licq_qt-gui*
-%{_applnkdir}/Network/Communications/licq.desktop
+%{_applnkdir}/Network/Communications/licq-qt-gui.desktop
 %{_datadir}/licq/qt-gui/dock.*
 %{_datadir}/licq/qt-gui/icons.*
 %{_datadir}/licq/qt-gui/skin.*
