@@ -2,7 +2,7 @@ Summary:	An ICQ client for online messaging
 Summary(pl):	Klient ICQ do przesy³ania wiadomo¶ci po sieci
 Name:		licq
 Version:	0.85
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/Communications
 Group(pl):	Aplikacje/Komunikacja
@@ -142,31 +142,37 @@ przychodz±cymi wiadomo¶ciami.
 LDFLAGS="-s"; export LDFLAGS
 
 aclocal
+autoconf
 %configure
 make
 
 cd plugins/%{qt_gui}
 aclocal
+autoconf
 %configure
 %{__make}
 
 cd ../%{console}
 aclocal
+autoconf
 %configure
 %{__make}
 
 cd ../%{forwarder}
 aclocal
+autoconf
 %configure
 %{__make}
 
 cd ../%{rms}
 aclocal
+autoconf
 %configure
 %{__make}
 
 cd ../%{autoreply}
 aclocal
+autoconf
 %configure
 %{__make}
 
