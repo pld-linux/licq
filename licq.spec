@@ -22,7 +22,7 @@ Requires:	ncurses >= 5.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		qt_gui		qt-gui
-%define		auto_reply	auto-reply-0.17
+%define		autoreply	autoreply-0.17
 %define		console		console-0.30
 %define		forwarder	forwarder-0.66
 %define		rms		rms-0.10
