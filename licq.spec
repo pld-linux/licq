@@ -24,6 +24,11 @@ BuildRequires:	openssl-devel >= 0.9.6a
 BuildRequires:	qt-devel >= 3.0.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		console_ver		1.2.0
+%define		qt_gui_ver		1.2.0
+%define		rms_ver			0.30
+%define		jons_gtk_gui_ver	0.20
+
 %description
 Licq is an ICQ online messaging system clone, written in C++. Licq
 supports all of the major features of ICQ, including messaging, URLs,
