@@ -221,8 +221,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C plugins/jons-gtk-gui	DESTDIR=$RPM_BUILD_ROOT install
 %{__make} -C plugins/qt-gui		DESTDIR=$RPM_BUILD_ROOT install
 %{__make} -C plugins/rms		DESTDIR=$RPM_BUILD_ROOT install
-#%{__make} -C plugins/auto-reply		DESTDIR=$RPM_BUILD_ROOT install
-#%{__make} -C plugins/email		DESTDIR=$RPM_BUILD_ROOT install
+#%%{__make} -C plugins/auto-reply		DESTDIR=$RPM_BUILD_ROOT install
+#%%{__make} -C plugins/email		DESTDIR=$RPM_BUILD_ROOT install
 
 install -d $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications/licq-qt_gui.desktop
