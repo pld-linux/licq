@@ -6,7 +6,7 @@ Summary(pl):	Klient ICQ do przesy³ania wiadomo¶ci po sieci
 Summary(pt_BR):	O licq é um clone do ICQ(tm) escrito
 Name:		licq
 Version:	%{ver}
-Release:	0.%{snap}.2
+Release:	0.%{snap}.3
 License:	GPL
 Group:		Applications/Communications
 URL:		http://www.licq.org/
@@ -197,10 +197,10 @@ for module in \
   cd $module
   %{__make} -f Makefile.cvs
   rm -f missing
-  libtoolize --copy --force
+  %{__libtoolize}
   aclocal
-  automake -a -c
-  autoconf
+  %{__automake}
+  %{__autoconf}
   %configure \
   	--with-openssl-inc=%{_includedir}/openssl
 
@@ -230,21 +230,19 @@ mv -f plugins/email/README		doc/README.FORWARDER
 mv -f plugins/auto-reply/README		doc/README.AUTOREPLY
 mv -f plugins/jons-gtk-gui/TODO		doc/README.TODO.JONS-GTK
 
-gzip -9nf doc/{BUGS,CHANGELOG,CREDITS,HINTS,*.HOWTO,README*,TODO} \
-	plugins/qt-gui/doc/{CHANGELOG,README,*.HOWTO,HINTS} \
-	upgrade/UPGRADE README*
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/BUGS.gz doc/CHANGELOG.gz doc/CREDITS.gz doc/HINTS.gz
-%doc doc/*.HOWTO.gz README-*.gz doc/TODO.gz doc/README.gz
-%doc doc/README.SOCKS.gz
+%doc doc/BUGS doc/CHANGELOG doc/CREDITS doc/HINTS
+%doc doc/*.HOWTO README-* doc/TODOz doc/README
+%doc doc/README.SOCKS
 %doc upgrade/*
 %attr(755,root,root) %{_bindir}/licq
 %attr(755,root,root) %{_bindir}/viewurl-*
+%dir %{_libdir}/licq
+%dir %{_datadir}/licq
 %{_datadir}/licq/sounds
 %{_datadir}/licq/translations
 %{_datadir}/licq/utilities
@@ -255,9 +253,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files qt-gui
 %defattr(644,root,root,755)
-%doc plugins/qt-gui/doc/*.gz
+%doc plugins/qt-gui/doc/{CHANGELOG,README,*.HOWTO,HINTS}
 %attr(755,root,root) %{_libdir}/licq/licq_qt-gui*
 %{_applnkdir}/Network/Communications/licq-qt_gui.desktop
+%dir %{_datadir}/licq/qt-qui
 %{_datadir}/licq/qt-gui/*.*
 %dir %{_datadir}/licq/qt-gui/locale
 %lang(cs) %{_datadir}/licq/qt-gui/locale/cs*.qm
@@ -274,12 +273,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files console
 %defattr(644,root,root,755)
-%doc doc/README.CONSOLE.gz
+%doc doc/README.CONSOLE
 %attr(755,root,root) %{_libdir}/licq/licq_console*
 
 %files forwarder
 %defattr(644,root,root,755)
-%doc doc/README.FORWARDER.gz
+%doc doc/README.FORWARDER
 %attr(755,root,root) %{_libdir}/licq/licq_forwarder*
 
 %files rms
@@ -288,10 +287,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files autoreply
 %defattr(644,root,root,755)
-%doc doc/README.AUTOREPLY.gz
+%doc doc/README.AUTOREPLY
 %attr(755,root,root) %{_libdir}/licq/licq_autoreply*
 
 %files jons-gtk-gui
 %defattr(644,root,root,755)
-%doc doc/README.AUTOREPLY.gz
+%doc doc/README.AUTOREPLY
 %attr(755,root,root) %{_libdir}/licq/licq_jons-gtk-gui*
