@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Licq
+Comment=Unix/Qt ICQ clone
+Comment[pl]=Klon ICQ pod Unixa/Qt
+Exec=/usr/bin/licq
+Terminal=0
+Type=Application
