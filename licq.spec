@@ -4,7 +4,7 @@ Summary(pl):	Klient ICQ do przesy³ania wiadomo¶ci po sieci
 Summary(pt_BR):	O licq é um clone do ICQ(tm) escrito
 Name:		licq
 Version:	1.2.0a
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Communications
 Source0:	ftp://ftp2.sourceforge.net/pub/sourceforge/licq/%{name}-%{version}.tar.bz2
@@ -70,7 +70,7 @@ Summary:	Qt GUI for Licq
 Summary(es):	QT user interface for licq
 Summary(pl):	Graficzne ¶rodowisko u¿ytkownika dla Licq, wykorzystuj±ce Qt
 Summary(pt_BR):	Interface QT para o licq
-Version:	%{version}_%{qt_gui_ver}
+#Version:	%{version}_%{qt_gui_ver}
 Group:		Applications/Communications
 Requires:	%{name} = %{version}
 Requires:	qt >= 2.1
@@ -93,7 +93,7 @@ Summary:	Console user interface for Licq
 Summary(es):	Console user interface for licq
 Summary(pl):	Konsolowy interfejs u¿ytkownika dla Licq
 Summary(pt_BR):	Interface de usuário de console para o licq
-Version:	%{version}_%{console_ver}
+#Version:	%{version}_%{console_ver}
 Group:		Applications/Communications
 Requires:	%{name} = %{version}
 Requires:	ncurses >= 5.0
@@ -115,7 +115,7 @@ Inclui interface de usuário de console para o licq.
 %package jons-gtk-gui
 Summary:	Jons GTK GUI for Licq
 Summary(pl):	Graficzne ¶rodowisko u¿ytkownika dla Licq, wykorzystuj±ce GTK
-Version:	%{version}_%{jons_gtk_gui_ver}
+#Version:	%{version}_%{jons_gtk_gui_ver}
 Group:		Applications/Communications
 Requires:	%{name} = %{version}
 
@@ -128,7 +128,7 @@ Graficzne ¶rodowisko u¿ytkownika dla Licq, wykorzystuj±ce GTK.
 %package rms
 Summary:	Licq remote management server
 Summary(pl):	Serwer do zdalnego zarz±dzania Licq
-Version:	%{version}_%{rms_ver}
+#Version:	%{version}_%{rms_ver}
 Group:		Applications/Communications
 Requires:	%{name} = %{version}
 
@@ -156,7 +156,7 @@ Ten pakiet zawiera serwer do zdalnego zarz±dzania dla Licq.
 #%package forwarder
 #Summary:	Licq email forwarder utility
 #Summary(pl):	Narzêdzie do przesy³ania wiadomo¶ci icq na email
-#Version:	%{version}_%{forwarder_ver}
+##Version:	%{version}_%{forwarder_ver}
 #Group:		Applications/Communications
 #Requires:	%{name} = %{version}
 #
