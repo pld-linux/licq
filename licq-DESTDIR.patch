@@ -1,0 +1,12 @@
+diff -urN licq-1.0.3.org/plugins/qt-gui-1.0.3/share/Makefile.am licq-1.0.3/plugins/qt-gui-1.0.3/share/Makefile.am
+--- licq-1.0.3.org/plugins/qt-gui-1.0.3/share/Makefile.am	Thu Mar  8 09:25:40 2001
++++ licq-1.0.3/plugins/qt-gui-1.0.3/share/Makefile.am	Thu Mar  8 09:26:27 2001
+@@ -17,7 +17,7 @@
+ 	     $(INSTALL_DATA) licq.desktop $(HOME)/.kde/share/applnk/Internet; \
+ 	   fi  \
+ 	fi
+-	$(mkinstalldirs) $(sharedir)
++	$(mkinstalldirs) $(DESTDIR)$(sharedir)
+ 	@chmod 0777 $(DESTDIR)$(sharedir)
+ 	$(mkinstalldirs) $(sharedir)/qt-gui/locale
+ 	@chmod 0777 $(DESTDIR)$(sharedir)/qt-gui/locale

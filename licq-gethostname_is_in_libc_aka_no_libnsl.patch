@@ -12,9 +12,9 @@ diff -uNr licq-0.85/configure.in licq-0.85.new/configure.in
  AC_CHECK_LIB(c_r,pthread_cancel, [], [
    AC_CHECK_LIB(pthread, pthread_cancel, [], [
      AC_CHECK_LIB(thread, pthread_cancel, [], [
-diff -uNr licq-0.85/plugins/qt-gui-1.0.2/configure.in licq-0.85.new/plugins/qt-gui-1.0.2/configure.in
---- licq-0.85/plugins/qt-gui-1.0.2/configure.in	Wed Jun 28 04:03:25 2000
-+++ licq-0.85.new/plugins/qt-gui-1.0.2/configure.in	Wed Aug 23 00:08:28 2000
+diff -uNr licq-0.85/plugins/qt-gui-1.0.3/configure.in licq-0.85.new/plugins/qt-gui-1.0.3/configure.in
+--- licq-0.85/plugins/qt-gui-1.0.3/configure.in	Wed Jun 28 04:03:25 2000
++++ licq-0.85.new/plugins/qt-gui-1.0.3/configure.in	Wed Aug 23 00:08:28 2000
 @@ -64,7 +64,8 @@
  dnl Checks for library functions.
  AC_CHECK_LIB(xnet,inet_addr)
