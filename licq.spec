@@ -33,18 +33,19 @@ chat, file transfer, and white pages information. Additionally, Licq
 is very configurable and supports skins and different icon packs.
 
 %description -l pl
-Licq jest klonem systemu przesy³ania wiadomo¶ci ICQ, napisanym w jêzyku
-C++. Licq ma wszystkie wa¿ne cechy oryginalnego klienta ICQ, w³±cznie z
-przesy³aniem wiadomo¶ci, URLi, rozmow± na ¿ywo, przesy³aniem plików oraz
-dostêpem do informacji z "bia³ych stron" ICQ. Dodatkowo, Licq jest bardzo
-dobrze konfigurowalny, pozwalaj±c na u¿ywanie "skórek" oraz ró¿nych
-zestawów ikon.
+Licq jest klonem systemu przesy³ania wiadomo¶ci ICQ, napisanym w
+jêzyku C++. Licq ma wszystkie wa¿ne cechy oryginalnego klienta ICQ,
+w³±cznie z przesy³aniem wiadomo¶ci, URLi, rozmow± na ¿ywo,
+przesy³aniem plików oraz dostêpem do informacji z "bia³ych stron" ICQ.
+Dodatkowo, Licq jest bardzo dobrze konfigurowalny, pozwalaj±c na
+u¿ywanie "skórek" oraz ró¿nych zestawów ikon.
 
 %package devel
 Summary:	Header files requied to develop licq plugins
 Summary(pl):	Pliki nag³ówkowe niezbêdne przy pisaniu wtyczek dla licq
 Group:		Development/Libraries
 Group(pl):	Programowanie/Biblioteki
+Group(fr):	Development/Librairies
 Requires:	%{name} = %{version}
 
 %description devel
@@ -65,7 +66,8 @@ Requires:	qt >= 2.1
 This package contains graphical interface for Licq, using Qt wigets.
 
 %description qt-gui -l pl
-Ten pakiet zawiera graficzny interfejs dla Licq, u¿ywaj±cy widgetów Qt.
+Ten pakiet zawiera graficzny interfejs dla Licq, u¿ywaj±cy widgetów
+Qt.
 
 %package console
 Summary:	Console user interface for Licq
@@ -91,14 +93,14 @@ Group(pl):	Aplikacje/Komunikacja
 Requires:	%{name} = %{version}
 
 %description forwarder
-This package contains Licq module, that allows to forward any received ICQ
-message, either as mail (using SMTP), or as ICQ messages directed to some
-other recipients.
+This package contains Licq module, that allows to forward any received
+ICQ message, either as mail (using SMTP), or as ICQ messages directed
+to some other recipients.
 
 %description forwarder -l pl
 Ten pakiet zawiera modu³ dla Licq umo¿liwiaj±cy przekazywanie dalej
-wiadomo¶ci otrzymanych przez ICQ, w postaci maili (przez SMTP) lub jako
-wiadomo¶ci ICQ skierowanych do innych adresatów.
+wiadomo¶ci otrzymanych przez ICQ, w postaci maili (przez SMTP) lub
+jako wiadomo¶ci ICQ skierowanych do innych adresatów.
 
 %package rms
 Summary:	Licq remote management server
