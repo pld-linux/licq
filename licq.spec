@@ -6,7 +6,7 @@ Summary(ru):	ÎÃœŒ ICQ ƒÃ— œŒÃ¡ Œœ◊«œ œ¬Õ≈Œ¡ ”œœ¬›≈Œ…—Õ…
 Summary(uk):	ÎÃœŒ ICQ ƒÃ— œŒÃ¡ Œœ◊«œ œ¬Õ¶Œ’ –œ◊¶ƒœÕÃ≈ŒŒ—Õ…
 Name:		licq
 Version:	1.2.6
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/licq/%{name}-%{version}.tar.bz2
@@ -135,17 +135,17 @@ Licq - ‹‘œ ÀÃœŒ ”…”‘≈ÕŸ œŒÃ¡ Œœ◊œ«œ œ¬Õ≈Œ¡ ”œœ¬›≈Œ—Õ… ICQ. %{name}-qt
 Licq - √≈ ÀÃœŒ ”…”‘≈Õ… œŒÃ¡ Œœ◊œ«œ œ¬Õ¶Œ’ –œ◊¶ƒœÕÃ≈ŒŒ—Õ… ICQ.
 %{name}-qt - √≈ ‘≈À”‘œ◊…  ¶Œ‘≈“∆≈ ” ƒœ licq.
 
-%package jons-gtk-gui
-Summary:	Jons GTK GUI for Licq
-Summary(pl):	Graficzne ∂rodowisko uøytkownika dla Licq, wykorzystuj±ce GTK
-Group:		Applications/Communications
-Requires:	%{name} = %{version}
+#%package jons-gtk-gui
+#Summary:	Jons GTK GUI for Licq
+#Summary(pl):	Graficzne ∂rodowisko uøytkownika dla Licq, wykorzystuj±ce GTK
+#Group:		Applications/Communications
+#Requires:	%{name} = %{version}
 
-%description jons-gtk-gui
-Jons GTK GUI for Licq.
-
-%description jons-gtk-gui -l pl
-Graficzne ∂rodowisko uøytkownika dla Licq, wykorzystuj±ce GTK.
+#%description jons-gtk-gui
+#Jons GTK GUI for Licq.
+#
+#%description jons-gtk-gui -l pl
+#Graficzne ∂rodowisko uøytkownika dla Licq, wykorzystuj±ce GTK.
 
 %package rms
 Summary:	Licq remote management server
@@ -159,20 +159,20 @@ This package contains remote management server for Licq.
 %description rms -l pl
 Ten pakiet zawiera serwer do zdalnego zarz±dzania dla Licq.
 
-#%package autoreply
-#Summary:	Licq autoreply utility
-#Summary(pl):	NarzÍdzie do automatycznego odpowiadania dla Licq
-#Version:	%{version}
-#Group:		Applications/Communications
-#Requires:	%{name} = %{version}
-#
-#%description autoreply
-#This package contains Licq utility for automatic handling of incoming
-#messages.
-#
-#%description autoreply -l pl
-#Ten pakiet zawiera narzÍdzie dla Licq ktÛre automatycznie zajmuje siÍ
-#przychodz±cymi wiadomo∂ciami.
+%package autoreply
+Summary:	Licq autoreply utility
+Summary(pl):	NarzÍdzie do automatycznego odpowiadania dla Licq
+Version:	%{version}
+Group:		Applications/Communications
+Requires:	%{name} = %{version}
+
+%description autoreply
+This package contains Licq utility for automatic handling of incoming
+messages.
+
+%description autoreply -l pl
+Ten pakiet zawiera narzÍdzie dla Licq ktÛre automatycznie zajmuje siÍ
+przychodz±cymi wiadomo∂ciami.
 
 %package forwarder
 Summary:	Licq email forwarder utility
@@ -194,12 +194,13 @@ NarzÍdzie do przesy≥ania wiadomo∂ci icq na email.
 BASE=$(pwd)
 for module in \
 	. \
+	plugins/auto-reply \
 	plugins/console \
+	plugins/email \
 	plugins/qt-gui \
 	plugins/rms \
-	plugins/jons-gtk-gui \
 	; do
-	#plugins/auto-reply \
+	# plugins/jons-gtk-gui \
   cd $module
   %{__autoconf}
   %configure \
@@ -216,21 +217,21 @@ done
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
+%{__make} -C plugins/auto-reply		DESTDIR=$RPM_BUILD_ROOT install
 %{__make} -C plugins/console		DESTDIR=$RPM_BUILD_ROOT install
-%{__make} -C plugins/jons-gtk-gui	DESTDIR=$RPM_BUILD_ROOT install
+#%%{__make} -C plugins/jons-gtk-gui	DESTDIR=$RPM_BUILD_ROOT install
+%{__make} -C plugins/email		DESTDIR=$RPM_BUILD_ROOT install
 %{__make} -C plugins/qt-gui		DESTDIR=$RPM_BUILD_ROOT install
 %{__make} -C plugins/rms		DESTDIR=$RPM_BUILD_ROOT install
-#%%{__make} -C plugins/auto-reply		DESTDIR=$RPM_BUILD_ROOT install
-#%%{__make} -C plugins/email		DESTDIR=$RPM_BUILD_ROOT install
 
 install -d $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications/licq-qt_gui.desktop
 
-#mv -f plugins/email/README		doc/README.FORWARDER
+cp -f plugins/email/README		doc/README.FORWARDER
 cp -f plugins/rms/README		doc/README.RMS
 cp -f plugins/console/README		doc/README.CONSOLE
-cp -f plugins/jons-gtk-gui/TODO		doc/README.TODO.JONS-GTK
-#cp -f plugins/autoreply/README		doc/README.autoreply
+#cp -f plugins/jons-gtk-gui/TODO		doc/README.TODO.JONS-GTK
+cp -f plugins/auto-reply/README		doc/README.AUTOREPLY
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -259,38 +260,42 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/licq/qt-gui
 %{_datadir}/licq/qt-gui/*.*
 %dir %{_datadir}/licq/qt-gui/locale
+%lang(bg) %{_datadir}/licq/qt-gui/locale/bg*.qm
 %lang(cs) %{_datadir}/licq/qt-gui/locale/cs*.qm
 %lang(de) %{_datadir}/licq/qt-gui/locale/de.qm
 %lang(es) %{_datadir}/licq/qt-gui/locale/es.qm
+%lang(fi) %{_datadir}/licq/qt-gui/locale/fi.qm
 %lang(fr) %{_datadir}/licq/qt-gui/locale/fr.qm
 %lang(it) %{_datadir}/licq/qt-gui/locale/it.qm
 %lang(ja) %{_datadir}/licq/qt-gui/locale/ja_JP.eucJP.qm
 %lang(pl) %{_datadir}/licq/qt-gui/locale/pl.qm
 %lang(pt) %{_datadir}/licq/qt-gui/locale/pt.qm
 %lang(ru) %{_datadir}/licq/qt-gui/locale/ru*.qm
+%lang(sr) %{_datadir}/licq/qt-gui/locale/sr.qm
 %lang(sv) %{_datadir}/licq/qt-gui/locale/sv.qm
 %lang(tr) %{_datadir}/licq/qt-gui/locale/tr.qm
+%lang(uk) %{_datadir}/licq/qt-gui/locale/uk.qm
 
 %files text
 %defattr(644,root,root,755)
 %doc doc/README.CONSOLE
 %attr(755,root,root) %{_libdir}/licq/licq_console*
 
-#%files forwarder
-#%defattr(644,root,root,755)
-#%doc doc/README.FORWARDER
-#%attr(755,root,root) %{_libdir}/licq/licq_forwarder*
+%files forwarder
+%defattr(644,root,root,755)
+%doc doc/README.FORWARDER
+%attr(755,root,root) %{_libdir}/licq/licq_forwarder*
 
 %files rms
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/licq/licq_rms*
 
-#%files autoreply
-#%defattr(644,root,root,755)
-#%doc doc/README.AUTOREPLY
-#%attr(755,root,root) %{_libdir}/licq/licq_autoreply*
-
-%files jons-gtk-gui
+%files autoreply
 %defattr(644,root,root,755)
-%doc doc/README.TODO.JONS-GTK
-%attr(755,root,root) %{_libdir}/licq/licq_jons-gtk-gui*
+%doc doc/README.AUTOREPLY
+%attr(755,root,root) %{_libdir}/licq/licq_autoreply*
+
+#%files jons-gtk-gui
+#%defattr(644,root,root,755)
+#%doc doc/README.TODO.JONS-GTK
+#%attr(755,root,root) %{_libdir}/licq/licq_jons-gtk-gui*
