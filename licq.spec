@@ -1,14 +1,22 @@
 Summary:	Licq - ICQ clone.
 Summary(pl):	Licq - klient ICQ.
 Name:		licq
-Version:	0.61
+Version:	0.70d
+%define		gui_version 0.63
+%define		gui qt-gui
+%define		gui_name %{gui}-%{gui_version}
 Release:	1
 Copyright:	GPL
 Group:		Applications/Communications
 Group(pl):	Aplikacje/Komunikacja
-Source:		http://licq.wibble.net/%{name}-%{version}.tar.gz
-URL:		http://licq.wibble.net/
-Requires:	qt >= 1.41
+Source0:	http://ftp.licq.org/pub/licq/srcs/licq-%{version}.tar.gz
+Source1:	http://ftp.licq.org/pub/licq/srcs/licq_%{gui_name}.tar.gz
+Source2:	licq.wmconfig
+Source3:	licq.mini-icon.xpm
+Source4:	http://www.crewq.com/licq/icons/icons-dots.tar.gz
+URL:		http://www.licq.org/
+Requires:	qt >= 1.44-6
+BuildPrereq:	qt-devel >= 1.44-6
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -22,20 +30,41 @@ zast±piæ, napisanego w Javie, klienta ICQ z Mirabilis, który potrzebuje do
 pracy zbyt wiele zasobów i wymaga zainstalowanego jdk.
 
 %prep
-%setup  -q
+%setup  -q  
+%setup	-q -a 1 -n %{name}-%{version}/plugins
 
 %build
+
+cd ..
+
 CFLAGS="$RPM_OPT_FLAGS" CXXFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
 ./configure %{_target_platform} \
 	--prefix=/usr/X11R6
 make
 
+cd plugins/%{gui_name}
+
+CFLAGS="$RPM_OPT_FLAGS" CXXFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
+./configure %{_target} \
+        --prefix=/usr/X11R6
+make
+
+cd ..
+
+
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/usr/X11R6/{bin,share}
 
+cd ..
+
 make install prefix=$RPM_BUILD_ROOT/usr/X11R6
 strip $RPM_BUILD_ROOT/usr/X11R6/bin/licq
+
+cd plugins/%{gui_name}
+
+make install prefix=$RPM_BUILD_ROOT/usr/X11R6/share/licq
+
 
 %files
 %defattr(644,root,root,755)
