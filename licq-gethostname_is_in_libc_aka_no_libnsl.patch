@@ -1,14 +1,27 @@
 diff -uNr licq-0.85/configure.in licq-0.85.new/configure.in
 --- licq-0.85/configure.in	Mon Jul 10 22:02:17 2000
-+++ licq-0.85.new/configure.in	Mon Aug 21 01:45:11 2000
++++ licq-0.85.new/configure.in	Wed Aug 23 00:07:29 2000
 @@ -72,8 +72,8 @@
  dnl Checks for library functions.
  AC_CHECK_LIB(xnet,inet_addr)
  AC_CHECK_LIB(socket, socket)
 -AC_CHECK_LIB(nsl, gethostbyname)
 -
-+AC_CHECK_FUNC(gethostname, ,
-+ AC_CHECK_LIB(nsl, gethostname, LIBS="$LIBS -lnsl",) )
++AC_CHECK_FUNC(gethostbyname, ,
++ AC_CHECK_LIB(nsl, gethostbyname, LIBS="$LIBS -lnsl",) )
  AC_CHECK_LIB(c_r,pthread_cancel, [], [
    AC_CHECK_LIB(pthread, pthread_cancel, [], [
      AC_CHECK_LIB(thread, pthread_cancel, [], [
+diff -uNr licq-0.85/plugins/qt-gui/configure.in licq-0.85.new/plugins/qt-gui/configure.in
+--- licq-0.85/plugins/qt-gui/configure.in	Wed Jun 28 04:03:25 2000
++++ licq-0.85.new/plugins/qt-gui/configure.in	Wed Aug 23 00:08:28 2000
+@@ -64,7 +64,8 @@
+ dnl Checks for library functions.
+ AC_CHECK_LIB(xnet,inet_addr)
+ AC_CHECK_LIB(socket, socket)
+-AC_CHECK_LIB(nsl, gethostbyname)
++AC_CHECK_FUNC(gethostname, ,
++ AC_CHECK_LIB(nsl, gethostbyname, LIBS="$LIBS -lnsl",) )
+ AC_CHECK_FUNCS(inet_addr inet_aton strerror)
+ 
+ dnl Check for QT
