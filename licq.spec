@@ -92,9 +92,9 @@ Ferramentas para desenvolvimento de plug-ins para o licq.
 
 %package qt-gui
 Summary:	Qt GUI for Licq
-Summary(es):	QT user interface for licq
+Summary(es):	Qt user interface for licq
 Summary(pl):	Graficzne ∂rodowisko uøytkownika dla Licq, wykorzystuj±ce Qt
-Summary(pt_BR):	Interface QT para o licq
+Summary(pt_BR):	Interface Qt para o licq
 Summary(ru):	Qt …Œ‘≈“∆≈ ” À licq
 Summary(uk):	Qt ¶Œ‘≈“∆≈ ” ƒœ licq
 Group:		Applications/Communications
