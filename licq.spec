@@ -6,7 +6,7 @@ Summary(ru):	Клон ICQ для онлайновго обмена сообщениями
 Summary(uk):	Клон ICQ для онлайновго обм╕ну пов╕домленнями
 Name:		licq
 Version:	1.2.6
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/licq/%{name}-%{version}.tar.bz2
@@ -22,6 +22,7 @@ BuildRequires:	libtool
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	qt-devel >= 3.0.5
+BuildRequires:	kdelibs-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -106,6 +107,19 @@ Licq - це клон системи онлайнового обм╕ну пов╕домленнями ICQ.
 %description qt-gui -l ru
 Licq - это клон системы онлайнового обмена сообщенями ICQ. %{name}-qt
 - это графический интерфейс к licq написанный на Qt.
+
+%package kde-gui
+Summary:	KDE GUI for Licq
+Group:		Applications/Communications
+Requires:	%{name} = %{version}
+Requires:	qt >= 2.1
+
+%description kde-gui
+This package contains graphical interface for Licq, using KDE wigets.
+
+%description kde-gui -l pl
+Ten pakiet zawiera graficzny interfejs dla Licq, u©ywaj╠cy widgetСw
+KDE.
 
 %package text
 Summary:	Text terminal user interface for Licq
@@ -204,12 +218,8 @@ for module in \
   cd $module
   %{__autoconf}
   %configure \
-  	--with-openssl-inc=%{_includedir}/openssl
-
-#	--without-kde
-# specifing --with-kde=no or without-kde causes always
-# to enable KDE support so just don't put it here.
-
+  	--with-openssl-inc=%{_includedir}/openssl \
+	--with-kde
   %{__make}
   cd $BASE
 done
@@ -275,6 +285,10 @@ rm -rf $RPM_BUILD_ROOT
 %lang(sv) %{_datadir}/licq/qt-gui/locale/sv.qm
 %lang(tr) %{_datadir}/licq/qt-gui/locale/tr.qm
 %lang(uk) %{_datadir}/licq/qt-gui/locale/uk.qm
+
+%files kde-gui
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/licq/licq_kde-gui*
 
 %files text
 %defattr(644,root,root,755)
