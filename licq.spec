@@ -6,7 +6,7 @@ Summary(ru):	Клон ICQ для онлайновго обмена сообщениями
 Summary(uk):	Клон ICQ для онлайновго обм╕ну пов╕домленнями
 Name:		licq
 Version:	1.2.7
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/licq/%{name}-%{version}.tar.bz2
@@ -15,16 +15,18 @@ Source1:	%{name}-qt-gui.desktop
 Patch0:		%{name}-c++.patch
 URL:		http://www.licq.org/
 BuildRequires:	XFree86-devel
-BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gtk+-devel >= 1.2.0
 BuildRequires:	kdelibs-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	libtool
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	qt-devel >= 3.0.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+# "lib" instead of "%{_lib}" is hardcoded in include/licq_constants.h
+# and plugins/*/src/Makefile.am
+%define		plugindir	%{_prefix}/lib/licq
 
 %description
 Licq is an ICQ online messaging system clone, written in C++. Licq
@@ -221,7 +223,6 @@ for module in \
 	# plugins/jons-gtk-gui \
   cd $module
   cp -f /usr/share/automake/config.* admin
-  %{__autoconf}
   %configure \
 	`[ "$module" = "plugins/qt-gui" ] && echo -n "--with-qt-libraries=%{_libdir}"` \
 	`[ "$module" = "plugins/kde-gui" ] && echo -n "--with-kde --with-qt-libraries=%{_libdir}"` \
@@ -234,7 +235,7 @@ done
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT install
+	DESTDIR=$RPM_BUILD_ROOT
 
 for d in plugins/{auto-reply,console,email,qt-gui,kde-gui,rms} ; do
 # plugins/jons-gtk-gui
@@ -250,6 +251,9 @@ cp -f plugins/console/README		doc/README.CONSOLE
 #cp -f plugins/jons-gtk-gui/TODO		doc/README.TODO.JONS-GTK
 cp -f plugins/auto-reply/README		doc/README.AUTOREPLY
 
+# dlopened by *.so
+rm -f $RPM_BUILD_ROOT%{plugindir}/*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -259,7 +263,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc upgrade/* plugins/qt-gui/doc/{CHANGELOG,README,*.HOWTO,HINTS}
 %attr(755,root,root) %{_bindir}/licq
 %attr(755,root,root) %{_bindir}/viewurl-*
-%dir %{_libdir}/licq
+%dir %{plugindir}
 %dir %{_datadir}/licq
 %{_datadir}/licq/sounds
 %{_datadir}/licq/translations
@@ -272,7 +276,7 @@ rm -rf $RPM_BUILD_ROOT
 %files qt-gui
 %defattr(644,root,root,755)
 %doc plugins/qt-gui/doc/*
-%attr(755,root,root) %{_libdir}/licq/licq_qt-gui*
+%attr(755,root,root) %{plugindir}/licq_qt-gui.so
 %{_desktopdir}/licq-qt_gui.desktop
 %dir %{_datadir}/licq/qt-gui
 %{_datadir}/licq/qt-gui/*.*
@@ -297,28 +301,28 @@ rm -rf $RPM_BUILD_ROOT
 
 %files kde-gui
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/licq/licq_kde-gui*
+%attr(755,root,root) %{plugindir}/licq_kde-gui.so
 
 %files text
 %defattr(644,root,root,755)
 %doc doc/README.CONSOLE
-%attr(755,root,root) %{_libdir}/licq/licq_console*
+%attr(755,root,root) %{plugindir}/licq_console.so
 
 %files forwarder
 %defattr(644,root,root,755)
 %doc doc/README.FORWARDER
-%attr(755,root,root) %{_libdir}/licq/licq_forwarder*
+%attr(755,root,root) %{plugindir}/licq_forwarder.so
 
 %files rms
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/licq/licq_rms*
+%attr(755,root,root) %{plugindir}/licq_rms.so
 
 %files autoreply
 %defattr(644,root,root,755)
 %doc doc/README.AUTOREPLY
-%attr(755,root,root) %{_libdir}/licq/licq_autoreply*
+%attr(755,root,root) %{plugindir}/licq_autoreply.so
 
 #%files jons-gtk-gui
 #%defattr(644,root,root,755)
 #%doc doc/README.TODO.JONS-GTK
-#%attr(755,root,root) %{_libdir}/licq/licq_jons-gtk-gui*
+#%attr(755,root,root) %{plugindir}/licq_jons-gtk-gui.so
