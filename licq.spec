@@ -22,7 +22,7 @@ BuildRequires:	XFree86-devel
 Requires:	ncurses >= 5.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define         autoreply       autoreply-1.0
+%define         autoreply       auto-reply-1.0
 %define         console         console-1.0
 %define         forwarder       forwarder-1.0
 %define         qt_gui          qt-gui-1.0
