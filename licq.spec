@@ -1,5 +1,5 @@
-%define ver	1.0.4
-%define snap	20011027
+%define ver	1.1.0
+%define snap	20020625
 Summary:	An ICQ client for online messaging
 Summary(es):	licq es un clone del ICQ(tm) escrito
 Summary(pl):	Klient ICQ do przesy³ania wiadomo¶ci po sieci
@@ -10,10 +10,11 @@ Release:	0.%{snap}.2
 License:	GPL
 Group:		Applications/Communications
 URL:		http://www.licq.org/
-Source0:	http://download.sourceforge.net/%{name}/%{name}-%{snap}.tar.gz
+#Source0:	http://download.sourceforge.net/%{name}/%{name}-%{snap}.tar.gz
+Source0:	%{name}-%{snap}.tar.bz2
 Source1:	%{name}-qt-gui.desktop
-Patch0:		%{name}-console.patch
-Patch1:		%{name}-DESTDIR.patch
+#Patch0:		%{name}-console.patch
+#Patch1:		%{name}-DESTDIR.patch
 Patch2:		%{name}-c++.patch
 BuildRequires:	XFree86-devel
 BuildRequires:	automake
@@ -116,18 +117,18 @@ ncurses.
 %description console -l pt_BR
 Inclui interface de usuário de console para o licq.
 
-%package jons-gtk-gui
-Summary:	Jons GTK GUI for Licq
-Summary(pl):	Graficzne ¶rodowisko u¿ytkownika dla Licq, wykorzystuj±ce GTK
-Version:	%{ver}_%{jons_gtk_gui_ver}
-Group:		Applications/Communications
-Requires:	%{name} = %{ver}
-
-%description jons-gtk-gui
-Jons GTK GUI for Licq.
-
-%description jons-gtk-gui -l pl
-Graficzne ¶rodowisko u¿ytkownika dla Licq, wykorzystuj±ce GTK.
+#%package jons-gtk-gui
+#Summary:	Jons GTK GUI for Licq
+#Summary(pl):	Graficzne ¶rodowisko u¿ytkownika dla Licq, wykorzystuj±ce GTK
+#Version:	%{ver}_%{jons_gtk_gui_ver}
+#Group:		Applications/Communications
+#Requires:	%{name} = %{ver}
+#
+#%description jons-gtk-gui
+#Jons GTK GUI for Licq.
+#
+#%description jons-gtk-gui -l pl
+#Graficzne ¶rodowisko u¿ytkownika dla Licq, wykorzystuj±ce GTK.
 
 %package rms
 Summary:	Licq remote management server
@@ -157,30 +158,30 @@ messages.
 Ten pakiet zawiera narzêdzie dla Licq które automatycznie zajmuje siê
 przychodz±cymi wiadomo¶ciami.
 
-%package forwarder
-Summary:	Licq email forwarder utility
-Summary(pl):	Narzêdzie do przesy³ania wiadomo¶ci icq na email
-Version:	%{ver}_%{forwarder_ver}
-Group:		Applications/Communications
-Requires:	%{name} = %{ver}
-
-%description forwarder
-Licq email forwarder utility.
-
-%description forwarder -l pl
-Narzêdzie do przesy³ania wiadomo¶ci icq na email.
+#%package forwarder
+#Summary:	Licq email forwarder utility
+#Summary(pl):	Narzêdzie do przesy³ania wiadomo¶ci icq na email
+#Version:	%{ver}_%{forwarder_ver}
+#Group:		Applications/Communications
+#Requires:	%{name} = %{ver}
+#
+#%description forwarder
+#Licq email forwarder utility.
+#
+#%description forwarder -l pl
+#Narzêdzie do przesy³ania wiadomo¶ci icq na email.
 
 %prep
 %setup -q -n %{name}-%{snap}
-%patch1 -p1
-cd plugins/console/src
-%patch0 -p4
-cd ../../qt-gui/src
-# KDE m4 macros sucks as hell
-for header in *.h; do
-	rheader=$(echo ${header} | sed -e 's#\.h##')
-	/usr/X11R6/bin/moc -o ${rheader}.moc ${header} || :
-done
+#%patch1 -p1
+#cd plugins/console/src
+#%patch0 -p4
+cd plugins/qt-gui/src
+#-## KDE m4 macros sucks as hell
+#-#for header in *.h; do
+#-#	rheader=$(echo ${header} | sed -e 's#\.h##')
+#-#	/usr/X11R6/bin/moc -o ${rheader}.moc ${header} || :
+#-#done
 cd ../../..
 %patch2 -p1
 
@@ -190,17 +191,16 @@ for module in \
 	. \
 	plugins/auto-reply \
 	plugins/console \
-	plugins/email \
-	plugins/jons-gtk-gui \
 	plugins/qt-gui \
 	plugins/rms; do
+#	plugins/jons-gtk-gui \
   cd $module
-  %{__make} -f Makefile.cvs
-  rm -f missing
-  libtoolize --copy --force
-  aclocal
-  automake -a -c
-  autoconf
+#  %{__make} -f Makefile.cvs
+#  rm -f missing
+#  libtoolize --copy --force
+#  aclocal
+#  automake -a -c
+#  autoconf
   %configure \
   	--with-openssl-inc=%{_includedir}/openssl
 
@@ -217,8 +217,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
 %{__make} -C plugins/auto-reply		DESTDIR=$RPM_BUILD_ROOT install
 %{__make} -C plugins/console		DESTDIR=$RPM_BUILD_ROOT install
-%{__make} -C plugins/email		DESTDIR=$RPM_BUILD_ROOT install
-%{__make} -C plugins/jons-gtk-gui	DESTDIR=$RPM_BUILD_ROOT install
+#%{__make} -C plugins/email		DESTDIR=$RPM_BUILD_ROOT install
+#%{__make} -C plugins/jons-gtk-gui	DESTDIR=$RPM_BUILD_ROOT install
 %{__make} -C plugins/qt-gui		DESTDIR=$RPM_BUILD_ROOT install
 %{__make} -C plugins/rms		DESTDIR=$RPM_BUILD_ROOT install
 
@@ -226,7 +226,7 @@ install -d $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications/licq-qt_gui.desktop
 
 mv -f plugins/console/README		doc/README.CONSOLE
-mv -f plugins/email/README		doc/README.FORWARDER
+#mv -f plugins/email/README		doc/README.FORWARDER
 mv -f plugins/auto-reply/README		doc/README.AUTOREPLY
 mv -f plugins/jons-gtk-gui/TODO		doc/README.TODO.JONS-GTK
 
@@ -277,10 +277,10 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/README.CONSOLE.gz
 %attr(755,root,root) %{_libdir}/licq/licq_console*
 
-%files forwarder
-%defattr(644,root,root,755)
-%doc doc/README.FORWARDER.gz
-%attr(755,root,root) %{_libdir}/licq/licq_forwarder*
+#%files forwarder
+#%defattr(644,root,root,755)
+#%doc doc/README.FORWARDER.gz
+#%attr(755,root,root) %{_libdir}/licq/licq_forwarder*
 
 %files rms
 %defattr(644,root,root,755)
@@ -291,7 +291,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/README.AUTOREPLY.gz
 %attr(755,root,root) %{_libdir}/licq/licq_autoreply*
 
-%files jons-gtk-gui
-%defattr(644,root,root,755)
-%doc doc/README.AUTOREPLY.gz
-%attr(755,root,root) %{_libdir}/licq/licq_jons-gtk-gui*
+#%files jons-gtk-gui
+#%defattr(644,root,root,755)
+#%doc doc/README.AUTOREPLY.gz
+#%attr(755,root,root) %{_libdir}/licq/licq_jons-gtk-gui*
