@@ -9,8 +9,6 @@ Version:	%{ver}
 Release:	0.%{snap}.1
 License:	GPL
 Group:		Applications/Communications
-Group(de):	Applikationen/Kommunikation
-Group(pl):	Aplikacje/Komunikacja
 URL:		http://www.licq.org/
 Source0:	http://download.sourceforge.net/%{name}/%{name}-%{snap}.tar.gz
 Source1:	%{name}-qt-gui.desktop
@@ -63,13 +61,6 @@ protocolo ICQ.
 Summary:	Header files requied to develop licq plugins
 Summary(pl):	Pliki nag³ówkowe niezbêdne przy pisaniu wtyczek dla licq
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
-Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name} = %{ver}
 
 %description devel
@@ -85,8 +76,6 @@ Summary(pl):	Graficzne ¶rodowisko u¿ytkownika dla Licq, wykorzystuj±ce Qt
 Summary(pt_BR):	Interface QT para o licq
 Version:	%{ver}_%{qt_gui_ver}
 Group:		Applications/Communications
-Group(de):	Applikationen/Kommunikation
-Group(pl):	Aplikacje/Komunikacja
 Requires:	%{name} = %{ver}
 Requires:	qt >= 2.1
 
@@ -110,8 +99,6 @@ Summary(pl):	Konsolowy interfejs u¿ytkownika dla Licq
 Summary(pt_BR):	Interface de usuário de console para o licq
 Version:	%{ver}_%{console_ver}
 Group:		Applications/Communications
-Group(de):	Applikationen/Kommunikation
-Group(pl):	Aplikacje/Komunikacja
 Requires:	%{name} = %{ver}
 Requires:	ncurses >= 5.0
 
@@ -134,8 +121,6 @@ Summary:	Jons GTK GUI for Licq
 Summary(pl):	Graficzne ¶rodowisko u¿ytkownika dla Licq, wykorzystuj±ce GTK
 Version:	%{ver}_%{jons_gtk_gui_ver}
 Group:		Applications/Communications
-Group(de):	Applikationen/Kommunikation
-Group(pl):	Aplikacje/Komunikacja
 Requires:	%{name} = %{ver}
 
 %description jons-gtk-gui
@@ -149,8 +134,6 @@ Summary:	Licq remote management server
 Summary(pl):	Serwer do zdalnego zarz±dzania Licq
 Version:	%{ver}_%{rms_ver}
 Group:		Applications/Communications
-Group(de):	Applikationen/Kommunikation
-Group(pl):	Aplikacje/Komunikacja
 Requires:	%{name} = %{ver}
 
 %description rms
@@ -164,8 +147,6 @@ Summary:	Licq autoreply utility
 Summary(pl):	Narzêdzie do automatycznego odpowiadania dla Licq
 Version:	%{ver}_%{autoreply_ver}
 Group:		Applications/Communications
-Group(de):	Applikationen/Kommunikation
-Group(pl):	Aplikacje/Komunikacja
 Requires:	%{name} = %{ver}
 
 %description autoreply
@@ -181,8 +162,6 @@ Summary:	Licq email forwarder utility
 Summary(pl):	Narzêdzie do przesy³ania wiadomo¶ci icq na email
 Version:	%{ver}_%{forwarder_ver}
 Group:		Applications/Communications
-Group(de):	Applikationen/Kommunikation
-Group(pl):	Aplikacje/Komunikacja
 Requires:	%{name} = %{ver}
 
 %description forwarder
