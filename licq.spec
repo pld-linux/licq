@@ -1,14 +1,14 @@
 Summary:	An ICQ client for online messaging
 Summary(pl):	Klient ICQ do przesy³ania wiadomo¶ci po sieci
 Name:		licq
-Version:	0.85
-Release:	6
+Version:	1.0
+Release:	1
 License:	GPL
 Group:		Applications/Communications
 Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
 URL:		http://www.licq.org/
-Source0:	http://www.licq.org/%{name}-%{version}.tar.gz
+Source0:	http://download.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-console.patch
@@ -22,11 +22,11 @@ BuildRequires:	XFree86-devel
 Requires:	ncurses >= 5.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		qt_gui		qt-gui
-%define		autoreply	autoreply-0.17
-%define		console		console-0.30
-%define		forwarder	forwarder-0.66
-%define		rms		rms-0.10
+%define         autoreply       autoreply-1.0
+%define         console         console-1.0
+%define         forwarder       forwarder-1.0
+%define         qt_gui          qt-gui-1.0
+%define		rms		rms-0.20
 
 %description
 Licq is an ICQ online messaging system clone, written in C++. Licq
@@ -141,55 +141,39 @@ przychodz±cymi wiadomo¶ciami.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
 %patch3 -p1
 
+cd plugins/console-*/src
+%patch1 -p4
+cd ../../qt-gui-*/src
+%patch2 -p4
+
 %build
-
-aclocal
-autoconf
-%configure
-make
-
-cd plugins/%{qt_gui}
-aclocal
-autoconf
-%configure
-%{__make}
-
-cd ../%{console}
-aclocal
-autoconf
-%configure
-%{__make}
-
-cd ../%{forwarder}
-aclocal
-autoconf
-%configure
-%{__make}
-
-cd ../%{rms}
-aclocal
-autoconf
-%configure
-%{__make}
-
-cd ../%{autoreply}
-aclocal
-autoconf
-%configure
-%{__make}
+BASE=`pwd`
+for module in . \
+	      plugins/%{qt_gui} \
+	      plugins/%{console} \
+	      plugins/%{forwarder} \
+              plugins/%{rms} \
+	      plugins/%{autoreply}; do
+  cd $module
+  aclocal
+  autoconf
+  %configure \
+  	--with-openssl-inc=%{_includedir}/openssl \
+	--without-kde
+  %{__make}
+  cd $BASE
+done
 
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
-%{__make} -C plugins/%{qt_gui} DESTDIR=$RPM_BUILD_ROOT install
-%{__make} -C plugins/%{console} DESTDIR=$RPM_BUILD_ROOT install
-%{__make} -C plugins/%{forwarder} DESTDIR=$RPM_BUILD_ROOT install
-%{__make} -C plugins/%{rms} DESTDIR=$RPM_BUILD_ROOT install
-%{__make} -C plugins/%{autoreply} DESTDIR=$RPM_BUILD_ROOT install
+%{__make} -C plugins/%{qt_gui}		DESTDIR=$RPM_BUILD_ROOT install
+%{__make} -C plugins/%{console}		DESTDIR=$RPM_BUILD_ROOT install
+%{__make} -C plugins/%{forwarder}	DESTDIR=$RPM_BUILD_ROOT install
+%{__make} -C plugins/%{rms}		DESTDIR=$RPM_BUILD_ROOT install
+%{__make} -C plugins/%{autoreply}	DESTDIR=$RPM_BUILD_ROOT install
 
 install -d $RPM_BUILD_ROOT%{_applnkdir}/Network/ICQ
 mv -f plugins/%{console}/README doc/README.CONSOLE
