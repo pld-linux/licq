@@ -82,14 +82,14 @@ Requires:	qt >= 2.1
 %description qt-gui
 This package contains graphical interface for Licq, using Qt wigets.
 
-%description -l es devel
+%description devel -l es
 Plugins Development Kit for licq.
 
 %description qt-gui -l pl
 Ten pakiet zawiera graficzny interfejs dla Licq, u¿ywaj±cy widgetów
 Qt.
 
-%description -l pt_BR devel
+%description devel -l pt_BR
 Ferramentas para desenvolvimento de plug-ins para o licq.
 
 %package console
@@ -106,14 +106,14 @@ Requires:	ncurses >= 5.0
 This package contains console user interface for Licq, using ncurses
 library.
 
-%description -l es console
+%description console -l es
 Includes console user interface for licq.
 
 %description console -l pl
 Ten pakiet zawiera konsolowy interfejs dla Licq, u¿ywaj±cy biblioteki
 ncurses.
 
-%description -l pt_BR console
+%description console -l pt_BR
 Inclui interface de usuário de console para o licq.
 
 %package jons-gtk-gui
@@ -241,7 +241,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc doc/BUGS.gz doc/CHANGELOG.gz doc/CREDITS.gz doc/HINTS.gz
 %doc doc/*.HOWTO.gz README-*.gz doc/TODO.gz doc/README.gz
-%doc doc/README.SOCKS.gz 
+%doc doc/README.SOCKS.gz
 %doc upgrade/*
 %attr(755,root,root) %{_bindir}/licq
 %attr(755,root,root) %{_bindir}/viewurl-*
