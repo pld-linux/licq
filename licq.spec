@@ -226,6 +226,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc upgrade/* plugins/qt-gui-%{qt_gui_ver}/doc/{CHANGELOG,README,*.HOWTO,HINTS}
 %attr(755,root,root) %{_bindir}/licq
 %attr(755,root,root) %{_bindir}/viewurl-*
+%dir %{_libdir}/licq
+%dir %{_datadir}/licq
 %{_datadir}/licq/sounds
 %{_datadir}/licq/translations
 %{_datadir}/licq/utilities
@@ -239,6 +241,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc plugins/qt-gui-%{qt_gui_ver}/doc/*
 %attr(755,root,root) %{_libdir}/licq/licq_qt-gui*
 %{_applnkdir}/Network/Communications/licq-qt_gui.desktop
+%dir %{_datadir}/licq/qt-gui
 %{_datadir}/licq/qt-gui/*.*
 %dir %{_datadir}/licq/qt-gui/locale
 %lang(cs) %{_datadir}/licq/qt-gui/locale/cs*.qm
