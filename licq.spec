@@ -145,8 +145,6 @@ gzip -9nf doc/{BUGS,CHANGELOG,CREDITS,HINTS,*.HOWTO,README*,TODO} \
 	plugins/%{qt_gui}/doc/{CHANGELOG,README,*.HOWTO,HINTS} \
 	upgrade/UPGRADE README*
 
-%find_lang %{qt_gui}
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -161,12 +159,24 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/licq/translations
 %{_datadir}/licq/utilities
 
-%files qt-gui -f %{qt_gui}.lang
+%files qt-gui
 %defattr(644,root,root,755)
 %doc plugins/%{qt_gui}/doc/*.gz
-%{_datadir}/qt-gui
 %attr(755,root,root) %{_libdir}/licq/licq_qt-gui*
 %{_applnkdir}/Networking/licq.desktop
+%{_datadir}/qt-gui/dock.*
+%{_datadir}/qt-gui/icons.*
+%{_datadir}/qt-gui/skin.*
+%dir %{_datadir}/qt-gui/locale
+%lang(cs) %{_datadir}/licq/qt-gui/locale/cs.qm
+%lang(cs) %{_datadir}/licq/qt-gui/locale/cs_CZ.qm
+%lang(de) %{_datadir}/licq/qt-gui/locale/de.qm
+%lang(es) %{_datadir}/licq/qt-gui/locale/es.qm
+%lang(it) %{_datadir}/licq/qt-gui/locale/it.qm
+%lang(pl) %{_datadir}/licq/qt-gui/locale/pl.qm
+%lang(pt) %{_datadir}/licq/qt-gui/locale/pt.qm
+%lang(ru) %{_datadir}/licq/qt-gui/locale/ru.qm
+%lang(ru) %{_datadir}/licq/qt-gui/locale/ru_RU.KOI8-R.qm
 
 %files console
 %defattr(644,root,root,755)
