@@ -6,7 +6,7 @@ Summary(pl):	Klient ICQ do przesy³ania wiadomo¶ci po sieci
 Summary(pt_BR):	O licq é um clone do ICQ(tm) escrito
 Name:		licq
 Version:	%{ver}
-Release:	0.%{snap}
+Release:	0.%{snap}.1
 License:	GPL
 Group:		Applications/Communications
 Group(de):	Applikationen/Kommunikation
