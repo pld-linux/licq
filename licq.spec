@@ -5,12 +5,11 @@ Summary(pt_BR):	O licq И um clone do ICQ(tm) escrito
 Summary(ru):	Клон ICQ для онлайновго обмена сообщениями
 Summary(uk):	Клон ICQ для онлайновго обм╕ну пов╕домленнями
 Name:		licq
-Version:	1.2.3
-Release:	1
+Version:	1.2.6
+Release:	0.1
 License:	GPL
 Group:		Applications/Communications
-Source0:	ftp://ftp2.sourceforge.net/pub/sourceforge/licq/%{name}-%{version}.tar.bz2
-#Source0:	%{name}-%{_snap}.tar.bz2
+Source0:	http://dl.sourceforge.net/licq/%{name}-%{version}.tar.bz2
 Source1:	%{name}-qt-gui.desktop
 Patch0:		%{name}-c++.patch
 URL:		http://www.licq.org/
