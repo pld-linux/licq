@@ -1,8 +1,8 @@
 Summary:     Licq - ICQ clone.
 Summary(pl): Licq - klient ICQ.
 Name:        licq
-Version:     0.43
-Release:     3
+Version:     0.44
+Release:     1
 Copyright:   GPL
 Group:       Applications/Communications
 Source:      http://pages.infinit.net/fairoff/licq/licq-%{version}.tar.gz
