@@ -2,7 +2,7 @@ Summary:	An ICQ client for online messaging
 Summary(pl):	Klient ICQ do przesy³ania wiadomo¶ci po sieci
 Name:		licq
 Version:	0.85
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Communications
 Group(pl):	Aplikacje/Komunikacja
@@ -103,7 +103,7 @@ wiadomo¶ci ICQ skierowanych do innych adresatów.
 
 %package rms
 Summary:	Licq remote management server
-Summary(pl):	Server do zdalnego zarz±dzania Licq
+Summary(pl):	Serwer do zdalnego zarz±dzania Licq
 Group:		Applications/Communications
 Group(pl):	Aplikacje/Komunikacja
 Requires:	%{name} = %{version}
@@ -113,6 +113,21 @@ This package contains remote management server for Licq
 
 %description rms -l pl
 Ten pakiet zawiera serwer do zdalnego zarz±dzania dla Licq
+
+%package autoreply
+Summary:	Licq autoreply utility
+Summary(pl):	Narzêdzie do automatycznego odpowiadania dla Licq
+Group:		Applications/Communications
+Group(pl):	Aplikacje/Komunikacja
+Requires:	%{name} = %{version}
+
+%description autoreply
+This package contains Licq utility for automatic handling of incoming
+messages.
+
+%description autoreply -l pl
+Ten pakiet zawiera narzêdzie dla Licq które automatycznie zajmuje siê
+przychodz±cymi wiadomo¶ciami.
 
 %prep
 %setup -q
@@ -147,6 +162,11 @@ aclocal
 %configure
 %{__make}
 
+cd ../%{autoreply}
+aclocal
+%configure
+%{__make}
+
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
@@ -154,10 +174,12 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C plugins/%{console} DESTDIR=$RPM_BUILD_ROOT install
 %{__make} -C plugins/%{forwarder} DESTDIR=$RPM_BUILD_ROOT install
 %{__make} -C plugins/%{rms} DESTDIR=$RPM_BUILD_ROOT install
+%{__make} -C plugins/%{autoreply} DESTDIR=$RPM_BUILD_ROOT install
 
 install -d $RPM_BUILD_ROOT%{_applnkdir}/Networking/ICQ
 mv plugins/%{console}/README doc/README.CONSOLE
 mv plugins/%{forwarder}/README doc/README.FORWARDER
+mv plugins/%{autoreply}/README doc/README.AUTOREPLY
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Networking/ICQ/licq.desktop
 
 gzip -9nf doc/{BUGS,CHANGELOG,CREDITS,HINTS,*.HOWTO,README*,TODO} \
@@ -215,3 +237,8 @@ rm -rf $RPM_BUILD_ROOT
 %files rms
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/licq/licq_rms*
+
+%files autoreply
+%defattr(644,root,root,755)
+%doc doc/README.AUTOREPLY.gz
+%attr(755,root,root) %{_libdir}/licq/licq_autoreply*
