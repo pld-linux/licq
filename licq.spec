@@ -1,8 +1,8 @@
 Summary:	An ICQ client for online messaging
 Summary(pl):	Klient ICQ do przesy³ania wiadomo¶ci po sieci
 Name:		licq
-Version:	1.0.2
-Release:	2
+Version:	1.0.3
+Release:	1
 License:	GPL
 Group:		Applications/Communications
 Group(de):	Applikationen/Kommunikation
@@ -13,19 +13,22 @@ Source1:	%{name}.desktop
 Patch0:		%{name}-console.patch
 Patch1:		%{name}-qt_gui-translations_not_in_home_dir.patch
 Patch2:		%{name}-gethostname_is_in_libc_aka_no_libnsl.patch
+Patch3:		%{name}-DESTDIR.patch
 BuildRequires:	qt-devel >= 2.1.1
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	libstdc++-devel
 BuildRequires:	openssl-devel
 BuildRequires:	XFree86-devel
+BuildRequires:	automake
+BuildRequires:	autoconf
 Requires:	ncurses >= 5.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define         autoreply       auto-reply-1.0.1
-%define         console         console-1.0.1
+%define         console         console-1.0.2
 %define         forwarder       forwarder-1.0.1
-%define         qt_gui          qt-gui-1.0.2
-%define		rms		rms-0.21
+%define         qt_gui          qt-gui-%{version}
+%define		rms		rms-0.22
 
 %description
 Licq is an ICQ online messaging system clone, written in C++. Licq
@@ -139,8 +142,8 @@ przychodz±cymi wiadomo¶ciami.
 
 %prep
 %setup -q
+%patch3 -p1
 %patch2 -p1
-
 cd plugins/console-*/src
 %patch0 -p4
 cd ../../qt-gui-*/src
@@ -156,6 +159,7 @@ for module in . \
 	      plugins/%{autoreply}; do
   cd $module
   aclocal
+  automake -a -c --no-force
   autoconf
   %configure \
   	--with-openssl-inc=%{_includedir}/openssl \
@@ -216,10 +220,13 @@ rm -rf $RPM_BUILD_ROOT
 %lang(de) %{_datadir}/licq/qt-gui/locale/de.qm
 %lang(es) %{_datadir}/licq/qt-gui/locale/es.qm
 %lang(it) %{_datadir}/licq/qt-gui/locale/it.qm
+%lang(ja_JP.eucJP) %{_datadir}/licq/qt-gui/locale/ja_JP.eucJP.qm
 %lang(pl) %{_datadir}/licq/qt-gui/locale/pl.qm
 %lang(pt) %{_datadir}/licq/qt-gui/locale/pt.qm
 %lang(ru) %{_datadir}/licq/qt-gui/locale/ru.qm
 %lang(ru) %{_datadir}/licq/qt-gui/locale/ru_RU.KOI8-R.qm
+%lang(sv) %{_datadir}/licq/qt-gui/locale/sv.qm
+%lang(tr) %{_datadir}/licq/qt-gui/locale/tr.qm
 
 %files console
 %defattr(644,root,root,755)
