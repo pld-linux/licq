@@ -139,7 +139,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_applnkdir}/Network/ICQ
 mv plugins/%{console}/README doc/README.CONSOLE
 mv plugins/%{forwarder}/README doc/README.FORWARDER
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/licq.desktop
+install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/ICQ/licq.desktop
 
 gzip -9nf doc/{BUGS,CHANGELOG,CREDITS,HINTS,*.HOWTO,README*,TODO} \
 	plugins/%{qt_gui}/doc/{CHANGELOG,README,*.HOWTO,HINTS} \
