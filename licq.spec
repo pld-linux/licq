@@ -5,12 +5,12 @@ Summary(pt_BR):	O licq И um clone do ICQ(tm) escrito
 Summary(ru):	Клон ICQ для онлайновго обмена сообщениями
 Summary(uk):	Клон ICQ для онлайновго обм╕ну пов╕домленнями
 Name:		licq
-Version:	1.2.6
-Release:	2
+Version:	1.2.7
+Release:	1
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/licq/%{name}-%{version}.tar.bz2
-# Source0-md5:	7e84a1dde8b21eb2bb057d3755353500
+# Source0-md5:	e331c88151b95330f0b9b08570853318
 Source1:	%{name}-qt-gui.desktop
 Patch0:		%{name}-c++.patch
 URL:		http://www.licq.org/
@@ -280,10 +280,12 @@ rm -rf $RPM_BUILD_ROOT
 %lang(es) %{_datadir}/licq/qt-gui/locale/es.qm
 %lang(fi) %{_datadir}/licq/qt-gui/locale/fi.qm
 %lang(fr) %{_datadir}/licq/qt-gui/locale/fr.qm
+%lang(hu) %{_datadir}/licq/qt-gui/locale/hu_HU.qm
 %lang(it) %{_datadir}/licq/qt-gui/locale/it.qm
 %lang(ja) %{_datadir}/licq/qt-gui/locale/ja_JP.eucJP.qm
 %lang(pl) %{_datadir}/licq/qt-gui/locale/pl.qm
 %lang(pt) %{_datadir}/licq/qt-gui/locale/pt.qm
+%lang(pt_BR) %{_datadir}/licq/qt-gui/locale/pt_BR.qm
 %lang(ru) %{_datadir}/licq/qt-gui/locale/ru*.qm
 %lang(sr) %{_datadir}/licq/qt-gui/locale/sr.qm
 %lang(sv) %{_datadir}/licq/qt-gui/locale/sv.qm
