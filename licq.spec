@@ -5,11 +5,12 @@ Summary(pt_BR):	O licq é um clone do ICQ(tm) escrito
 Summary(ru):	ëÌÏÎ ICQ ÄÌÑ ÏÎÌÁÊÎÏ×ÇÏ ÏÂÍÅÎÁ ÓÏÏÂÝÅÎÉÑÍÉ
 Summary(uk):	ëÌÏÎ ICQ ÄÌÑ ÏÎÌÁÊÎÏ×ÇÏ ÏÂÍ¦ÎÕ ÐÏ×¦ÄÏÍÌÅÎÎÑÍÉ
 Name:		licq
-Version:	1.2.0a
-Release:	4
+Version:	1.2.3
+Release:	1
 License:	GPL
 Group:		Applications/Communications
 Source0:	ftp://ftp2.sourceforge.net/pub/sourceforge/licq/%{name}-%{version}.tar.bz2
+#Source0:	%{name}-%{_snap}.tar.bz2
 Source1:	%{name}-qt-gui.desktop
 Patch0:		%{name}-c++.patch
 URL:		http://www.licq.org/
@@ -23,11 +24,6 @@ BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.6a
 BuildRequires:	qt-devel >= 3.0.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		console_ver		1.2.0
-%define		qt_gui_ver		1.2.0
-%define		rms_ver			0.30
-%define		jons_gtk_gui_ver	0.20
 
 %description
 Licq is an ICQ online messaging system clone, written in C++. Licq
@@ -164,25 +160,25 @@ This package contains remote management server for Licq.
 %description rms -l pl
 Ten pakiet zawiera serwer do zdalnego zarz±dzania dla Licq.
 
-%package autoreply
-Summary:	Licq autoreply utility
-Summary(pl):	Narzêdzie do automatycznego odpowiadania dla Licq
-Version:	%{version}_%{autoreply_ver}
-Group:		Applications/Communications
-Requires:	%{name} = %{version}
-
-%description autoreply
-This package contains Licq utility for automatic handling of incoming
-messages.
-
-%description autoreply -l pl
-Ten pakiet zawiera narzêdzie dla Licq które automatycznie zajmuje siê
-przychodz±cymi wiadomo¶ciami.
+#%package autoreply
+#Summary:	Licq autoreply utility
+#Summary(pl):	Narzêdzie do automatycznego odpowiadania dla Licq
+#Version:	%{version}
+#Group:		Applications/Communications
+#Requires:	%{name} = %{version}
+#
+#%description autoreply
+#This package contains Licq utility for automatic handling of incoming
+#messages.
+#
+#%description autoreply -l pl
+#Ten pakiet zawiera narzêdzie dla Licq które automatycznie zajmuje siê
+#przychodz±cymi wiadomo¶ciami.
 
 %package forwarder
 Summary:	Licq email forwarder utility
 Summary(pl):	Narzêdzie do przesy³ania wiadomo¶ci icq na email
-Version:	%{version}_%{forwarder_ver}
+Version:	%{version}
 Group:		Applications/Communications
 Requires:	%{name} = %{version}
 
@@ -194,24 +190,17 @@ Narzêdzie do przesy³ania wiadomo¶ci icq na email.
 
 %prep
 %setup -q
-#cd plugins/qt-gui/src
-#-## KDE m4 macros sucks as hell
-#-#for header in *.h; do
-#-#	rheader=$(echo ${header} | sed -e 's#\.h##')
-#-#	/usr/X11R6/bin/moc -o ${rheader}.moc ${header} || :
-#-#done
-#cd ../../..
-#%patch0 -p1
 
 %build
 BASE=$(pwd)
 for module in \
 	. \
-	plugins/console-%{console_ver} \
-	plugins/qt-gui-%{qt_gui_ver} \
-	plugins/rms-%{rms_ver} \
-	plugins/jons-gtk-gui-%{jons_gtk_gui_ver} \
+	plugins/console \
+	plugins/qt-gui \
+	plugins/rms \
+	plugins/jons-gtk-gui \
 	; do
+	#plugins/auto-reply \
   cd $module
   %{__autoconf}
   %configure \
@@ -228,20 +217,21 @@ done
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
-%{__make} -C plugins/console-%{console_ver}		DESTDIR=$RPM_BUILD_ROOT install
-%{__make} -C plugins/jons-gtk-gui-%{jons_gtk_gui_ver}	DESTDIR=$RPM_BUILD_ROOT install
-%{__make} -C plugins/qt-gui-%{qt_gui_ver}		DESTDIR=$RPM_BUILD_ROOT install
-%{__make} -C plugins/rms-%{rms_ver}			DESTDIR=$RPM_BUILD_ROOT install
-#%{__make} -C plugins/auto-reply			DESTDIR=$RPM_BUILD_ROOT install
-#%{__make} -C plugins/email				DESTDIR=$RPM_BUILD_ROOT install
+%{__make} -C plugins/console		DESTDIR=$RPM_BUILD_ROOT install
+%{__make} -C plugins/jons-gtk-gui	DESTDIR=$RPM_BUILD_ROOT install
+%{__make} -C plugins/qt-gui		DESTDIR=$RPM_BUILD_ROOT install
+%{__make} -C plugins/rms		DESTDIR=$RPM_BUILD_ROOT install
+#%{__make} -C plugins/auto-reply		DESTDIR=$RPM_BUILD_ROOT install
+#%{__make} -C plugins/email		DESTDIR=$RPM_BUILD_ROOT install
 
 install -d $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications/licq-qt_gui.desktop
 
 #mv -f plugins/email/README		doc/README.FORWARDER
-cp -f plugins/rms-%{rms_ver}/README			doc/README.RMS
-cp -f plugins/console-%{console_ver}/README		doc/README.CONSOLE
-cp -f plugins/jons-gtk-gui-%{jons_gtk_gui_ver}/TODO	doc/README.TODO.JONS-GTK
+cp -f plugins/rms/README		doc/README.RMS
+cp -f plugins/console/README		doc/README.CONSOLE
+cp -f plugins/jons-gtk-gui/TODO		doc/README.TODO.JONS-GTK
+#cp -f plugins/autoreply/README		doc/README.autoreply
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -249,7 +239,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc doc/{BUGS,CHANGELOG,CREDITS,HINTS,*.HOWTO,README*,TODO} README*
-%doc upgrade/* plugins/qt-gui-%{qt_gui_ver}/doc/{CHANGELOG,README,*.HOWTO,HINTS}
+%doc upgrade/* plugins/qt-gui/doc/{CHANGELOG,README,*.HOWTO,HINTS}
 %attr(755,root,root) %{_bindir}/licq
 %attr(755,root,root) %{_bindir}/viewurl-*
 %dir %{_libdir}/licq
@@ -264,7 +254,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files qt-gui
 %defattr(644,root,root,755)
-%doc plugins/qt-gui-%{qt_gui_ver}/doc/*
+%doc plugins/qt-gui/doc/*
 %attr(755,root,root) %{_libdir}/licq/licq_qt-gui*
 %{_applnkdir}/Network/Communications/licq-qt_gui.desktop
 %dir %{_datadir}/licq/qt-gui
