@@ -1,5 +1,4 @@
-%define ver	1.1.0
-%define snap	20020626
+%define snap	20020723
 Summary:	An ICQ client for online messaging
 Summary(es):	licq es un clone del ICQ(tm) escrito
 Summary(pl):	Klient ICQ do przesy³ania wiadomo¶ci po sieci
@@ -118,18 +117,18 @@ ncurses.
 %description console -l pt_BR
 Inclui interface de usuário de console para o licq.
 
-#%package jons-gtk-gui
-#Summary:	Jons GTK GUI for Licq
-#Summary(pl):	Graficzne ¶rodowisko u¿ytkownika dla Licq, wykorzystuj±ce GTK
-#Version:	%{ver}_%{jons_gtk_gui_ver}
-#Group:		Applications/Communications
-#Requires:	%{name} = %{ver}
-#
-#%description jons-gtk-gui
-#Jons GTK GUI for Licq.
-#
-#%description jons-gtk-gui -l pl
-#Graficzne ¶rodowisko u¿ytkownika dla Licq, wykorzystuj±ce GTK.
+%package jons-gtk-gui
+Summary:	Jons GTK GUI for Licq
+Summary(pl):	Graficzne ¶rodowisko u¿ytkownika dla Licq, wykorzystuj±ce GTK
+Version:	%{ver}_%{jons_gtk_gui_ver}
+Group:		Applications/Communications
+Requires:	%{name} = %{ver}
+
+%description jons-gtk-gui
+Jons GTK GUI for Licq.
+
+%description jons-gtk-gui -l pl
+Graficzne ¶rodowisko u¿ytkownika dla Licq, wykorzystuj±ce GTK.
 
 %package rms
 Summary:	Licq remote management server
@@ -193,8 +192,9 @@ for module in \
 	plugins/auto-reply \
 	plugins/console \
 	plugins/qt-gui \
-	plugins/rms; do
-#	plugins/jons-gtk-gui \
+	plugins/rms \
+	plugins/jons-gtk-gui \
+	; do
   cd $module
 #  %{__make} -f Makefile.cvs
 #  rm -f missing
@@ -219,7 +219,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C plugins/auto-reply		DESTDIR=$RPM_BUILD_ROOT install
 %{__make} -C plugins/console		DESTDIR=$RPM_BUILD_ROOT install
 #%{__make} -C plugins/email		DESTDIR=$RPM_BUILD_ROOT install
-#%{__make} -C plugins/jons-gtk-gui	DESTDIR=$RPM_BUILD_ROOT install
+%{__make} -C plugins/jons-gtk-gui	DESTDIR=$RPM_BUILD_ROOT install
 %{__make} -C plugins/qt-gui		DESTDIR=$RPM_BUILD_ROOT install
 %{__make} -C plugins/rms		DESTDIR=$RPM_BUILD_ROOT install
 
@@ -292,7 +292,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/README.AUTOREPLY.gz
 %attr(755,root,root) %{_libdir}/licq/licq_autoreply*
 
-#%files jons-gtk-gui
-#%defattr(644,root,root,755)
-#%doc doc/README.AUTOREPLY.gz
-#%attr(755,root,root) %{_libdir}/licq/licq_jons-gtk-gui*
+%files jons-gtk-gui
+%defattr(644,root,root,755)
+%doc doc/README.AUTOREPLY.gz
+%attr(755,root,root) %{_libdir}/licq/licq_jons-gtk-gui*
