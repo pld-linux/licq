@@ -67,16 +67,15 @@ make \
 	DESTDIR=$RPM_BUILD_ROOT \
 	install
 	
+cd ..
 %find_lang Licq-Qt-GUI
+cd ..
 
-cd ../..
 make \
 	DESTDIR=$RPM_BUILD_ROOT \
 	install
 
 install src/inc/*.h $RPM_BUILD_ROOT%{_includedir}/%{name}
-
-%find_lang Licq-Qt-GUI
 
 %files -f Licq-Qt-GUI.lang
 %defattr(644,root,root,755)
