@@ -1,6 +1,4 @@
 
-%define _pre PRE2
-
 Summary:	An ICQ client for online messaging
 Summary(es):	licq es un clone del ICQ(tm) escrito
 Summary(pl):	Klient ICQ do przesy³ania wiadomo¶ci po sieci
@@ -9,11 +7,11 @@ Summary(ru):	ëÌÏÎ ICQ ÄÌÑ ÏÎÌÁÊÎÏ×ÇÏ ÏÂÍÅÎÁ ÓÏÏÂÝÅÎÉÑÍÉ
 Summary(uk):	ëÌÏÎ ICQ ÄÌÑ ÏÎÌÁÊÎÏ×ÇÏ ÏÂÍ¦ÎÕ ÐÏ×¦ÄÏÍÌÅÎÎÑÍÉ
 Name:		licq
 Version:	1.3.0
-Release:	0.%{_pre}.1
+Release:	1
 License:	GPL
 Group:		Applications/Communications
-Source0:	http://dl.sourceforge.net/licq/%{name}-%{version}-%{_pre}.tar.bz2
-# Source0-md5:	02cea8243ece7b595e29c3ee716e0d7b
+Source0:	http://dl.sourceforge.net/licq/%{name}-%{version}.tar.bz2
+# Source0-md5:	c1b05d1078b9826273191c05d0d1a969
 Source1:	%{name}-qt-gui.desktop
 Patch0:		%{name}-c++.patch
 URL:		http://www.licq.org/
@@ -28,6 +26,7 @@ BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	qt-linguist
 BuildRequires:	xosd-devel
+BuildRequires:	cdk-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # "lib" instead of "%{_lib}" is hardcoded in include/licq_constants.h
@@ -234,7 +233,7 @@ Licq email forwarder utility.
 Narzêdzie do przesy³ania wiadomo¶ci icq na email.
 
 %prep
-%setup -q -n %{name}-%{version}-%{_pre}
+%setup -q
 
 find . -type d -name autom4te.cache | xargs rm -rf
 
@@ -284,6 +283,7 @@ cp -f plugins/msn/README		doc/README.MSN
 cp -f plugins/osd/README		doc/README.OSD
 cp -f plugins/rms/README		doc/README.RMS
 #cp -f plugins/jons-gtk-gui/TODO		doc/README.TODO.JONS-GTK
+cp -f doc/README			doc/README2
 
 # dlopened by *.so
 rm -f $RPM_BUILD_ROOT%{plugindir}/*.la
@@ -296,8 +296,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc doc/{BUGS,CHANGELOG,CREDITS,HINTS,*.HOWTO,README*,TODO} README*
-%doc upgrade/* plugins/qt-gui/doc/{CHANGELOG,README,*.HOWTO,HINTS}
+%doc doc/{BUGS,CHANGELOG,CREDITS,HINTS,*.HOWTO,TODO} README
+%doc doc/README{2,-0.70-0.71,-0.61-0.70,-1.2.0,.CodingStyle,.FIFO,.SOCKS}
+%doc upgrade/*
 %attr(755,root,root) %{_bindir}/licq
 %attr(755,root,root) %{_bindir}/viewurl-*
 %dir %{plugindir}
