@@ -38,10 +38,10 @@ make install prefix=$RPM_BUILD_ROOT/usr/X11R6
 strip $RPM_BUILD_ROOT/usr/X11R6/bin/licq
 
 %files
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 %doc doc/BUGS doc/CHANGELOG doc/CREDITS doc/FAQ doc/HINTS 
 %doc doc/README* doc/*.HOWTO doc/TODO doc/UPGRADE
-%attr(755, root, root) /usr/X11R6/bin/*
+%attr(755,root,root) /usr/X11R6/bin/*
 /usr/X11R6/share/*
 
 %clean
