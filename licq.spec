@@ -1,3 +1,5 @@
+%define		qt_gui_ver	0.63
+
 Summary:	Licq - ICQ clone.
 Summary(pl):	Licq - klient ICQ.
 Name:		licq
@@ -6,13 +8,15 @@ Release:	1
 Copyright:	GPL
 Group:		Applications/Communications
 Group(pl):	Aplikacje/Komunikacja
-Source0:	http://ftp.licq.org/pub/licq/srcs/licq-%{version}.tar.gz
+Source0:	http://ftp.licq.org/pub/licq/srcs/%{name}-%{version}.tar.gz
+Source1:	http://ftp.licq.org/pub/licq/srcs/%{name}_qt-gui-%{qt_gui_ver}.tar.gz
 Source2:	licq.wmconfig
 Source3:	licq.mini-icon.xpm
 Source4:	http://www.crewq.com/licq/icons/icons-dots.tar.gz
 Patch0:		licq-DESTDIR.patch
 URL:		http://www.licq.org/
 BuildPrereq:	libstdc++-devel
+BuildPrereq:	gettext
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %define		_prefix	/usr/X11R6
@@ -40,11 +44,17 @@ Header files for compile licq plugins.
 Pliki nag³ówkowe do kompilacji wtyczek licq.
 
 %prep
-%setup -q  
+%setup -q  -a 1 -n %{name}-%{version}/plugins
+cd ..
 %patch -p1
 
 %build
 LDFLAGS="-s"; export LDFLAGS
+cd qt-gui-%{qt_gui_ver}
+gettextize --copy --force
+%configure 
+make
+cd ../..
 %configure
 make
 
@@ -52,18 +62,32 @@ make
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir},%{_includedir}/%{name}}
 
+cd qt-gui-%{qt_gui_ver}
+make \
+	DESTDIR=$RPM_BUILD_ROOT \
+	install
+	
+%find_lang Licq-Qt-GUI
 
-make install \
-	DESTDIR=$RPM_BUILD_ROOT
+cd ../..
+make \
+	DESTDIR=$RPM_BUILD_ROOT \
+	install
 
 install src/inc/*.h $RPM_BUILD_ROOT%{_includedir}/%{name}
 
-%files
+%find_lang Licq-Qt-GUI
+
+%files -f Licq-Qt-GUI.lang
 %defattr(644,root,root,755)
-%doc doc/BUGS doc/CHANGELOG doc/CREDITS doc/FAQ doc/HINTS 
-%doc doc/README* doc/*.HOWTO doc/TODO doc/UPGRADE
+%doc ../doc/BUGS ../doc/CHANGELOG ../doc/CREDITS ../doc/FAQ ../doc/HINTS 
+%doc ../doc/README* ../doc/*.HOWTO ../doc/TODO ../doc/UPGRADE
 %attr(755,root,root) %{_bindir}/*
-%{_datadir}/*
+%dir %{_datadir}/licq/plugins
+%attr(755,root,root) %{_datadir}/licq/plugins/*
+%{_datadir}/licq/translations
+%{_datadir}/licq/utilities
+%{_datadir}/licq/qt-gui
 
 %files devel
 %defattr(644,root,root,755)
