@@ -224,7 +224,7 @@ for module in \
   %{__autoconf}
   %configure \
 	`[ "$module" = "plugins/qt-gui" ] && echo -n "--with-qt-libraries=%{_libdir}"` \
-	`[ "$module" = "plugins/kde-gui" ] && echo -n "--with-kde"` \
+	`[ "$module" = "plugins/kde-gui" ] && echo -n "--with-kde --with-qt-libraries=%{_libdir}"` \
   	--with-openssl-inc=%{_includedir}/openssl
   %{__make}
   cd $BASE
