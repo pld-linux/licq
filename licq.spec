@@ -1,8 +1,8 @@
 Summary:	An ICQ client for online messaging
 Summary(pl):	Klient ICQ do przesy³ania wiadomo¶ci po sieci
 Name:		licq
-Version:	0.84a
-Release:	6
+Version:	0.85
+Release:	1
 License:	GPL
 Group:		Applications/Communications
 Group(pl):	Aplikacje/Komunikacja
@@ -11,16 +11,21 @@ Source0:	http://www.licq.org/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-console.patch
+Patch2:		%{name}-qt_gui-translations_not_in_home_dir.patch
 BuildRequires:	qt-devel >= 2.1
+BuildRequires:	glibc-static
 BuildRequires:	ncurses-devel >= 5.0
+BuildRequires:	libstdc++-devel
+BuildRequires:	openssl-devel
+BuildRequires:	XFree86-devel
 Requires:	ncurses >= 5.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		qt_gui		qt-gui-0.84a
-%define		auto_reply	auto-reply-0.16
-%define		console		console-0.21-cvs
-%define		forwarder	forwarder-0.65
-%define		rms		rms-0.10-cvs
+%define		qt_gui		qt-gui
+%define		auto_reply	auto-reply-0.17
+%define		console		console-0.30
+%define		forwarder	forwarder-0.66
+%define		rms		rms-0.10
 
 %description
 Licq is an ICQ online messaging system clone, written in C++. Licq
@@ -35,6 +40,19 @@ przesy³aniem wiadomo¶ci, URLi, rozmow± na ¿ywo, przesy³aniem plików oraz
 dostêpem do informacji z "bia³ych stron" ICQ. Dodatkowo, Licq jest bardzo
 dobrze konfigurowalny, pozwalaj±c na u¿ywanie "skórek" oraz ró¿nych
 zestawów ikon.
+
+%package devel
+Summary:	Header files requied to develop licq plugins
+Summary(pl):	Pliki nag³ówkowe niezbêdne przy pisaniu wtyczek dla licq
+Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki
+Requires:	%{name} = %{version}
+
+%description devel
+Header files required to develop licq plugins.
+
+%description devel -l pl
+Pliki nag³ówkowe niezbêdne przy pisaniu wtyczek dla licq.
 
 %package qt-gui
 Summary:	Qt GUI for Licq
@@ -100,6 +118,7 @@ Ten pakiet zawiera serwer do zdalnego zarz±dzania dla Licq
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 LDFLAGS="-s"; export LDFLAGS
@@ -150,14 +169,19 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/BUGS.gz doc/CHANGELOG.gz doc/CREDITS.gz HINTS.gz
+%doc doc/BUGS.gz doc/CHANGELOG.gz doc/CREDITS.gz doc/HINTS.gz
 %doc doc/*.HOWTO.gz README-*.gz doc/TODO.gz doc/README.gz
 %doc doc/README.SOCKS.gz 
 %doc upgrade/*
 %attr(755,root,root) %{_bindir}/licq
+%attr(755,root,root) %{_bindir}/viewurl-*
 %{_datadir}/licq/sounds
 %{_datadir}/licq/translations
 %{_datadir}/licq/utilities
+
+%files devel
+%defattr(644,root,root,755)
+%{_includedir}/licq
 
 %files qt-gui
 %defattr(644,root,root,755)
