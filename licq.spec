@@ -114,16 +114,17 @@ Summary(pt_BR):	Interface de usuário de console para o licq
 Group:		Applications/Communications
 Requires:	%{name} = %{version}
 Requires:	ncurses >= 5.0
+Obsoletes:	licq-console
 
-%description console
+%description text
 This package contains text terminal user interface for Licq, using
 ncurses library.
 
-%description console -l pl
+%description text -l pl
 Ten pakiet zawiera interfejs dla Licq pod terminal tekstowy u¿ywaj±cy
 biblioteki ncurses.
 
-%description console -l pt_BR
+%description text -l pt_BR
 Inclui interface de usuário de console para o licq.
 
 %description text -l ru
