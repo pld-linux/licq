@@ -1,0 +1,40 @@
+--- licq-20011027/plugins/console/src/console.h~	Thu Aug 24 00:49:33 2000
++++ licq-20011027/plugins/console/src/console.h	Fri Nov 30 23:18:03 2001
+@@ -1,6 +1,11 @@
+ #ifndef LICQCON_H
+ #define LICQCON_H
+ 
++#include <list>
++#include <vector>
++using std::list;
++using std::vector;
++
+ #ifdef HAVE_CONFIG_H
+ #include "config.h"
+ #endif
+--- licq-20011027/plugins/jons-gtk-gui/src/licq_gtk.h~	Fri Jun 15 07:27:17 2001
++++ licq-20011027/plugins/jons-gtk-gui/src/licq_gtk.h	Fri Nov 30 23:36:56 2001
+@@ -21,6 +21,11 @@
+ #ifndef __LICQ_GTK_H
+ #define __LICQ_GTK_H
+ 
++#include <list>
++#include <iosfwd>
++using std::list;
++using std::ios;
++
+ #include "licq_icqd.h"
+ #include "licq_events.h"
+ #include "licq_filetransfer.h"
+--- licq-20011027/plugins/rms/src/rms.h~	Mon Feb 26 21:06:47 2001
++++ licq-20011027/plugins/rms/src/rms.h	Sat Dec  1 00:28:22 2001
+@@ -1,6 +1,9 @@
+ #ifndef LICQRMS_H
+ #define LICQRMS_H
+ 
++#include <list>
++using std::list;
++
+ #ifdef HAVE_CONFIG_H
+ #include "config.h"
+ #endif
