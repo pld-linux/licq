@@ -1,0 +1,83 @@
+diff -ur licq-0.70d.old/plugins/qt-gui-0.63/share/Makefile.in licq-0.70d/plugins/qt-gui-0.63/share/Makefile.in
+--- licq-0.70d.old/plugins/qt-gui-0.63/share/Makefile.in	Fri May 21 04:03:26 1999
++++ licq-0.70d/plugins/qt-gui-0.63/share/Makefile.in	Tue Jun  8 21:25:38 1999
+@@ -31,13 +31,13 @@
+ 	$(RM) Makefile
+ 
+ install:
+-	$(MKINSTALLDIRS) $(sharedir)
+-	$(MKINSTALLDIRS) $(sharedir)/icons.icq
++	$(MKINSTALLDIRS) $(DESTDIR)$(sharedir)
++	$(MKINSTALLDIRS) $(DESTDIR)$(sharedir)/icons.icq
+ 	for i in qt-gui/icons.icq/*; do \
+-	  $(INSTALL_DATA) $$i $(sharedir)/icons.icq; \
++	  $(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/icons.icq; \
+   done
+-	$(MKINSTALLDIRS) $(sharedir)/skin.basic
++	$(MKINSTALLDIRS) $(DESTDIR)$(sharedir)/skin.basic
+ 	for i in qt-gui/skin.basic/*; do \
+-	  $(INSTALL_DATA) $$i $(sharedir)/skin.basic; \
++	  $(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/skin.basic; \
+   done
+ 
+diff -ur licq-0.70d.old/plugins/qt-gui-0.63/src/Makefile.in licq-0.70d/plugins/qt-gui-0.63/src/Makefile.in
+--- licq-0.70d.old/plugins/qt-gui-0.63/src/Makefile.in	Fri May 21 04:03:10 1999
++++ licq-0.70d/plugins/qt-gui-0.63/src/Makefile.in	Tue Jun  8 21:24:53 1999
+@@ -78,9 +78,9 @@
+ 	$(RM) *~ Makefile tags
+ 
+ install: all
+-	$(MKINSTALLDIRS) $(plugindir)
+-	$(INSTALL_PROGRAM) $(srcdir)/licq_qt-gui.so $(plugindir)
+-	$(STRIP) $(plugindir)/licq_qt-gui.so
++	$(MKINSTALLDIRS) $(DESTDIR)$(plugindir)
++	$(INSTALL_PROGRAM) $(srcdir)/licq_qt-gui.so $(DESTDIR)$(plugindir)
++	$(STRIP) $(DESTDIR)$(plugindir)/licq_qt-gui.so
+ 
+ licq_qt-gui.so: $(OBJECTS) $(METAOBJ)
+ 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS) $(LDLIBS)
+diff -ur licq-0.70d.old/share/Makefile.in licq-0.70d/share/Makefile.in
+--- licq-0.70d.old/share/Makefile.in	Fri May 21 04:03:10 1999
++++ licq-0.70d/share/Makefile.in	Tue Jun  8 21:23:43 1999
+@@ -31,15 +31,15 @@
+ 	$(RM) Makefile
+ 
+ install:
+-	$(MKINSTALLDIRS) $(sharedir)
+-	$(MKINSTALLDIRS) $(sharedir)/plugins
+-	$(MKINSTALLDIRS) $(sharedir)/utilities
++	$(MKINSTALLDIRS) $(DESTDIR)$(sharedir)
++	$(MKINSTALLDIRS) $(DESTDIR)$(sharedir)/plugins
++	$(MKINSTALLDIRS) $(DESTDIR)$(sharedir)/utilities
+ 	for i in utilities/*; do \
+-	  $(INSTALL_DATA) $$i $(sharedir)/utilities; \
++	  $(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/utilities; \
+   done
+-	$(MKINSTALLDIRS) $(sharedir)/translations
++	$(MKINSTALLDIRS) $(DESTDIR)$(sharedir)/translations
+ 	for i in translations/*; do \
+-	  $(INSTALL_DATA) $$i $(sharedir)/translations; \
++	  $(INSTALL_DATA) $$i $(DESTDIR)$(sharedir)/translations; \
+   done
+ #	$(MKINSTALLDIRS) $(mandir)
+ #	$(INSTALL_DATA) licq.1 $(mandir)
+Only in licq-0.70d.old/share: Makefile.rej
+Only in licq-0.70d.old/share: Makefile~
+diff -ur licq-0.70d.old/src/Makefile.in licq-0.70d/src/Makefile.in
+--- licq-0.70d.old/src/Makefile.in	Fri May 21 04:03:02 1999
++++ licq-0.70d/src/Makefile.in	Tue Jun  8 21:22:15 1999
+@@ -54,9 +54,9 @@
+ 	cd daemon; make distclean
+ 
+ install: all
+-	$(MKINSTALLDIRS) $(bindir)
+-	$(INSTALL_PROGRAM) $(srcdir)/licq $(bindir)
+-	$(STRIP) $(bindir)/licq
++	$(MKINSTALLDIRS) $(DESTDIR)$(bindir)
++	$(INSTALL_PROGRAM) $(srcdir)/licq $(DESTDIR)$(bindir)
++	$(STRIP) $(DESTDIR)$(bindir)/licq
+ 
+ licq-daemon.a:
+ 	@ cd daemon; make licq-daemon.a
+Only in licq-0.70d.old/src: Makefile.rej
+Only in licq-0.70d.old/src: Makefile~
