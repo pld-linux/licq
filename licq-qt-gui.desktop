@@ -2,8 +2,9 @@
 Name=Licq (QT)
 Comment=Unix/Qt ICQ clone
 Comment[pl]=Klon ICQ pod Unixa/Qt
-Comment[pt]=Cliente Gr·fico de ICQ
+Comment[pt]=Cliente Gr√°fico de ICQ
 Exec=licq -p qt-gui
 Icon=licq.png
 Terminal=0
 Type=Application
+# vi: encoding=utf-8
