@@ -7,12 +7,13 @@ Summary(ru):	ëÌÏÎ ICQ ÄÌÑ ÏÎÌÁÊÎÏ×ÇÏ ÏÂÍÅÎÁ ÓÏÏÂÝÅÎÉÑÍÉ
 Summary(uk):	ëÌÏÎ ICQ ÄÌÑ ÏÎÌÁÊÎÏ×ÇÏ ÏÂÍ¦ÎÕ ÐÏ×¦ÄÏÍÌÅÎÎÑÍÉ
 Name:		licq
 Version:	1.3.0
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/licq/%{name}-%{version}.tar.bz2
 # Source0-md5:	c1b05d1078b9826273191c05d0d1a969
 Source1:	%{name}-qt-gui.desktop
+Source2:	%{name}-kde-gui.desktop
 Patch0:		%{name}-c++.patch
 URL:		http://www.licq.org/
 BuildRequires:	XFree86-devel
@@ -90,6 +91,19 @@ Pliki nag³ówkowe niezbêdne przy pisaniu wtyczek dla licq.
 %description devel -l pt_BR
 Ferramentas para desenvolvimento de plug-ins para o licq.
 
+%package qt-gui-common
+Summary:	Common files for QT based GUI plugins
+Summary(pl):	Wspólne pliki dla wtyczek GUI opartych na QT
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+Requires:	qt >= 2.1
+
+%description qt-gui-common
+Common files for QT based GUI plugins.
+
+%description qt-gui-common -l pl
+Wspólne pliki dla wtyczek GUI opartych na QT.
+
 %package qt-gui
 Summary:	Qt GUI for Licq
 Summary(es):	Qt user interface for licq
@@ -99,6 +113,7 @@ Summary(ru):	Qt ÉÎÔÅÒÆÅÊÓ Ë licq
 Summary(uk):	Qt ¦ÎÔÅÒÆÅÊÓ ÄÏ licq
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-qt-gui-common = %{version}-%{release}
 Requires:	qt >= 2.1
 
 %description qt-gui
@@ -121,6 +136,7 @@ Summary:	KDE GUI for Licq
 Summary(pl):	Graficzny interfejs KDE dla Licq
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-qt-gui-common = %{version}-%{release}
 Requires:	qt >= 2.1
 
 %description kde-gui
@@ -276,6 +292,7 @@ for d in plugins/{auto-reply,console,email,kde-gui,msn,osd,qt-gui,rms} ; do
 done
 
 install -D %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/licq-qt_gui.desktop
+install -D %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}/licq-kde_gui.desktop
 
 cp -f plugins/auto-reply/README		doc/README.AUTOREPLY
 cp -f plugins/console/README		doc/README.CONSOLE
@@ -312,11 +329,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_includedir}/licq
 
-%files qt-gui
+%files qt-gui-common
 %defattr(644,root,root,755)
 %doc plugins/qt-gui/doc/*
-%attr(755,root,root) %{plugindir}/licq_qt-gui.so
-%{_desktopdir}/licq-qt_gui.desktop
 %dir %{_datadir}/licq/qt-gui
 %{_datadir}/licq/qt-gui/*.*
 %{_datadir}/licq/qt-gui/emoticons
@@ -339,9 +354,15 @@ rm -rf $RPM_BUILD_ROOT
 %lang(tr) %{_datadir}/licq/qt-gui/locale/tr.qm
 %lang(uk) %{_datadir}/licq/qt-gui/locale/uk.qm
 
+%files qt-gui
+%defattr(644,root,root,755)
+%attr(755,root,root) %{plugindir}/licq_qt-gui.so
+%{_desktopdir}/licq-qt_gui.desktop
+
 %files kde-gui
 %defattr(644,root,root,755)
 %attr(755,root,root) %{plugindir}/licq_kde-gui.so
+%{_desktopdir}/licq-kde_gui.desktop
 
 %files text
 %defattr(644,root,root,755)
