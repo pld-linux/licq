@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Licq (KDE)
+Comment=Unix/KDE ICQ clone
+Comment[pl]=Klon ICQ pod Uniksa/KDE
+Comment[pt]=Cliente Gráfico de ICQ
+Comment[pt_BR]=Cliente Gráfico de ICQ
+Exec=licq -p kde-gui
+Icon=licq.png
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=Qt;Network;InstantMessaging;
+# vi: encoding=utf-8
