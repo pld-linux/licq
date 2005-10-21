@@ -11,7 +11,7 @@ Release:	3
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/licq/%{name}-%{version}.tar.bz2
-# Source0-md5:	0f1f2c60ffdaf38fbf8fa58e409e5638
+# Source0-md5:	0471bb8fed91eefb23dfe153c9a4a806
 Source1:	%{name}-qt-gui.desktop
 Source2:	%{name}-kde-gui.desktop
 Patch0:		%{name}-c++.patch
