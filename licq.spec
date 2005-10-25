@@ -1,4 +1,5 @@
-
+# TODO:
+#	- subpackage with licqweb
 Summary:	An ICQ client for online messaging
 Summary(es):	licq es un clone del ICQ(tm) escrito
 Summary(pl):	Klient ICQ do przesy³ania wiadomo¶ci po sieci
@@ -7,18 +8,19 @@ Summary(ru):	ëÌÏÎ ICQ ÄÌÑ ÏÎÌÁÊÎÏ×ÇÏ ÏÂÍÅÎÁ ÓÏÏÂÝÅÎÉÑÍÉ
 Summary(uk):	ëÌÏÎ ICQ ÄÌÑ ÏÎÌÁÊÎÏ×ÇÏ ÏÂÍ¦ÎÕ ÐÏ×¦ÄÏÍÌÅÎÎÑÍÉ
 Name:		licq
 Version:	1.3.2
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/licq/%{name}-%{version}.tar.bz2
 # Source0-md5:	0471bb8fed91eefb23dfe153c9a4a806
 Source1:	%{name}-qt-gui.desktop
 Source2:	%{name}-kde-gui.desktop
-Patch0:		%{name}-c++.patch
+Patch0:		%{name}-typos.patch
 URL:		http://www.licq.org/
 BuildRequires:	XFree86-devel
 BuildRequires:	automake
 BuildRequires:	gettext-devel
+BuildRequires:	gpgme-devel
 BuildRequires:	gtk+-devel >= 1.2.0
 BuildRequires:	kdelibs-devel
 BuildRequires:	libstdc++-devel
@@ -250,6 +252,7 @@ Narzêdzie do przesy³ania wiadomo¶ci icq na email.
 
 %prep
 %setup -q
+%patch0 -p1
 
 find . -type d -name autom4te.cache | xargs rm -rf
 
@@ -261,9 +264,9 @@ for module in \
 	plugins/auto-reply \
 	plugins/console \
 	plugins/email \
-	plugins/kde-gui \
 	plugins/msn \
 	plugins/osd \
+	plugins/kde-gui \
 	plugins/qt-gui \
 	plugins/rms \
 	; do
@@ -274,7 +277,7 @@ for module in \
 	`[ "$module" = "plugins/qt-gui" ] && echo -n "--with-qt-libraries=%{_libdir}"` \
 	`[ "$module" = "plugins/kde-gui" ] && echo -n "--with-kde --with-qt-libraries=%{_libdir} KDEDIR=%{_libdir}"` \
   	--with-openssl-inc=%{_includedir}/openssl \
-	--disable-gpgme
+	--enable-gpgme
   %{__make}
   cd $BASE
 done
@@ -285,7 +288,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-for d in plugins/{auto-reply,console,email,kde-gui,msn,osd,qt-gui,rms} ; do
+for d in plugins/{auto-reply,console,email,msn,osd,kde-gui,qt-gui,rms} ; do
 # plugins/jons-gtk-gui
 	%{__make} -C $d install \
 		DESTDIR=$RPM_BUILD_ROOT
@@ -315,7 +318,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc doc/{BUGS,CHANGELOG,CREDITS,HINTS,*.HOWTO,TODO} README
-%doc doc/README{2,-0.70-0.71,-0.61-0.70,-1.2.0,.CodingStyle,.FIFO,.SOCKS}
+%doc doc/README{2,-0.70-0.71,-0.61-0.70,-1.2.0,-1.3.0,.CodingStyle,.FIFO,.SOCKS}
 %doc upgrade/*
 %attr(755,root,root) %{_bindir}/licq
 %attr(755,root,root) %{_bindir}/viewurl-*
@@ -336,6 +339,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/licq/qt-gui/*.*
 %{_datadir}/licq/qt-gui/emoticons
 %dir %{_datadir}/licq/qt-gui/locale
+%lang(be) %{_datadir}/licq/qt-gui/locale/be*.qm
 %lang(bg) %{_datadir}/licq/qt-gui/locale/bg*.qm
 %lang(cs) %{_datadir}/licq/qt-gui/locale/cs*.qm
 %lang(de) %{_datadir}/licq/qt-gui/locale/de.qm
