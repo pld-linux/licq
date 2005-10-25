@@ -1,0 +1,12 @@
+diff -urbB licq-1.3.2.org/plugins/email/src/forwarder.cpp licq-1.3.2/plugins/email/src/forwarder.cpp
+--- licq-1.3.2.org/plugins/email/src/forwarder.cpp	2005-10-20 23:57:43.000000000 +0200
++++ licq-1.3.2/plugins/email/src/forwarder.cpp	2005-10-25 18:38:30.550063250 +0200
+@@ -373,7 +373,7 @@
+     if (nPPID == LICQ_PPID)
+       sprintf (szFrom, "From: \"%s\" <%s@pager.icq.com>", u->GetAlias(), u->IdString());
+     else
+-      sprintf (szFrom, "From: \"%s\" <%s>", u->GeAlias(), u->GetEmailPrimary());
++      sprintf (szFrom, "From: \"%s\" <%s>", u->GetAlias(), u->GetEmailPrimary());
+     sprintf (szReplyTo, "Reply-To: \"%s %s\" <%s>", u->GetFirstName(), u->GetLastName(), u->GetEmailPrimary());
+   }
+   sprintf (szDate, "Date: %s", ctime(&t));
