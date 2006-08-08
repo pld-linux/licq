@@ -183,7 +183,7 @@ Licq - це клон системи онлайнового обм╕ну пов╕домленнями ICQ.
 Summary:	Jons GTK GUI for Licq
 Summary(pl):	Graficzne ╤rodowisko u©ytkownika dla Licq, wykorzystuj╠ce GTK
 Group:		Applications/Communications
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description jons-gtk-gui
 Jons GTK GUI for Licq.
