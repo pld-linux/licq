@@ -1,0 +1,2 @@
+- added workaround for buggy icq2000 which sends messages with foreground ==
+- background color. rel 2; stb
