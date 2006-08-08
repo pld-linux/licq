@@ -8,7 +8,7 @@ Summary(ru):	Клон ICQ для онлайновго обмена сообщениями
 Summary(uk):	Клон ICQ для онлайновго обм╕ну пов╕домленнями
 Name:		licq
 Version:	1.3.2
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/licq/%{name}-%{version}.tar.bz2
@@ -19,6 +19,7 @@ Patch0:		%{name}-typos.patch
 URL:		http://www.licq.org/
 BuildRequires:	XFree86-devel
 BuildRequires:	automake
+BuildRequires:	cdk-devel >= 5.0
 BuildRequires:	gettext-devel
 BuildRequires:	gpgme-devel
 BuildRequires:	gtk+-devel >= 1.2.0
@@ -29,12 +30,14 @@ BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	qt-linguist
 BuildRequires:	xosd-devel
-BuildRequires:	cdk-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # "lib" instead of "%{_lib}" is hardcoded in include/licq_constants.h
 # and plugins/*/src/Makefile.am
 %define		plugindir	%{_prefix}/lib/licq
+
+# __cc with words broken
+%undefine	with_ccache
 
 %description
 Licq is an ICQ online messaging system clone, written in C++. Licq
@@ -176,17 +179,17 @@ Licq - это клон системы онлайнового обмена сообщенями ICQ. %{name}-qt
 Licq - це клон системи онлайнового обм╕ну пов╕домленнями ICQ.
 %{name}-qt - це текстовий ╕нтерфейс до licq.
 
-#%package jons-gtk-gui
-#Summary:	Jons GTK GUI for Licq
-#Summary(pl):	Graficzne ╤rodowisko u©ytkownika dla Licq, wykorzystuj╠ce GTK
-#Group:		Applications/Communications
-#Requires:	%{name} = %{version}
+%package jons-gtk-gui
+Summary:	Jons GTK GUI for Licq
+Summary(pl):	Graficzne ╤rodowisko u©ytkownika dla Licq, wykorzystuj╠ce GTK
+Group:		Applications/Communications
+Requires:	%{name} = %{version}
 
-#%description jons-gtk-gui
-#Jons GTK GUI for Licq.
-#
-#%description jons-gtk-gui -l pl
-#Graficzne ╤rodowisko u©ytkownika dla Licq, wykorzystuj╠ce GTK.
+%description jons-gtk-gui
+Jons GTK GUI for Licq.
+
+%description jons-gtk-gui -l pl
+Graficzne ╤rodowisko u©ytkownika dla Licq, wykorzystuj╠ce GTK.
 
 %package msn
 Summary:	Licq MSN plugin
@@ -271,15 +274,15 @@ for module in \
 	plugins/rms \
 	; do
 	# plugins/jons-gtk-gui \
-  cd $module
-  cp -f /usr/share/automake/config.* admin
-  %configure \
-	`[ "$module" = "plugins/qt-gui" ] && echo -n "--with-qt-libraries=%{_libdir}"` \
-	`[ "$module" = "plugins/kde-gui" ] && echo -n "--with-kde --with-qt-libraries=%{_libdir} KDEDIR=%{_libdir}"` \
-  	--with-openssl-inc=%{_includedir}/openssl \
+	cd $module
+	cp -f /usr/share/automake/config.* admin
+	%configure \
+	$([ "$module" = "plugins/qt-gui" ] && echo -n "--with-qt-libraries=%{_libdir}") \
+	$([ "$module" = "plugins/kde-gui" ] && echo -n "--with-kde --with-qt-libraries=%{_libdir} KDEDIR=%{_libdir}") \
+	--with-openssl-inc=%{_includedir}/openssl \
 	--enable-gpgme
-  %{__make}
-  cd $BASE
+	%{__make}
+	cd $BASE
 done
 
 %install
