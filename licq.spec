@@ -180,16 +180,16 @@ Licq - ÃÅ ËÌÏÎ ÓÉÓÔÅÍÉ ÏÎÌÁÊÎÏ×ÏÇÏ ÏÂÍ¦ÎÕ ĞÏ×¦ÄÏÍÌÅÎÎÑÍÉ ICQ.
 %{name}-qt - ÃÅ ÔÅËÓÔÏ×ÉÊ ¦ÎÔÅÒÆÅÊÓ ÄÏ licq.
 
 %package jons-gtk-gui
-Summary:	Jons GTK GUI for Licq
-Summary(pl):	Graficzne ¶rodowisko u¿ytkownika dla Licq, wykorzystuj±ce GTK
+Summary:	Jons GTK+ GUI for Licq
+Summary(pl):	Graficzne ¶rodowisko u¿ytkownika dla Licq, wykorzystuj±ce GTK+
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description jons-gtk-gui
-Jons GTK GUI for Licq.
+Jons GTK+ GUI for Licq.
 
 %description jons-gtk-gui -l pl
-Graficzne ¶rodowisko u¿ytkownika dla Licq, wykorzystuj±ce GTK.
+Graficzne ¶rodowisko u¿ytkownika dla Licq, wykorzystuj±ce GTK+.
 
 %package msn
 Summary:	Licq MSN plugin
