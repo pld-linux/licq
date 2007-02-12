@@ -1,11 +1,11 @@
 # TODO:
 #	- subpackage with licqweb
 Summary:	An ICQ client for online messaging
-Summary(es):	licq es un clone del ICQ(tm) escrito
-Summary(pl):	Klient ICQ do przesyЁania wiadomo╤ci po sieci
-Summary(pt_BR):	O licq И um clone do ICQ(tm) escrito
-Summary(ru):	Клон ICQ для онлайновго обмена сообщениями
-Summary(uk):	Клон ICQ для онлайновго обм╕ну пов╕домленнями
+Summary(es.UTF-8):   licq es un clone del ICQ(tm) escrito
+Summary(pl.UTF-8):   Klient ICQ do przesyе┌ania wiadomoе⌡ci po sieci
+Summary(pt_BR.UTF-8):   O licq ц╘ um clone do ICQ(tm) escrito
+Summary(ru.UTF-8):   п п╩п╬п╫ ICQ п╢п╩я▐ п╬п╫п╩п╟п╧п╫п╬п╡пЁп╬ п╬п╠п╪п╣п╫п╟ я│п╬п╬п╠я┴п╣п╫п╦я▐п╪п╦
+Summary(uk.UTF-8):   п п╩п╬п╫ ICQ п╢п╩я▐ п╬п╫п╩п╟п╧п╫п╬п╡пЁп╬ п╬п╠п╪я√п╫я┐ п©п╬п╡я√п╢п╬п╪п╩п╣п╫п╫я▐п╪п╦
 Name:		licq
 Version:	1.3.2
 Release:	5
@@ -45,60 +45,60 @@ supports all of the major features of ICQ, including messaging, URLs,
 chat, file transfer, and white pages information. Additionally, Licq
 is very configurable and supports skins and different icon packs.
 
-%description -l es
+%description -l es.UTF-8
 licq es un clone del ICQ(tm) escrito en c++ usando biblioteca Qt. Es
-un intento de dar a los usuarios de Linux una opciСn no-java para el
+un intento de dar a los usuarios de Linux una opciцЁn no-java para el
 protocolo ICQ.
 
-%description -l pl
-Licq jest klonem systemu przesyЁania wiadomo╤ci ICQ, napisanym w
-jЙzyku C++. Licq ma wszystkie wa©ne cechy oryginalnego klienta ICQ,
-wЁ╠cznie z przesyЁaniem wiadomo╤ci, URLi, rozmow╠ na ©ywo,
-przesyЁaniem plikСw oraz dostЙpem do informacji z "biaЁych stron" ICQ.
-Dodatkowo, Licq jest bardzo dobrze konfigurowalny, pozwalaj╠c na
-u©ywanie "skСrek" oraz rС©nych zestawСw ikon.
+%description -l pl.UTF-8
+Licq jest klonem systemu przesyе┌ania wiadomoе⌡ci ICQ, napisanym w
+jд≥zyku C++. Licq ma wszystkie waе╪ne cechy oryginalnego klienta ICQ,
+wе┌д┘cznie z przesyе┌aniem wiadomoе⌡ci, URLi, rozmowд┘ na е╪ywo,
+przesyе┌aniem plikцЁw oraz dostд≥pem do informacji z "biaе┌ych stron" ICQ.
+Dodatkowo, Licq jest bardzo dobrze konfigurowalny, pozwalajд┘c na
+uе╪ywanie "skцЁrek" oraz rцЁе╪nych zestawцЁw ikon.
 
-%description -l pt_BR
-O licq И um clone do ICQ(tm) escrito em c++ usando biblioteca Qt. и
-uma tentativa de dar aos usuАrios do Linux uma opГЦo nЦo-java para o
+%description -l pt_BR.UTF-8
+O licq ц╘ um clone do ICQ(tm) escrito em c++ usando biblioteca Qt. ц┴
+uma tentativa de dar aos usuц║rios do Linux uma opц╖цёo nцёo-java para o
 protocolo ICQ.
 
-%description -l ru
-Licq - это клон системы онлайнового обмена сообщенями ICQ, написанный
-на C++ с использованием набора виджетов Qt. Licq поддерживает все
-основные возможности ICQ, включая обмен сообщениями, URLы, чат,
-пересылку файлов и информацию об участниках. Дополнительно к этому,
-Licq имеет богатые возможности конфигурирования и поддерживает "скины"
-(сменные изображения для разных частей интерфейса для смены внешнего
-вида) и разные наборы иконок.
+%description -l ru.UTF-8
+Licq - я█я┌п╬ п╨п╩п╬п╫ я│п╦я│я┌п╣п╪я▀ п╬п╫п╩п╟п╧п╫п╬п╡п╬пЁп╬ п╬п╠п╪п╣п╫п╟ я│п╬п╬п╠я┴п╣п╫я▐п╪п╦ ICQ, п╫п╟п©п╦я│п╟п╫п╫я▀п╧
+п╫п╟ C++ я│ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣п╪ п╫п╟п╠п╬я─п╟ п╡п╦п╢п╤п╣я┌п╬п╡ Qt. Licq п©п╬п╢п╢п╣я─п╤п╦п╡п╟п╣я┌ п╡я│п╣
+п╬я│п╫п╬п╡п╫я▀п╣ п╡п╬п╥п╪п╬п╤п╫п╬я│я┌п╦ ICQ, п╡п╨п╩я▌я┤п╟я▐ п╬п╠п╪п╣п╫ я│п╬п╬п╠я┴п╣п╫п╦я▐п╪п╦, URLя▀, я┤п╟я┌,
+п©п╣я─п╣я│я▀п╩п╨я┐ я└п╟п╧п╩п╬п╡ п╦ п╦п╫я└п╬я─п╪п╟я├п╦я▌ п╬п╠ я┐я┤п╟я│я┌п╫п╦п╨п╟я┘. п■п╬п©п╬п╩п╫п╦я┌п╣п╩я▄п╫п╬ п╨ я█я┌п╬п╪я┐,
+Licq п╦п╪п╣п╣я┌ п╠п╬пЁп╟я┌я▀п╣ п╡п╬п╥п╪п╬п╤п╫п╬я│я┌п╦ п╨п╬п╫я└п╦пЁя┐я─п╦я─п╬п╡п╟п╫п╦я▐ п╦ п©п╬п╢п╢п╣я─п╤п╦п╡п╟п╣я┌ "я│п╨п╦п╫я▀"
+(я│п╪п╣п╫п╫я▀п╣ п╦п╥п╬п╠я─п╟п╤п╣п╫п╦я▐ п╢п╩я▐ я─п╟п╥п╫я▀я┘ я┤п╟я│я┌п╣п╧ п╦п╫я┌п╣я─я└п╣п╧я│п╟ п╢п╩я▐ я│п╪п╣п╫я▀ п╡п╫п╣я┬п╫п╣пЁп╬
+п╡п╦п╢п╟) п╦ я─п╟п╥п╫я▀п╣ п╫п╟п╠п╬я─я▀ п╦п╨п╬п╫п╬п╨.
 
-%description -l uk
-Licq - це клон системи онлайнового обм╕ну пов╕домленнями ICQ,
-написаний на C++ з використанням набору в╕джет╕в Qt. Licq п╕дтриму╓
-вс╕ найголовн╕ш╕ можливост╕ ICQ, включаючи обм╕н пов╕домленнями, URLи,
-чат, пересилку файл╕в та ╕нформац╕ю про учасник╕в. Додатково до цього,
-Licq ма╓ багат╕ можливост╕ конф╕гурування ╕ п╕дтриму╓ "ск╕ни" (зм╕нн╕
-зображення для р╕зних частин ╕нтерфейсу для зм╕ни зовн╕шнього вигляду)
-та р╕зн╕ набори ╕конок.
+%description -l uk.UTF-8
+Licq - я├п╣ п╨п╩п╬п╫ я│п╦я│я┌п╣п╪п╦ п╬п╫п╩п╟п╧п╫п╬п╡п╬пЁп╬ п╬п╠п╪я√п╫я┐ п©п╬п╡я√п╢п╬п╪п╩п╣п╫п╫я▐п╪п╦ ICQ,
+п╫п╟п©п╦я│п╟п╫п╦п╧ п╫п╟ C++ п╥ п╡п╦п╨п╬я─п╦я│я┌п╟п╫п╫я▐п╪ п╫п╟п╠п╬я─я┐ п╡я√п╢п╤п╣я┌я√п╡ Qt. Licq п©я√п╢я┌я─п╦п╪я┐я■
+п╡я│я√ п╫п╟п╧пЁп╬п╩п╬п╡п╫я√я┬я√ п╪п╬п╤п╩п╦п╡п╬я│я┌я√ ICQ, п╡п╨п╩я▌я┤п╟я▌я┤п╦ п╬п╠п╪я√п╫ п©п╬п╡я√п╢п╬п╪п╩п╣п╫п╫я▐п╪п╦, URLп╦,
+я┤п╟я┌, п©п╣я─п╣я│п╦п╩п╨я┐ я└п╟п╧п╩я√п╡ я┌п╟ я√п╫я└п╬я─п╪п╟я├я√я▌ п©я─п╬ я┐я┤п╟я│п╫п╦п╨я√п╡. п■п╬п╢п╟я┌п╨п╬п╡п╬ п╢п╬ я├я▄п╬пЁп╬,
+Licq п╪п╟я■ п╠п╟пЁп╟я┌я√ п╪п╬п╤п╩п╦п╡п╬я│я┌я√ п╨п╬п╫я└я√пЁя┐я─я┐п╡п╟п╫п╫я▐ я√ п©я√п╢я┌я─п╦п╪я┐я■ "я│п╨я√п╫п╦" (п╥п╪я√п╫п╫я√
+п╥п╬п╠я─п╟п╤п╣п╫п╫я▐ п╢п╩я▐ я─я√п╥п╫п╦я┘ я┤п╟я│я┌п╦п╫ я√п╫я┌п╣я─я└п╣п╧я│я┐ п╢п╩я▐ п╥п╪я√п╫п╦ п╥п╬п╡п╫я√я┬п╫я▄п╬пЁп╬ п╡п╦пЁп╩я▐п╢я┐)
+я┌п╟ я─я√п╥п╫я√ п╫п╟п╠п╬я─п╦ я√п╨п╬п╫п╬п╨.
 
 %package devel
 Summary:	Header files requied to develop licq plugins
-Summary(pl):	Pliki nagЁСwkowe niezbЙdne przy pisaniu wtyczek dla licq
+Summary(pl.UTF-8):   Pliki nagе┌цЁwkowe niezbд≥dne przy pisaniu wtyczek dla licq
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files required to develop licq plugins.
 
-%description devel -l pl
-Pliki nagЁСwkowe niezbЙdne przy pisaniu wtyczek dla licq.
+%description devel -l pl.UTF-8
+Pliki nagе┌цЁwkowe niezbд≥dne przy pisaniu wtyczek dla licq.
 
-%description devel -l pt_BR
+%description devel -l pt_BR.UTF-8
 Ferramentas para desenvolvimento de plug-ins para o licq.
 
 %package qt-gui-common
 Summary:	Common files for QT based GUI plugins
-Summary(pl):	WspСlne pliki dla wtyczek GUI opartych na QT
+Summary(pl.UTF-8):   WspцЁlne pliki dla wtyczek GUI opartych na QT
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	qt >= 2.1
@@ -106,16 +106,16 @@ Requires:	qt >= 2.1
 %description qt-gui-common
 Common files for QT based GUI plugins.
 
-%description qt-gui-common -l pl
-WspСlne pliki dla wtyczek GUI opartych na QT.
+%description qt-gui-common -l pl.UTF-8
+WspцЁlne pliki dla wtyczek GUI opartych na QT.
 
 %package qt-gui
 Summary:	Qt GUI for Licq
-Summary(es):	Qt user interface for licq
-Summary(pl):	Graficzne ╤rodowisko u©ytkownika dla Licq, wykorzystuj╠ce Qt
-Summary(pt_BR):	Interface Qt para o licq
-Summary(ru):	Qt интерфейс к licq
-Summary(uk):	Qt ╕нтерфейс до licq
+Summary(es.UTF-8):   Qt user interface for licq
+Summary(pl.UTF-8):   Graficzne е⌡rodowisko uе╪ytkownika dla Licq, wykorzystujд┘ce Qt
+Summary(pt_BR.UTF-8):   Interface Qt para o licq
+Summary(ru.UTF-8):   Qt п╦п╫я┌п╣я─я└п╣п╧я│ п╨ licq
+Summary(uk.UTF-8):   Qt я√п╫я┌п╣я─я└п╣п╧я│ п╢п╬ licq
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-qt-gui-common = %{version}-%{release}
@@ -124,21 +124,21 @@ Requires:	qt >= 2.1
 %description qt-gui
 This package contains graphical interface for Licq, using Qt wigets.
 
-%description qt-gui -l pl
-Ten pakiet zawiera graficzny interfejs dla Licq, u©ywaj╠cy widgetСw
+%description qt-gui -l pl.UTF-8
+Ten pakiet zawiera graficzny interfejs dla Licq, uе╪ywajд┘cy widgetцЁw
 Qt.
 
-%description qt-gui -l uk
-Licq - це клон системи онлайнового обм╕ну пов╕домленнями ICQ.
-%{name}-qt - це граф╕чний ╕нтерфейс до licq написаний на Qt.
+%description qt-gui -l uk.UTF-8
+Licq - я├п╣ п╨п╩п╬п╫ я│п╦я│я┌п╣п╪п╦ п╬п╫п╩п╟п╧п╫п╬п╡п╬пЁп╬ п╬п╠п╪я√п╫я┐ п©п╬п╡я√п╢п╬п╪п╩п╣п╫п╫я▐п╪п╦ ICQ.
+%{name}-qt - я├п╣ пЁя─п╟я└я√я┤п╫п╦п╧ я√п╫я┌п╣я─я└п╣п╧я│ п╢п╬ licq п╫п╟п©п╦я│п╟п╫п╦п╧ п╫п╟ Qt.
 
-%description qt-gui -l ru
-Licq - это клон системы онлайнового обмена сообщенями ICQ. %{name}-qt
-- это графический интерфейс к licq написанный на Qt.
+%description qt-gui -l ru.UTF-8
+Licq - я█я┌п╬ п╨п╩п╬п╫ я│п╦я│я┌п╣п╪я▀ п╬п╫п╩п╟п╧п╫п╬п╡п╬пЁп╬ п╬п╠п╪п╣п╫п╟ я│п╬п╬п╠я┴п╣п╫я▐п╪п╦ ICQ. %{name}-qt
+- я█я┌п╬ пЁя─п╟я└п╦я┤п╣я│п╨п╦п╧ п╦п╫я┌п╣я─я└п╣п╧я│ п╨ licq п╫п╟п©п╦я│п╟п╫п╫я▀п╧ п╫п╟ Qt.
 
 %package kde-gui
 Summary:	KDE GUI for Licq
-Summary(pl):	Graficzny interfejs KDE dla Licq
+Summary(pl.UTF-8):   Graficzny interfejs KDE dla Licq
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-qt-gui-common = %{version}-%{release}
@@ -147,14 +147,14 @@ Requires:	qt >= 2.1
 %description kde-gui
 This package contains graphical interface for Licq, using KDE wigets.
 
-%description kde-gui -l pl
-Ten pakiet zawiera graficzny interfejs dla Licq, u©ywaj╠cy widgetСw
+%description kde-gui -l pl.UTF-8
+Ten pakiet zawiera graficzny interfejs dla Licq, uе╪ywajд┘cy widgetцЁw
 KDE.
 
 %package text
 Summary:	Text terminal user interface for Licq
-Summary(pl):	Interfejs u©ytkownika dla Licq pod terminal tekstowy
-Summary(pt_BR):	Interface de usuАrio de console para o licq
+Summary(pl.UTF-8):   Interfejs uе╪ytkownika dla Licq pod terminal tekstowy
+Summary(pt_BR.UTF-8):   Interface de usuц║rio de console para o licq
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	ncurses >= 5.0
@@ -164,72 +164,72 @@ Obsoletes:	licq-console
 This package contains text terminal user interface for Licq, using
 ncurses library.
 
-%description text -l pl
-Ten pakiet zawiera interfejs dla Licq pod terminal tekstowy u©ywaj╠cy
+%description text -l pl.UTF-8
+Ten pakiet zawiera interfejs dla Licq pod terminal tekstowy uе╪ywajд┘cy
 biblioteki ncurses.
 
-%description text -l pt_BR
-Inclui interface de usuАrio de console para o licq.
+%description text -l pt_BR.UTF-8
+Inclui interface de usuц║rio de console para o licq.
 
-%description text -l ru
-Licq - это клон системы онлайнового обмена сообщенями ICQ. %{name}-qt
-- это текстовый интерфейс к licq.
+%description text -l ru.UTF-8
+Licq - я█я┌п╬ п╨п╩п╬п╫ я│п╦я│я┌п╣п╪я▀ п╬п╫п╩п╟п╧п╫п╬п╡п╬пЁп╬ п╬п╠п╪п╣п╫п╟ я│п╬п╬п╠я┴п╣п╫я▐п╪п╦ ICQ. %{name}-qt
+- я█я┌п╬ я┌п╣п╨я│я┌п╬п╡я▀п╧ п╦п╫я┌п╣я─я└п╣п╧я│ п╨ licq.
 
-%description text -l uk
-Licq - це клон системи онлайнового обм╕ну пов╕домленнями ICQ.
-%{name}-qt - це текстовий ╕нтерфейс до licq.
+%description text -l uk.UTF-8
+Licq - я├п╣ п╨п╩п╬п╫ я│п╦я│я┌п╣п╪п╦ п╬п╫п╩п╟п╧п╫п╬п╡п╬пЁп╬ п╬п╠п╪я√п╫я┐ п©п╬п╡я√п╢п╬п╪п╩п╣п╫п╫я▐п╪п╦ ICQ.
+%{name}-qt - я├п╣ я┌п╣п╨я│я┌п╬п╡п╦п╧ я√п╫я┌п╣я─я└п╣п╧я│ п╢п╬ licq.
 
 %package jons-gtk-gui
 Summary:	Jons GTK+ GUI for Licq
-Summary(pl):	Graficzne ╤rodowisko u©ytkownika dla Licq, wykorzystuj╠ce GTK+
+Summary(pl.UTF-8):   Graficzne е⌡rodowisko uе╪ytkownika dla Licq, wykorzystujд┘ce GTK+
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description jons-gtk-gui
 Jons GTK+ GUI for Licq.
 
-%description jons-gtk-gui -l pl
-Graficzne ╤rodowisko u©ytkownika dla Licq, wykorzystuj╠ce GTK+.
+%description jons-gtk-gui -l pl.UTF-8
+Graficzne е⌡rodowisko uе╪ytkownika dla Licq, wykorzystujд┘ce GTK+.
 
 %package msn
 Summary:	Licq MSN plugin
-Summary(pl):	Wtyczka MSN dla licq
+Summary(pl.UTF-8):   Wtyczka MSN dla licq
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description msn
 Licq MSN plugin.
 
-%description msn -l pl
+%description msn -l pl.UTF-8
 Wtyczka MSN dla licq.
 
 %package osd
 Summary:	On-screen display of incomming messages
-Summary(pl):	Wy╤wietlanie przychodz╠cych wiadomo╤ci na ekranie (OSD)
+Summary(pl.UTF-8):   Wyе⌡wietlanie przychodzд┘cych wiadomoе⌡ci na ekranie (OSD)
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description osd
 On-screen display of incomming messages.
 
-%description osd -l pl
-Wy╤wietlanie przychodz╠cych wiadomo╤ci na ekranie (OSD).
+%description osd -l pl.UTF-8
+Wyе⌡wietlanie przychodzд┘cych wiadomoе⌡ci na ekranie (OSD).
 
 %package rms
 Summary:	Licq remote management server
-Summary(pl):	Serwer do zdalnego zarz╠dzania Licq
+Summary(pl.UTF-8):   Serwer do zdalnego zarzд┘dzania Licq
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description rms
 This package contains remote management server for Licq.
 
-%description rms -l pl
-Ten pakiet zawiera serwer do zdalnego zarz╠dzania dla Licq.
+%description rms -l pl.UTF-8
+Ten pakiet zawiera serwer do zdalnego zarzд┘dzania dla Licq.
 
 %package autoreply
 Summary:	Licq autoreply utility
-Summary(pl):	NarzЙdzie do automatycznego odpowiadania dla Licq
+Summary(pl.UTF-8):   Narzд≥dzie do automatycznego odpowiadania dla Licq
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -237,21 +237,21 @@ Requires:	%{name} = %{version}-%{release}
 This package contains Licq utility for automatic handling of incoming
 messages.
 
-%description autoreply -l pl
-Ten pakiet zawiera narzЙdzie dla Licq ktСre automatycznie zajmuje siЙ
-przychodz╠cymi wiadomo╤ciami.
+%description autoreply -l pl.UTF-8
+Ten pakiet zawiera narzд≥dzie dla Licq ktцЁre automatycznie zajmuje siд≥
+przychodzд┘cymi wiadomoе⌡ciami.
 
 %package forwarder
 Summary:	Licq email forwarder utility
-Summary(pl):	NarzЙdzie do przesyЁania wiadomo╤ci icq na email
+Summary(pl.UTF-8):   Narzд≥dzie do przesyе┌ania wiadomoе⌡ci icq na email
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description forwarder
 Licq email forwarder utility.
 
-%description forwarder -l pl
-NarzЙdzie do przesyЁania wiadomo╤ci icq na email.
+%description forwarder -l pl.UTF-8
+Narzд≥dzie do przesyе┌ania wiadomoе⌡ci icq na email.
 
 %prep
 %setup -q
