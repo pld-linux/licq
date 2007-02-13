@@ -1,11 +1,11 @@
 # TODO:
 #	- subpackage with licqweb
 Summary:	An ICQ client for online messaging
-Summary(es.UTF-8):   licq es un clone del ICQ(tm) escrito
-Summary(pl.UTF-8):   Klient ICQ do przesyłania wiadomości po sieci
-Summary(pt_BR.UTF-8):   O licq é um clone do ICQ(tm) escrito
-Summary(ru.UTF-8):   Клон ICQ для онлайновго обмена сообщениями
-Summary(uk.UTF-8):   Клон ICQ для онлайновго обміну повідомленнями
+Summary(es.UTF-8):	licq es un clone del ICQ(tm) escrito
+Summary(pl.UTF-8):	Klient ICQ do przesyłania wiadomości po sieci
+Summary(pt_BR.UTF-8):	O licq é um clone do ICQ(tm) escrito
+Summary(ru.UTF-8):	Клон ICQ для онлайновго обмена сообщениями
+Summary(uk.UTF-8):	Клон ICQ для онлайновго обміну повідомленнями
 Name:		licq
 Version:	1.3.2
 Release:	5
@@ -83,7 +83,7 @@ Licq має багаті можливості конфігурування і п
 
 %package devel
 Summary:	Header files requied to develop licq plugins
-Summary(pl.UTF-8):   Pliki nagłówkowe niezbędne przy pisaniu wtyczek dla licq
+Summary(pl.UTF-8):	Pliki nagłówkowe niezbędne przy pisaniu wtyczek dla licq
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -98,7 +98,7 @@ Ferramentas para desenvolvimento de plug-ins para o licq.
 
 %package qt-gui-common
 Summary:	Common files for QT based GUI plugins
-Summary(pl.UTF-8):   Wspólne pliki dla wtyczek GUI opartych na QT
+Summary(pl.UTF-8):	Wspólne pliki dla wtyczek GUI opartych na QT
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	qt >= 2.1
@@ -111,11 +111,11 @@ Wspólne pliki dla wtyczek GUI opartych na QT.
 
 %package qt-gui
 Summary:	Qt GUI for Licq
-Summary(es.UTF-8):   Qt user interface for licq
-Summary(pl.UTF-8):   Graficzne środowisko użytkownika dla Licq, wykorzystujące Qt
-Summary(pt_BR.UTF-8):   Interface Qt para o licq
-Summary(ru.UTF-8):   Qt интерфейс к licq
-Summary(uk.UTF-8):   Qt інтерфейс до licq
+Summary(es.UTF-8):	Qt user interface for licq
+Summary(pl.UTF-8):	Graficzne środowisko użytkownika dla Licq, wykorzystujące Qt
+Summary(pt_BR.UTF-8):	Interface Qt para o licq
+Summary(ru.UTF-8):	Qt интерфейс к licq
+Summary(uk.UTF-8):	Qt інтерфейс до licq
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-qt-gui-common = %{version}-%{release}
@@ -138,7 +138,7 @@ Licq - это клон системы онлайнового обмена соо
 
 %package kde-gui
 Summary:	KDE GUI for Licq
-Summary(pl.UTF-8):   Graficzny interfejs KDE dla Licq
+Summary(pl.UTF-8):	Graficzny interfejs KDE dla Licq
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-qt-gui-common = %{version}-%{release}
@@ -153,8 +153,8 @@ KDE.
 
 %package text
 Summary:	Text terminal user interface for Licq
-Summary(pl.UTF-8):   Interfejs użytkownika dla Licq pod terminal tekstowy
-Summary(pt_BR.UTF-8):   Interface de usuário de console para o licq
+Summary(pl.UTF-8):	Interfejs użytkownika dla Licq pod terminal tekstowy
+Summary(pt_BR.UTF-8):	Interface de usuário de console para o licq
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	ncurses >= 5.0
@@ -181,7 +181,7 @@ Licq - це клон системи онлайнового обміну пові
 
 %package jons-gtk-gui
 Summary:	Jons GTK+ GUI for Licq
-Summary(pl.UTF-8):   Graficzne środowisko użytkownika dla Licq, wykorzystujące GTK+
+Summary(pl.UTF-8):	Graficzne środowisko użytkownika dla Licq, wykorzystujące GTK+
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -193,7 +193,7 @@ Graficzne środowisko użytkownika dla Licq, wykorzystujące GTK+.
 
 %package msn
 Summary:	Licq MSN plugin
-Summary(pl.UTF-8):   Wtyczka MSN dla licq
+Summary(pl.UTF-8):	Wtyczka MSN dla licq
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -205,7 +205,7 @@ Wtyczka MSN dla licq.
 
 %package osd
 Summary:	On-screen display of incomming messages
-Summary(pl.UTF-8):   Wyświetlanie przychodzących wiadomości na ekranie (OSD)
+Summary(pl.UTF-8):	Wyświetlanie przychodzących wiadomości na ekranie (OSD)
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -217,7 +217,7 @@ Wyświetlanie przychodzących wiadomości na ekranie (OSD).
 
 %package rms
 Summary:	Licq remote management server
-Summary(pl.UTF-8):   Serwer do zdalnego zarządzania Licq
+Summary(pl.UTF-8):	Serwer do zdalnego zarządzania Licq
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -229,7 +229,7 @@ Ten pakiet zawiera serwer do zdalnego zarządzania dla Licq.
 
 %package autoreply
 Summary:	Licq autoreply utility
-Summary(pl.UTF-8):   Narzędzie do automatycznego odpowiadania dla Licq
+Summary(pl.UTF-8):	Narzędzie do automatycznego odpowiadania dla Licq
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -243,7 +243,7 @@ przychodzącymi wiadomościami.
 
 %package forwarder
 Summary:	Licq email forwarder utility
-Summary(pl.UTF-8):   Narzędzie do przesyłania wiadomości icq na email
+Summary(pl.UTF-8):	Narzędzie do przesyłania wiadomości icq na email
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
