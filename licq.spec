@@ -31,7 +31,7 @@ BuildRequires:	qt-linguist
 BuildRequires:	xosd-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		plugindir	%{_prefix}/%{_lib}/licq
+%define		plugindir	%{_libdir}/licq
 
 # __cc with words broken
 %undefine	with_ccache
