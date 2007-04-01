@@ -7,15 +7,14 @@ Summary(pt_BR.UTF-8):	O licq é um clone do ICQ(tm) escrito
 Summary(ru.UTF-8):	Клон ICQ для онлайновго обмена сообщениями
 Summary(uk.UTF-8):	Клон ICQ для онлайновго обміну повідомленнями
 Name:		licq
-Version:	1.3.2
-Release:	5
+Version:	1.3.4
+Release:	1
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/licq/%{name}-%{version}.tar.bz2
-# Source0-md5:	0471bb8fed91eefb23dfe153c9a4a806
+# Source0-md5:	3bab0c9d1977f9b14421d36110e17e0c
 Source1:	%{name}-qt-gui.desktop
 Source2:	%{name}-kde-gui.desktop
-Patch0:		%{name}-typos.patch
 URL:		http://www.licq.org/
 BuildRequires:	XFree86-devel
 BuildRequires:	automake
@@ -32,9 +31,7 @@ BuildRequires:	qt-linguist
 BuildRequires:	xosd-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-# "lib" instead of "%{_lib}" is hardcoded in include/licq_constants.h
-# and plugins/*/src/Makefile.am
-%define		plugindir	%{_prefix}/lib/licq
+%define		plugindir	%{_prefix}/%{_lib}/licq
 
 # __cc with words broken
 %undefine	with_ccache
@@ -255,7 +252,6 @@ Narzędzie do przesyłania wiadomości icq na email.
 
 %prep
 %setup -q
-%patch0 -p1
 
 find . -type d -name autom4te.cache | xargs rm -rf
 
