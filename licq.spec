@@ -26,7 +26,7 @@ BuildRequires:	kdelibs-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.7d
-BuildRequires:	qt-devel >= 3.0.5
+BuildRequires:	qt-devel >= 3:3.0.5
 BuildRequires:	qt-linguist
 BuildRequires:	xosd-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
