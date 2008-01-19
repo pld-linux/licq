@@ -7,16 +7,15 @@ Summary(pt_BR.UTF-8):	O licq é um clone do ICQ(tm) escrito
 Summary(ru.UTF-8):	Клон ICQ для онлайновго обмена сообщениями
 Summary(uk.UTF-8):	Клон ICQ для онлайновго обміну повідомленнями
 Name:		licq
-Version:	1.3.4
+Version:	1.3.5
 Release:	1
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/licq/%{name}-%{version}.tar.bz2
-# Source0-md5:	3bab0c9d1977f9b14421d36110e17e0c
+# Source0-md5:	842a73c82980721961fe824f40377292
 Source1:	%{name}-qt-gui.desktop
 Source2:	%{name}-kde-gui.desktop
 URL:		http://www.licq.org/
-BuildRequires:	XFree86-devel
 BuildRequires:	automake
 BuildRequires:	cdk-devel >= 5.0
 BuildRequires:	gettext-devel
