@@ -8,19 +8,19 @@ Summary(ru.UTF-8):	Клон ICQ для онлайновго обмена соо�
 Summary(uk.UTF-8):	Клон ICQ для онлайновго обміну повідомленнями
 Name:		licq
 Version:	1.3.5
-Release:	1
+Release:	2	
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/licq/%{name}-%{version}.tar.bz2
 # Source0-md5:	842a73c82980721961fe824f40377292
 Source1:	%{name}-qt-gui.desktop
 Source2:	%{name}-kde-gui.desktop
+Patch0:		%{name}-1.3.5-dos.patch
 URL:		http://www.licq.org/
 BuildRequires:	automake
 BuildRequires:	cdk-devel >= 5.0
 BuildRequires:	gettext-devel
 BuildRequires:	gpgme-devel
-BuildRequires:	gtk+-devel >= 1.2.0
 BuildRequires:	kdelibs-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	ncurses-devel >= 5.0
@@ -251,6 +251,7 @@ Narzędzie do przesyłania wiadomości icq na email.
 
 %prep
 %setup -q
+%patch0 -p1
 
 find . -type d -name autom4te.cache | xargs rm -rf
 
