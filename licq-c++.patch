@@ -1,0 +1,74 @@
+--- src/fifo.cpp~	2007-09-28 22:11:35.000000000 +0200
++++ src/fifo.cpp	2008-07-02 19:49:02.469454070 +0200
+@@ -24,6 +24,7 @@
+ 
+ #include <string.h>
+ #include <sys/types.h>
++#include <limits.h>
+ #include <unistd.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+--- plugins/auto-reply/configure.ac~	2006-10-20 23:02:34.000000000 +0200
++++ plugins/auto-reply/configure.ac	2008-07-02 19:51:22.389438212 +0200
+@@ -46,7 +46,7 @@
+ AC_LANG_SAVE
+ AC_LANG_CPLUSPLUS
+ 
+-AC_CHECK_HEADER(vector.h,,
++AC_CHECK_HEADER(vector,,
+   AC_MSG_ERROR(You need to have the libstdc++ headers installed))
+ 
+ AC_LANG_RESTORE
+--- plugins/email/configure.ac~	2006-10-20 23:02:34.000000000 +0200
++++ plugins/email/configure.ac	2008-07-02 19:51:22.389438212 +0200
+@@ -46,7 +46,7 @@
+ AC_LANG_SAVE
+ AC_LANG_CPLUSPLUS
+ 
+-AC_CHECK_HEADER(vector.h,,
++AC_CHECK_HEADER(vector,,
+   AC_MSG_ERROR(You need to have the libstdc++ headers installed))
+ 
+ AC_LANG_RESTORE
+--- plugins/msn/configure.ac~	2006-10-20 23:02:34.000000000 +0200
++++ plugins/msn/configure.ac	2008-07-02 19:51:22.389438212 +0200
+@@ -46,7 +46,7 @@
+ AC_LANG_SAVE
+ AC_LANG_CPLUSPLUS
+ 
+-AC_CHECK_HEADER(vector.h,,
++AC_CHECK_HEADER(vector,,
+   AC_MSG_ERROR(You need to have the libstdc++ headers installed))
+ 
+ AC_LANG_RESTORE
+
+--- plugins/auto-reply/src/autoreply.cpp~	2006-07-15 15:10:26.000000000 +0200
++++ plugins/auto-reply/src/autoreply.cpp	2008-07-02 20:12:56.186600700 +0200
+@@ -5,6 +5,7 @@
+ #include <sys/select.h>
+ #include <sys/time.h>
+ #include <sys/types.h>
++#include <limits.h>
+ #include <unistd.h>
+ #include <string.h>
+ #include <ctype.h>
+--- plugins/email/src/forwarder.cpp~	2006-07-15 15:10:26.000000000 +0200
++++ plugins/email/src/forwarder.cpp	2008-07-02 20:16:51.946509205 +0200
+@@ -5,6 +5,7 @@
+ #include <sys/select.h>
+ #include <sys/time.h>
+ #include <sys/types.h>
++#include <limits.h>
+ #include <unistd.h>
+ #include <string.h>
+ #include <ctype.h>
+--- plugins/rms/src/rms.cpp~	2006-10-02 00:02:59.000000000 +0200
++++ plugins/rms/src/rms.cpp	2008-07-02 20:21:34.632591670 +0200
+@@ -6,6 +6,7 @@
+ #include <sys/time.h>
+ #include <sys/types.h>
+ #include <unistd.h>
++#include <limits.h>
+ #include <string.h>
+ #include <ctype.h>
+ #include <stdio.h>
