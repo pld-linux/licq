@@ -8,7 +8,7 @@ Summary(ru.UTF-8):	Клон ICQ для онлайновго обмена соо�
 Summary(uk.UTF-8):	Клон ICQ для онлайновго обміну повідомленнями
 Name:		licq
 Version:	1.3.5
-Release:	2	
+Release:	3
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/licq/%{name}-%{version}.tar.bz2
@@ -16,6 +16,8 @@ Source0:	http://dl.sourceforge.net/licq/%{name}-%{version}.tar.bz2
 Source1:	%{name}-qt-gui.desktop
 Source2:	%{name}-kde-gui.desktop
 Patch0:		%{name}-1.3.5-dos.patch
+Patch1:		%{name}-c++.patch
+Patch2:		%{name}-logonfix.patch
 URL:		http://www.licq.org/
 BuildRequires:	automake
 BuildRequires:	cdk-devel >= 5.0
@@ -252,31 +254,33 @@ Narzędzie do przesyłania wiadomości icq na email.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p0
+%patch2 -p0
 
 find . -type d -name autom4te.cache | xargs rm -rf
 
 %build
 cp -pr plugins/qt-gui plugins/kde-gui
+# plugins/jons-gtk-gui
+MODULES=". plugins/auto-reply plugins/console plugins/email plugins/msn plugins/osd plugins/kde-gui plugins/qt-gui plugins/rms"
+
 BASE=$(pwd)
-for module in \
-	. \
-	plugins/auto-reply \
-	plugins/console \
-	plugins/email \
-	plugins/msn \
-	plugins/osd \
-	plugins/kde-gui \
-	plugins/qt-gui \
-	plugins/rms \
-	; do
-	# plugins/jons-gtk-gui \
+
+# configure
+for module in $MODULES; do
 	cd $module
 	cp -f /usr/share/automake/config.* admin
+	%{__autoconf}
 	%configure \
 	$([ "$module" = "plugins/qt-gui" ] && echo -n "--with-qt-libraries=%{_libdir}") \
 	$([ "$module" = "plugins/kde-gui" ] && echo -n "--with-kde --with-qt-libraries=%{_libdir} KDEDIR=%{_libdir}") \
 	--with-openssl-inc=%{_includedir}/openssl \
 	--enable-gpgme
+	cd $BASE
+done
+
+# build
+for module in $MODULES; do
 	%{__make}
 	cd $BASE
 done
