@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Licq (QT4)
+Comment=Unix/Qt4 ICQ clone
+Comment[pl]=Klon ICQ pod Uniksa/Qt4
+Comment[pt]=Cliente Gráfico de ICQ
+Comment[pt_BR]=Cliente Gráfico de ICQ
+Exec=licq -p qt4-gui
+Icon=licq
+Terminal=false
+Type=Application
+Categories=Qt;Network;InstantMessaging;
+# vi: encoding=utf-8
