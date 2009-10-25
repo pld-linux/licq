@@ -9,7 +9,7 @@ Summary(ru.UTF-8):	Клон ICQ для онлайновго обмена соо�
 Summary(uk.UTF-8):	Клон ICQ для онлайновго обміну повідомленнями
 Name:		licq
 Version:	1.3.7
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/licq/%{name}-%{version}.tar.bz2
@@ -31,6 +31,7 @@ BuildRequires:	qt-devel >= 3:3.0.5
 BuildRequires:	qt-linguist
 %endif
 BuildRequires:	QtGui-devel
+BuildRequires:	QtSvg-devel
 BuildRequires:	kde4-kdelibs-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	ncurses-devel >= 5.0
