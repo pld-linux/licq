@@ -19,23 +19,30 @@ Source2:	%{name}-kde-gui.desktop
 Source3:	%{name}-qt4-gui.desktop
 Source4:	%{name}-kde4-gui.desktop
 URL:		http://www.licq.org/
+BuildRequires:	QtGui-devel
+BuildRequires:	QtNetwork-devel
+BuildRequires:	QtSvg-devel
+BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	automoc4
 BuildRequires:	boost-devel >= 1.33.1
 BuildRequires:	cdk-devel >= 5.0
 BuildRequires:	cmake
 BuildRequires:	gettext-devel
 BuildRequires:	gpgme-devel
+BuildRequires:	kde4-kdelibs-devel
+%{?with_qt3:BuildRequires:	kdelibs-devel}
+BuildRequires:	libstdc++-devel
+BuildRequires:	libxslt-devel
+BuildRequires:	ncurses-devel >= 5.0
+BuildRequires:	openssl-devel >= 0.9.7d
 %if %{with qt3}
-BuildRequires:	kdelibs-devel
 BuildRequires:	qt-devel >= 3:3.0.5
 BuildRequires:	qt-linguist
 %endif
-BuildRequires:	QtGui-devel
-BuildRequires:	QtSvg-devel
-BuildRequires:	kde4-kdelibs-devel
-BuildRequires:	libstdc++-devel
-BuildRequires:	ncurses-devel >= 5.0
-BuildRequires:	openssl-devel >= 0.9.7d
+BuildRequires:	qt4-build
+BuildRequires:	qt4-linguist
+BuildRequires:	qt4-qmake
 BuildRequires:	xosd-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
