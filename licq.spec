@@ -9,7 +9,7 @@ Summary(ru.UTF-8):	Клон ICQ для онлайновго обмена соо�
 Summary(uk.UTF-8):	Клон ICQ для онлайновго обміну повідомленнями
 Name:		licq
 Version:	1.3.7
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/licq/%{name}-%{version}.tar.bz2
