@@ -28,7 +28,7 @@ BuildRequires:	automoc4
 BuildRequires:	boost-devel >= 1.33.1
 BuildRequires:	cdk-devel >= 5.0
 BuildRequires:	cmake
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	gpgme-devel
 BuildRequires:	kde4-kdelibs-devel
 %{?with_qt3:BuildRequires:	kdelibs-devel}
